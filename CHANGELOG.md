@@ -13,3 +13,10 @@
 
 ## Next Path
 *Released - TBD*
+
+## Initial
+### Feature - 
+* Created feed model that defines required ATOM feed elements.
+
+### Internal -
+* Disabled iterable value type check in PHPStan
