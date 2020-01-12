@@ -4,7 +4,6 @@ dist: bionic
 
 env:
   global:
-    - FUNC_TEST_ENV_FILE=.env.travis
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
     - secure: "JlaucD7rlhANaz488p0gkjIqEkKrFd+MIlyD0OKftSd/IeMYpIyLguD+Kap8I1pBizXvoi5FKZl1v2jmFJ/Xk35ijV2hQleR/rQerRH1+qAtWDrTSy+jALVBvajp2gCzV7BlGKoR4CyESnTKdBIyFzpOQF5GfAgu/75ywqkauJN+biIzBJ+HtcD/7UpQVI6zq3CBXBTzmScCgbNwrs0aK3bmDZBbAb83ItgsCgv4xthk3ydz7/dJ9wK5nrJeNigQYEhLxaMrn8pr2HFGFLpNmAWQuHT/2L7gfznis7TyCFwLNfjTIf+bUnzNWyGRiZDSPuJOwxD2fcdc7PSqSJQne2stPNyG4UXX4OGPejX8mR6VF4jHQWYDpL0uBcTm4vnCbG3VXJNbm0v7LbGf+8mhuiqZI4ddTGxrNxAAJn4E48vgKdrtRco2TWNa+BCXOwj1AdtRgC6jHTuDJdlv2GdB2svNTk7UTNK4ij4QOlEopwj9ozoPLa5XTu4dDtcBeixNSS7AfV/RVSfedBz5THWhoOLnk4l6uzZfKZxh3emtVxCnpfLsoPK4GDQdE/XiGt4GypON+gb40cO3MjCR37w9HiUs9YIRIFNG7OFn9kZz3XkkRL3qfyeJmR4oCN0ZjU/daidi6nbrMf/PUKjAODzbPbF0EXLz1qHDgo0mWoSnKIU="
 
@@ -26,7 +25,7 @@ before_script:
 
 script:
   - composer validate
-  - "vendor/bin/phpunit $PHPUNIT_FLAGS"
+  - "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
 
 after_script:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$COVERAGE" == "true" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
