@@ -1,0 +1,19 @@
+<phpunit
+        colors="true"
+        backupGlobals="true"
+        backupStaticAttributes="true"
+>
+    <testsuites>
+        <testsuite name="UnitTests">
+            <directory>tests/UnitTests</directory>
+        </testsuite>
+        <testsuite name="FunctionalTests">
+            <directory>tests/FunctionalTests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
