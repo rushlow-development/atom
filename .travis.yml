@@ -25,7 +25,7 @@ before_script:
 
 script:
   - composer validate
-  - "./bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
+  - "vendor/bin/phpunit $PHPUNIT_FLAGS --log-junit=phpunit.report.xml"
 
 after_script:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$COVERAGE" == "true" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
