@@ -45,21 +45,21 @@ class ModelExceptionTest extends TestCase
     {
         $this->expectException(ModelException::class);
 
-        ModelException::emptyPropertyException('');
+        throw ModelException::emptyPropertyException('');
     }
 
     public function testEmptyPropertyExceptionContainsMessage(): void
     {
         $this->expectExceptionMessage('value is empty or uninitialized');
 
-        ModelException::emptyPropertyException('');
+        throw ModelException::emptyPropertyException('');
     }
 
     public function testEmptyPropertyExceptionPassesMessageParamToMessage(): void
     {
         $this->expectExceptionMessage('Some::property value is empty or uninitialized');
 
-        ModelException::emptyPropertyException('Some::property');
+        throw ModelException::emptyPropertyException('Some::property');
     }
 
     public function testEmptyPropertyExceptionPassesPreviousThrowable(): void
@@ -69,7 +69,7 @@ class ModelExceptionTest extends TestCase
         $previous = null;
 
         try {
-            ModelException::emptyPropertyException('', $exception);
+            throw ModelException::emptyPropertyException('', $exception);
         } catch (ModelException $ex) {
             $previous = $ex->getPrevious();
         }
