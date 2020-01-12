@@ -1,0 +1,25 @@
+plugins:
+  editorconfig:
+    enabled: true
+
+  fixme:
+    enabled: true
+
+  git-legal:
+    enabled: true
+
+  markdownlint:
+    enabled: true
+
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "PSR1,PSR2"
+      file_extensions: "php"
+
+  sonar-php:
+    enabled: true
+    config:
+      tests_patterns:
+        - src/**
+        - tests/**
