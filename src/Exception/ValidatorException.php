@@ -23,20 +23,11 @@ namespace Geeshoe\Atom\Exception;
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
 
 /**
- * Class ModelException
+ * Class ValidatorException
  *
  * @package Geeshoe\Atom\Exception
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ModelException extends \RuntimeException implements AtomExceptionInterface
+class ValidatorException extends \InvalidArgumentException implements AtomExceptionInterface
 {
-    /**
-     * @param string          $propertySignature
-     * @param \Throwable|null $previous
-     * @return self
-     */
-    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
-    {
-        return new self("$propertySignature value is empty or uninitialized", 0, $previous);
-    }
 }

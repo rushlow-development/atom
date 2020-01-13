@@ -18,25 +18,22 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Exception;
+namespace Geeshoe\Atom\UnitTests\Contract;
 
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Class ModelException
+ * Class AtomExceptionInterfaceTest
  *
- * @package Geeshoe\Atom\Exception
+ * @package Geeshoe\Atom\UnitTests\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ModelException extends \RuntimeException implements AtomExceptionInterface
+class AtomExceptionInterfaceTest extends TestCase
 {
-    /**
-     * @param string          $propertySignature
-     * @param \Throwable|null $previous
-     * @return self
-     */
-    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
+    public function testAtomExceptionInterfaceExtendsThrowable(): void
     {
-        return new self("$propertySignature value is empty or uninitialized", 0, $previous);
+        $mock = $this->createMock(AtomExceptionInterface::class);
+        $this->assertInstanceOf(\Throwable::class, $mock);
     }
 }
