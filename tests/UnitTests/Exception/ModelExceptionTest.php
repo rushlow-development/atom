@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Exception;
 
+use Geeshoe\Atom\Contract\AtomExceptionInterface;
 use Geeshoe\Atom\Exception\ModelException;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,13 @@ use PHPUnit\Framework\TestCase;
  */
 class ModelExceptionTest extends TestCase
 {
+    public function testModelExceptionImplementsAtomExceptionInterface(): void
+    {
+        $implements = class_implements(ModelException::class);
+
+        $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
+    }
+
     public function testEmptyModelExceptionExtendsRuntimeException(): void
     {
         $this->assertInstanceOf(\RuntimeException::class, new ModelException());

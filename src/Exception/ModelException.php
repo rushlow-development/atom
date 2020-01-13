@@ -20,13 +20,15 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Exception;
 
+use Geeshoe\Atom\Contract\AtomExceptionInterface;
+
 /**
  * Class ModelException
  *
  * @package Geeshoe\Atom\Exception
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ModelException extends \RuntimeException
+class ModelException extends \RuntimeException implements AtomExceptionInterface
 {
     /**
      * @param string          $propertySignature
