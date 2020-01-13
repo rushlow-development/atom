@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests\Factory;
 
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Exception\FactoryException;
 use Geeshoe\Atom\Factory\FeedFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -37,5 +38,37 @@ class FeedFactoryTest extends TestCase
         $result = FeedFactory::createFeed('testId', 'test title', new \DateTime());
 
         self::assertInstanceOf(FeedRequiredInterface::class, $result);
+    }
+
+    /**
+     * @return array<array> [['id', 'title', expectedBool]]
+     */
+    public function validateRequiredDataProvider(): array
+    {
+        return [
+            ['id', 'title', true],
+            ['', 'title', false],
+            ['id', '', false],
+            ['', '', false]
+        ];
+    }
+
+    /**
+     * @dataProvider validateRequiredDataProvider
+     * @param string $id
+     * @param string $title
+     * @param bool   $expected
+     * @throws \Exception
+     */
+    public function testCreateFeedThrowsExceptionOnEmptyParams(string $id, string $title, bool $expected): void
+    {
+        if (!$expected) {
+            $this->expectException(FactoryException::class);
+            $this->expectExceptionMessage(FactoryException::REQUIRED_MSG);
+        } else {
+            $this->expectNotToPerformAssertions();
+        }
+
+        FeedFactory::createFeed($id, $title, new \DateTime());
     }
 }

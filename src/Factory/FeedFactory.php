@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Factory;
 
+use Geeshoe\Atom\Exception\FactoryException;
 use Geeshoe\Atom\Model\Feed;
 
 /**
@@ -38,6 +39,20 @@ class FeedFactory
      */
     public static function createFeed(string $id, string $title, \DateTimeInterface $updated): Feed
     {
-        return new Feed($id, $title, $updated);
+        if (self::validateRequiredFeedElements($id, $title)) {
+            return new Feed($id, $title, $updated);
+        }
+
+        throw FactoryException::requiredException();
+    }
+
+    /**
+     * @param string $id
+     * @param string $title
+     * @return bool
+     */
+    protected static function validateRequiredFeedElements(string $id, string $title): bool
+    {
+        return !empty($id) && !empty($title);
     }
 }
