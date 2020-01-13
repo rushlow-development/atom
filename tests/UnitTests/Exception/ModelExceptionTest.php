@@ -39,7 +39,7 @@ class ModelExceptionTest extends TestCase
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }
 
-    public function testEmptyModelExceptionExtendsRuntimeException(): void
+    public function testModelExceptionIsInstanceOfRuntimeException(): void
     {
         $this->assertInstanceOf(\RuntimeException::class, new ModelException());
     }
