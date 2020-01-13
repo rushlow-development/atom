@@ -18,25 +18,14 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Exception;
-
-use Geeshoe\Atom\Contract\AtomExceptionInterface;
+namespace Geeshoe\Atom\Contract;
 
 /**
- * Class ModelException
+ * Interface AtomExceptionInterface
  *
- * @package Geeshoe\Atom\Exception
+ * @package Geeshoe\Atom\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ModelException extends \RuntimeException implements AtomExceptionInterface
+interface AtomExceptionInterface extends \Throwable
 {
-    /**
-     * @param string          $propertySignature
-     * @param \Throwable|null $previous
-     * @return self
-     */
-    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
-    {
-        return new self("$propertySignature value is empty or uninitialized", 0, $previous);
-    }
 }

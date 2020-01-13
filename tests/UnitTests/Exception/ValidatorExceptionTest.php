@@ -18,25 +18,29 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Exception;
+namespace Geeshoe\Atom\UnitTests\Exception;
 
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
+use Geeshoe\Atom\Exception\ValidatorException;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Class ModelException
+ * Class ValidatorExceptionTest
  *
- * @package Geeshoe\Atom\Exception
+ * @package Geeshoe\Atom\UnitTests\Exception
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class ModelException extends \RuntimeException implements AtomExceptionInterface
+class ValidatorExceptionTest extends TestCase
 {
-    /**
-     * @param string          $propertySignature
-     * @param \Throwable|null $previous
-     * @return self
-     */
-    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
+    public function testValidatorExceptionIsInstanceOfInvalidArgumentException(): void
     {
-        return new self("$propertySignature value is empty or uninitialized", 0, $previous);
+        $this->assertInstanceOf(\InvalidArgumentException::class, new ValidatorException());
+    }
+
+    public function testValidatorExceptionImplementsAtomExceptionInterface(): void
+    {
+        $implements = class_implements(ValidatorException::class);
+
+        $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }
 }
