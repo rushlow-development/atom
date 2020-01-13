@@ -49,13 +49,6 @@ class ModelExceptionTest extends TestCase
         $this->assertTrue(method_exists(ModelException::class, 'emptyPropertyException'));
     }
 
-    public function testEmptyPropertyExceptionThrowsNewModelException(): void
-    {
-        $this->expectException(ModelException::class);
-
-        throw ModelException::emptyPropertyException('');
-    }
-
     public function testEmptyPropertyExceptionContainsMessage(): void
     {
         $this->expectExceptionMessage('value is empty or uninitialized');
