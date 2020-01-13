@@ -11,7 +11,8 @@
     }
   ],
   "require": {
-    "php": "^7.4"
+    "php": "^7.4",
+    "league/uri": "^6.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
