@@ -31,9 +31,10 @@ class ModelException extends \RuntimeException
     /**
      * @param string          $propertySignature
      * @param \Throwable|null $previous
+     * @return self
      */
-    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): void
+    public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
     {
-        throw new self("$propertySignature value is empty or uninitialized", 0, $previous);
+        return new self("$propertySignature value is empty or uninitialized", 0, $previous);
     }
 }
