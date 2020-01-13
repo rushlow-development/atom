@@ -30,4 +30,16 @@ use Geeshoe\Atom\Contract\AtomExceptionInterface;
  */
 class ValidatorException extends \InvalidArgumentException implements AtomExceptionInterface
 {
+    public const INVALID_TITLE = 'Title represents a atom:title element and therefor must not be empty.';
+
+    /**
+     * Exception for invalid atom:title:element representation
+
+     * @param \Throwable|null $previous
+     * @return self
+     */
+    public static function invalidTitle(\Throwable $previous = null): self
+    {
+        return new self(self::INVALID_TITLE, 0, $previous);
+    }
 }
