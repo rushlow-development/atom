@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
@@ -76,5 +77,37 @@ class FeedTest extends TestCase
         $feed = new Feed($this->expected['id'], $this->expected['title'], $this->expected['updated']);
 
         self::assertEquals($expected, $feed->$name());
+    }
+
+    /**
+     * @return array
+     */
+    public function exceptionDataProvider(): array
+    {
+        $this->getExpected();
+
+        return [
+            ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
+            ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]]
+        ];
+    }
+
+    /**
+     * @dataProvider exceptionDataProvider
+     * @param string $methodName
+     * @param string $expectedMsg
+     * @param array  $constructorParams
+     */
+    public function testGetIdThrowsExceptionWithEmptyValue(
+        string $methodName,
+        string $expectedMsg,
+        array $constructorParams
+    ): void {
+        $feed = new Feed(...$constructorParams);
+
+        $this->expectException(ModelException::class);
+        $this->expectExceptionMessage("$expectedMsg value is empty or uninitialized");
+
+        $feed->$methodName();
     }
 }

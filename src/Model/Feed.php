@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Model;
 
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Exception\ModelException;
 
 /**
  * Class Feed
@@ -55,7 +56,7 @@ class Feed implements FeedRequiredInterface
     /**
      * {@inheritDoc}
      *
-     * @throws \RuntimeException
+     * @throws \Geeshoe\Atom\Exception\ModelException;
      */
     public function getId(): string
     {
@@ -63,13 +64,13 @@ class Feed implements FeedRequiredInterface
             return $this->id;
         }
 
-        throw $this->propertyEmptyException();
+        throw ModelException::emptyPropertyException('Id');
     }
 
     /**
      * {@inheritDoc}
      *
-     * @throws \RuntimeException
+     * @throws \Geeshoe\Atom\Exception\ModelException;
      */
     public function getTitle(): string
     {
@@ -77,7 +78,7 @@ class Feed implements FeedRequiredInterface
             return $this->title;
         }
 
-        throw $this->propertyEmptyException();
+        throw ModelException::emptyPropertyException('Title');
     }
 
     /**
