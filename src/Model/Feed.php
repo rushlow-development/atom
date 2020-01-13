@@ -83,23 +83,9 @@ class Feed implements FeedRequiredInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @throws \RuntimeException
      */
     public function getUpdated(): \DateTimeInterface
     {
-        if (!empty($this->updated)) {
-            return $this->updated;
-        }
-
-        throw $this->propertyEmptyException();
-    }
-
-    /**
-     * @return \RuntimeException
-     */
-    protected function propertyEmptyException(): \RuntimeException
-    {
-        return new \RuntimeException('Property empty.');
+        return $this->updated;
     }
 }
