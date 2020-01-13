@@ -20,13 +20,15 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Exception;
 
+use Geeshoe\Atom\Contract\AtomExceptionInterface;
+
 /**
  * Class FactoryException
  *
  * @package Geeshoe\Atom\Exception
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class FactoryException extends \RuntimeException
+class FactoryException extends \RuntimeException implements AtomExceptionInterface
 {
     public const REQUIRED_MSG = 'A required attribute is empty.';
 

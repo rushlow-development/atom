@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Exception;
 
+use Geeshoe\Atom\Contract\AtomExceptionInterface;
 use Geeshoe\Atom\Exception\FactoryException;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,13 @@ use PHPUnit\Framework\TestCase;
  */
 class FactoryExceptionTest extends TestCase
 {
+    public function testFactoryExceptionImplementsAtomExceptionInterface(): void
+    {
+        $implements = class_implements(FactoryException::class);
+
+        $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
+    }
+
     /**
      * @return array<array> [[FactoryException::CONST, 'message']]
      */
