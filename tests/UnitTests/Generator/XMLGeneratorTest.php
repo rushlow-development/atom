@@ -20,7 +20,9 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Generator;
 
+use Geeshoe\Atom\Contract\FeedRequiredInterface;
 use Geeshoe\Atom\Generator\XMLGenerator;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,6 +33,36 @@ use PHPUnit\Framework\TestCase;
  */
 class XMLGeneratorTest extends TestCase
 {
+    public ?MockObject $mockDocument;
+    public ?MockObject $mockElement;
+    public ?MockObject $mockNode;
+    public ?MockObject $mockFeed;
+    public ?MockObject $mockDateTimeImmutable;
+
+    /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
+    {
+        $this->mockDocument = $this->createMock(\DOMDocument::class);
+        $this->mockElement = $this->createMock(\DOMElement::class);
+        $this->mockNode = $this->createMock(\DOMNode::class);
+        $this->mockFeed = $this->createMock(FeedRequiredInterface::class);
+        $this->mockDateTimeImmutable = $this->createMock(\DateTimeImmutable::class);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function tearDown(): void
+    {
+        $this->mockDocument = null;
+        $this->mockElement = null;
+        $this->mockNode = null;
+        $this->mockFeed = null;
+        $this->mockDateTimeImmutable = null;
+    }
+
     public function testGetXMLReturnsValidXMLDocument(): void
     {
         $generator = new XMLGenerator();
@@ -78,5 +110,47 @@ class XMLGeneratorTest extends TestCase
 
         $generator = new XMLGenerator($mockDocument);
         $generator->$methodName($elementValue);
+    }
+
+    public function testInitializeCreatesAtomFeedElement(): void
+    {
+        $this->mockDocument->expects($this->once())
+            ->method('createElementNS')
+            ->with('https://www.w3.org/2005/Atom', 'feed')
+            ->willReturn($this->mockNode);
+
+        $this->mockNode->expects($this->exactly(3))
+            ->method('appendChild')
+            ->with(self::isInstanceOf(\DOMElement::class))
+        ;
+
+        $this->setMockFeedExpectations();
+
+        $this->mockDocument->expects($this->exactly(3))
+            ->method('createElement')
+            ->willReturn($this->mockElement);
+
+        $generator = new XMLGenerator($this->mockDocument);
+
+        $generator->initialize($this->mockFeed);
+    }
+
+    protected function setMockFeedExpectations(): void
+    {
+        $feedMethods = ['getId', 'getTitle'];
+
+        foreach ($feedMethods as $method) {
+            $this->mockFeed->expects($this->once())
+                ->method($method);
+        }
+
+        $this->mockDateTimeImmutable->expects($this->once())
+            ->method('format')
+            ->with(\DATE_ATOM)
+            ->willReturn('time');
+
+        $this->mockFeed->expects($this->once())
+            ->method('getUpdated')
+            ->willReturn($this->mockDateTimeImmutable);
     }
 }

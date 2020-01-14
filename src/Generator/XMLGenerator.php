@@ -62,7 +62,12 @@ class XMLGenerator
             'feed'
         );
 
+        $feedElement->appendChild($this->getIdElement($feed->getId()));
         $feedElement->appendChild($this->getTitleElement($feed->getTitle()));
+
+        $timestamp = $feed->getUpdated()->format(\DATE_ATOM);
+
+        $feedElement->appendChild($this->getUpdatedElement($timestamp));
     }
 
     /**
