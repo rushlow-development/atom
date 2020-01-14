@@ -40,6 +40,10 @@ class ElementValidator
      */
     public static function validIdElement(string $id): bool
     {
+        if (empty($id)) {
+            throw new ValidatorException('Id elements cannot be empty.');
+        }
+
         try {
             Uri::createFromString($id);
             return true;
