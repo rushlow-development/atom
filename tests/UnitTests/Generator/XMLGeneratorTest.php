@@ -43,11 +43,16 @@ class XMLGeneratorTest extends TestCase
 
     /**
      * @return array<array> {'method', 'elementTag', 'elementValue'}
+     * @throws \Exception
      */
     public function getElementWithTextNodeDataProvider(): array
     {
+        $timeStamp = new \DateTimeImmutable('now');
+
         return [
-            'getTitleElement()' => ['getTitleElement', 'title', 'test']
+            'getIdElement()' => ['getIdElement', 'id', 'some id'],
+            'getTitleElement()' => ['getTitleElement', 'title', 'test'],
+            'getUpdatedElement()' => ['getUpdatedElement', 'updated', $timeStamp->format(\DATE_ATOM)]
         ];
     }
 

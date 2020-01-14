@@ -78,12 +78,30 @@ class XMLGenerator
     }
 
     /**
+     * @param string $idValue   Value of the id tag
+     * @return \DOMElement
+     */
+    public function getIdElement(string $idValue): \DOMElement
+    {
+        return $this->createElementWithTextNode('id', $idValue);
+    }
+
+    /**
      * @param string $titleValue Text value of the element
      * @return \DOMElement
      */
     public function getTitleElement(string $titleValue): \DOMElement
     {
         return $this->createElementWithTextNode('title', $titleValue);
+    }
+
+    /**
+     * @param string $atomTimeStamp \DateTime::ATOM formatted time stamp
+     * @return \DOMElement
+     */
+    public function getUpdatedElement(string $atomTimeStamp): \DOMElement
+    {
+        return $this->createElementWithTextNode('updated', $atomTimeStamp);
     }
 
     protected function createElementWithTextNode(string $name, string $text): \DOMElement
