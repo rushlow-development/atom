@@ -44,25 +44,15 @@ class XMLGeneratorTest extends TestCase
     public function testCreateTitleElementMethodCreatesDomElementWithTitleParam(): void
     {
         $mockElement = $this->createMock(\DOMElement::class);
-        $mockElement->expects($this->once())
-            ->method('appendChild')
-            ->with(self::isInstanceOf(\DOMNode::class))
-        ;
 
         $mockDocument = $this->createMock(\DOMDocument::class);
         $mockDocument->expects($this->once())
             ->method('createElement')
-            ->with('title')
+            ->with('title', 'text')
             ->willReturn($mockElement)
         ;
 
-        $mockDocument->expects($this->once())
-            ->method('createTextNode')
-            ->with('test')
-            ->willReturn(new \DOMNode())
-        ;
-
         $generator = new XMLGenerator($mockDocument);
-        $generator->createTitleElement('test');
+        $generator->getTitleElement('text');
     }
 }

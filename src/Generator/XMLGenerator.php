@@ -62,7 +62,7 @@ class XMLGenerator
             'feed'
         );
 
-        $feedElement->appendChild($this->createTitleElement($feed->getTitle()));
+        $feedElement->appendChild($this->getTitleElement($feed->getTitle()));
     }
 
     /**
@@ -78,18 +78,16 @@ class XMLGenerator
     }
 
     /**
-     * Create Atom title:element for use in either feed:element or entry:element
-     *
-     * @param string $title
+     * @param string $titleValue Text value of the element
      * @return \DOMElement
      */
-    public function createTitleElement(string $title): \DOMElement
+    public function getTitleElement(string $titleValue): \DOMElement
     {
-        $titleElement = $this->document->createElement('title');
-        $titleText = $this->document->createTextNode($title);
+        return $this->createElementWithTextNode('title', $titleValue);
+    }
 
-        $titleElement->appendChild($titleText);
-
-        return $titleElement;
+    protected function createElementWithTextNode(string $name, string $text): \DOMElement
+    {
+        return $this->document->createElement($name, $text);
     }
 }
