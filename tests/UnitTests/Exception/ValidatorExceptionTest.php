@@ -43,4 +43,18 @@ class ValidatorExceptionTest extends TestCase
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }
+
+    public function testInvalidTitleSuppliesInvalidTitleConstantAsReturnedExceptionMessage(): void
+    {
+        $exception = ValidatorException::invalidTitle();
+
+        $this->assertSame(ValidatorException::INVALID_TITLE, $exception->getMessage());
+    }
+
+    public function testInvalidTitlePassesPreviousThrowableIfProvided(): void
+    {
+        $expected = new \Exception('title');
+
+        $this->assertSame($expected, ValidatorException::invalidTitle($expected)->getPrevious());
+    }
 }

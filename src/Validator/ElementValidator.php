@@ -47,4 +47,13 @@ class ElementValidator
             throw new ValidatorException($exception->getMessage(), 0, $exception);
         }
     }
+
+    public static function validTitleElement(string $title): bool
+    {
+        if (!empty($title)) {
+            return true;
+        }
+
+        throw ValidatorException::invalidTitle();
+    }
 }

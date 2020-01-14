@@ -43,4 +43,17 @@ class ElementValidatorTest extends TestCase
     {
         self::assertTrue(ElementValidator::validIdElement('http://r&#xE9;sum&#xE9;.example.org'));
     }
+
+    public function testValidTitleElementThrowsExceptionWithInvalidTitle(): void
+    {
+        $this->expectException(ValidatorException::class);
+        $this->expectExceptionMessage('Title represents a atom:title element and therefor must not be empty.');
+
+        ElementValidator::validTitleElement('');
+    }
+
+    public function testValidTitleElementReturnsTrueWithNonEmptyString(): void
+    {
+        $this->assertTrue(ElementValidator::validTitleElement('valid'));
+    }
 }
