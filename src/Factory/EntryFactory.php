@@ -21,7 +21,9 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Factory;
 
 use Geeshoe\Atom\Exception\FactoryException;
+use Geeshoe\Atom\Exception\ValidatorException;
 use Geeshoe\Atom\Model\Entry;
+use Geeshoe\Atom\Validator\ElementValidator;
 
 /**
  * Class EntryFactory
@@ -39,20 +41,13 @@ class EntryFactory
      */
     public static function createEntry(string $id, string $title, \DateTimeInterface $updated): Entry
     {
-        if (self::validateRequiredEntryElements($id, $title)) {
-            return new Entry($id, $title, $updated);
+        try {
+            ElementValidator::validIdElement($id);
+            ElementValidator::validTitleElement($title);
+        } catch (ValidatorException $exception) {
+            throw FactoryException::requiredException($exception);
         }
 
-        throw FactoryException::requiredException();
-    }
-
-    /**
-     * @param string $id
-     * @param string $title
-     * @return bool
-     */
-    protected static function validateRequiredEntryElements(string $id, string $title): bool
-    {
-        return !empty($id) && !empty($title);
+        return new Entry($id, $title, $updated);
     }
 }
