@@ -79,12 +79,10 @@ class XMLGeneratorTest extends TestCase
      */
     public function getElementWithTextNodeDataProvider(): array
     {
-        $timeStamp = new \DateTimeImmutable('now');
-
         return [
             'getIdElement()' => ['getIdElement', 'id', 'some id'],
             'getTitleElement()' => ['getTitleElement', 'title', 'test'],
-            'getUpdatedElement()' => ['getUpdatedElement', 'updated', $timeStamp->format(\DATE_ATOM)]
+            'getUpdatedElement()' => ['getUpdatedElement', 'updated', 'time']
         ];
     }
 
@@ -99,16 +97,13 @@ class XMLGeneratorTest extends TestCase
         string $elementName,
         string $elementValue
     ): void {
-        $mockElement = $this->createMock(\DOMElement::class);
-
-        $mockDocument = $this->createMock(\DOMDocument::class);
-        $mockDocument->expects($this->once())
+        $this->mockDocument->expects($this->once())
             ->method('createElement')
             ->with($elementName, $elementValue)
-            ->willReturn($mockElement)
+            ->willReturn($this->mockElement)
         ;
 
-        $generator = new XMLGenerator($mockDocument);
+        $generator = new XMLGenerator($this->mockDocument);
         $generator->$methodName($elementValue);
     }
 
