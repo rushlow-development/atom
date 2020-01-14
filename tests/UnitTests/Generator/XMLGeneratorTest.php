@@ -41,18 +41,37 @@ class XMLGeneratorTest extends TestCase
         );
     }
 
-    public function testCreateTitleElementMethodCreatesDomElementWithTitleParam(): void
+    /**
+     * @return array<array> {'method', 'elementTag', 'elementValue'}
+     */
+    public function getElementWithTextNodeDataProvider(): array
     {
+        return [
+            'getTitleElement()' => ['getTitleElement', 'title', 'test']
+        ];
+    }
+
+    /**
+     * @dataProvider getElementWithTextNodeDataProvider
+     * @param string $methodName
+     * @param string $elementName
+     * @param string $elementValue
+     */
+    public function testGetterElementWithTextNodeCreatesElementWithSuppliedParams(
+        string $methodName,
+        string $elementName,
+        string $elementValue
+    ): void {
         $mockElement = $this->createMock(\DOMElement::class);
 
         $mockDocument = $this->createMock(\DOMDocument::class);
         $mockDocument->expects($this->once())
             ->method('createElement')
-            ->with('title', 'text')
+            ->with($elementName, $elementValue)
             ->willReturn($mockElement)
         ;
 
         $generator = new XMLGenerator($mockDocument);
-        $generator->getTitleElement('text');
+        $generator->$methodName($elementValue);
     }
 }
