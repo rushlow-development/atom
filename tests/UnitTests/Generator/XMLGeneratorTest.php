@@ -148,4 +148,6 @@ class XMLGeneratorTest extends TestCase
             ->method('getUpdated')
             ->willReturn($this->mockDateTimeImmutable);
     }
+
+    //@TODO Create unit test for XMLGenerator::addEntry()
 }

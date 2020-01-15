@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\FunctionalTests\Generator;
 
 use Geeshoe\Atom\Generator\XMLGenerator;
+use Geeshoe\Atom\Model\Entry;
 use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
@@ -95,6 +96,33 @@ class XMLGeneratorTest extends TestCase
         $generator->initialize($this->feed);
 
         $result = $generator->getXML();
+
+        $this->assertSame($expected, $result);
+    }
+
+    public function testAddEntryAppendsFeedElement(): void
+    {
+        $generator = new XMLGenerator(null, false);
+        $generator->initialize($this->feed);
+
+        $entry = new Entry('https://geeshoe.com', 'Entry Title 1', $this->time);
+        $generator->addEntry($entry);
+
+        $result = $generator->getXML();
+
+        //@TODO Refactor with a more elegant solution
+        $xml = $this->xmlResultDataProvider();
+        $entryXML = '<entry><id>https://geeshoe.com</id><title>Entry Title 1</title><updated>2019-12-31T18:30:02+00:00</updated></entry>';
+
+        $haystack = $xml['Not pretty XML'][1];
+        $position = strrpos($haystack, '</feed>');
+        $entryXML .= substr($haystack, $position);
+
+        $expected = substr_replace(
+            $haystack,
+            $entryXML,
+            $position
+        );
 
         $this->assertSame($expected, $result);
     }
