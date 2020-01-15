@@ -68,6 +68,7 @@ class XMLGenerator
         $timestamp = $feed->getUpdated()->format(\DATE_ATOM);
 
         $feedElement->appendChild($this->getUpdatedElement($timestamp));
+        $this->document->appendChild($feedElement);
     }
 
     /**
