@@ -1,0 +1,28 @@
+name: Geeshoe CI
+on: [push, pull_request]
+jobs:
+  atom:
+    name: Atom
+    runs-on: ubuntu-latest
+  strategy:
+    matrix:
+      php-versions: ['7.4']
+
+  step:
+    - name: Checkout
+      uses: actions/checkout
+
+    - name: Validate Composer .json and .lock
+      run: composer validate
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Code sniffer
+      run: vendor/bin/phpcs
+
+    - name: PHPStan
+      run: vendor/bin/phpstan analyze -c $GITHUB_WORKSPACE/phpstan.neon
+
+    - name: PHPUnit
+      run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --coverage-text
