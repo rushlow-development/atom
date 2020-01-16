@@ -95,7 +95,7 @@ class XMLGeneratorTest extends TestCase
         $generator = new XMLGenerator(null, $pretty);
         $generator->initialize($this->feed);
 
-        $result = $generator->getXML();
+        $result = $generator->generate();
 
         $this->assertSame($expected, $result);
     }
@@ -108,7 +108,7 @@ class XMLGeneratorTest extends TestCase
         $entry = new Entry('https://geeshoe.com', 'Entry Title 1', $this->time);
         $generator->addEntry($entry);
 
-        $result = $generator->getXML();
+        $result = $generator->generate();
 
         //@TODO Refactor with a more elegant solution
         $xml = $this->xmlResultDataProvider();

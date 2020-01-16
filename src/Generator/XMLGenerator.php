@@ -22,6 +22,7 @@ namespace Geeshoe\Atom\Generator;
 
 use Geeshoe\Atom\Contract\EntryRequiredInterface;
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\GeneratorInterface;
 
 /**
  * Class XMLGenerator
@@ -29,7 +30,7 @@ use Geeshoe\Atom\Contract\FeedRequiredInterface;
  * @package Geeshoe\Atom\Generator
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class XMLGenerator
+class XMLGenerator implements GeneratorInterface
 {
     protected \DOMDocument $document;
 
@@ -99,7 +100,7 @@ class XMLGenerator
      *
      * @return string
      */
-    public function getXML(): string
+    public function generate(): string
     {
         $this->document->formatOutput = $this->pretty;
 

@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests\Generator;
 
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Generator\XMLGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -63,13 +64,20 @@ class XMLGeneratorTest extends TestCase
         $this->mockDateTimeImmutable = null;
     }
 
+    public function testXMLGeneratorImplementsGeneratorInterface(): void
+    {
+        $interfaces = class_implements(XMLGenerator::class);
+
+        self::assertArrayHasKey(GeneratorInterface::class, $interfaces);
+    }
+
     public function testGetXMLReturnsValidXMLDocument(): void
     {
         $generator = new XMLGenerator();
 
         self::assertSame(
             '<?xml version="1.0" encoding="UTF-8"?>' . "\n",
-            $generator->getXML()
+            $generator->generate()
         );
     }
 
