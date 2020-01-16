@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         php-versions: ['7.4']
-    step:
+    steps:
       - name: Checkout
         uses: actions/checkout
 
