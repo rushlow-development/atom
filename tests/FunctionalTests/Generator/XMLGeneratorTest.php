@@ -112,7 +112,8 @@ class XMLGeneratorTest extends TestCase
 
         //@TODO Refactor with a more elegant solution
         $xml = $this->xmlResultDataProvider();
-        $entryXML = '<entry><id>https://geeshoe.com</id><title>Entry Title 1</title><updated>2019-12-31T18:30:02+00:00</updated></entry>';
+        $entryXML = '<entry><id>https://geeshoe.com</id><title>Entry Title 1</title>'
+            . '<updated>2019-12-31T18:30:02+00:00</updated></entry>';
 
         $haystack = $xml['Not pretty XML'][1];
         $position = strrpos($haystack, '</feed>');
