@@ -117,6 +117,8 @@ class XMLGeneratorTest extends TestCase
 
         $haystack = $xml['Not pretty XML'][1];
         $position = strrpos($haystack, '</feed>');
+
+        self::assertIsInt($position);
         $entryXML .= substr($haystack, $position);
 
         $expected = substr_replace(
