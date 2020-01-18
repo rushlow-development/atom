@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Generator;
 
+use Geeshoe\Atom\Contract\EntryRequiredInterface;
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Generator\XMLGenerator;
@@ -157,5 +158,34 @@ class XMLGeneratorTest extends TestCase
             ->willReturn($this->mockDateTimeImmutable);
     }
 
-    //@TODO Create unit test for XMLGenerator::addEntry()
+    public function testCreateEntryNodeCreatesNodeAndAppendsRequiredElementsToNode(): void
+    {
+        $mockEntry = $this->createMock(EntryRequiredInterface::class);
+        $this->mockDateTimeImmutable->expects($this->once())
+            ->method('format')
+            ->with(\DATE_ATOM)
+            ->willReturn('');
+
+        $mockEntry->expects($this->once())
+            ->method('getUpdated')
+            ->willReturn($this->mockDateTimeImmutable);
+
+        $node = $this->mockElement;
+        $node->expects($this->exactly(3))
+            ->method('appendChild');
+
+
+        $this->mockDocument->expects($this->exactly(4))
+            ->method('createElement')
+            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', ''])
+            ->willReturnOnConsecutiveCalls(
+                $node,
+                $this->mockElement,
+                $this->mockElement,
+                $this->mockElement
+            );
+
+        $generator = new XMLGenerator($this->mockDocument);
+        $generator->createEntryNode($mockEntry);
+    }
 }

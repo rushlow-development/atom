@@ -95,6 +95,19 @@ class XMLGenerator implements GeneratorInterface
         $feed->appendChild($entryNode);
     }
 
+    public function createEntryNode(EntryRequiredInterface $entryRequired): \DOMNode
+    {
+        $node = $this->document->createElement('entry');
+
+        $timeStamp = $entryRequired->getUpdated()->format(\DATE_ATOM);
+
+        $node->appendChild($this->getIdElement($entryRequired->getId()));
+        $node->appendChild($this->getTitleElement($entryRequired->getTitle()));
+        $node->appendChild($this->getUpdatedElement($timeStamp));
+
+        return $node;
+    }
+
     /**
      * Get XML Document
      *
