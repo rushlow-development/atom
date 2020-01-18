@@ -83,7 +83,6 @@ class XMLGenerator implements GeneratorInterface
         $entryNode = $this->createEntryNode($entry);
         $nodeList = $this->document->getElementsByTagName('feed');
 
-        //@TODO FIX - This is sloppy
         $feed = $nodeList->item(0);
         $feed->appendChild($entryNode);
     }
