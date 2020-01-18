@@ -163,33 +163,10 @@ class XMLGeneratorTest extends TestCase
 
     public function testCreateEntryNodeCreatesNodeAndAppendsRequiredElementsToNode(): void
     {
-        $mockEntry = $this->createMock(EntryRequiredInterface::class);
-        $this->mockDateTimeImmutable->expects($this->once())
-            ->method('format')
-            ->with(\DATE_ATOM)
-            ->willReturn('');
-
-        $mockEntry->expects($this->once())
-            ->method('getUpdated')
-            ->willReturn($this->mockDateTimeImmutable);
-
-        $node = $this->mockElement;
-        $node->expects($this->exactly(3))
-            ->method('appendChild');
-
-
-        $this->mockDocument->expects($this->exactly(4))
-            ->method('createElement')
-            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', ''])
-            ->willReturnOnConsecutiveCalls(
-                $node,
-                $this->mockElement,
-                $this->mockElement,
-                $this->mockElement
-            );
+        $this->setExpectationsForCreateEntryNode();
 
         $generator = new XMLGenerator($this->mockDocument);
-        $generator->createEntryNode($mockEntry);
+        $generator->createEntryNode($this->mockEntry);
     }
 
     protected function setExpectationsForCreateEntryNode(): void
