@@ -5,3 +5,9 @@ parameters:
         - tests
 
     checkMissingIterableValueType: false
+    ignoreErrors:
+#        Ignore type errors with mock objects
+        -
+            message: '#, PHPUnit\Framework\MockObject\MockObject|[a-zA-Z0-9\\_] given.#'
+            paths:
+                - tests/UnitTests
