@@ -39,6 +39,7 @@ class XMLGeneratorTest extends TestCase
     public ?MockObject $mockElement;
     public ?MockObject $mockNode;
     public ?MockObject $mockFeed;
+    public ?MockObject $mockEntry;
     public ?MockObject $mockDateTimeImmutable;
 
     /**
@@ -50,6 +51,7 @@ class XMLGeneratorTest extends TestCase
         $this->mockElement = $this->createMock(\DOMElement::class);
         $this->mockNode = $this->createMock(\DOMNode::class);
         $this->mockFeed = $this->createMock(FeedRequiredInterface::class);
+        $this->mockEntry = $this->createMock(EntryRequiredInterface::class);
         $this->mockDateTimeImmutable = $this->createMock(\DateTimeImmutable::class);
     }
 
@@ -62,6 +64,7 @@ class XMLGeneratorTest extends TestCase
         $this->mockElement = null;
         $this->mockNode = null;
         $this->mockFeed = null;
+        $this->mockEntry = null;
         $this->mockDateTimeImmutable = null;
     }
 
@@ -187,5 +190,55 @@ class XMLGeneratorTest extends TestCase
 
         $generator = new XMLGenerator($this->mockDocument);
         $generator->createEntryNode($mockEntry);
+    }
+
+    protected function setExpectationsForCreateEntryNode(): void
+    {
+        $this->mockDateTimeImmutable->expects($this->once())
+            ->method('format')
+            ->with(\DATE_ATOM)
+            ->willReturn('');
+
+        $this->mockEntry->expects($this->once())
+            ->method('getUpdated')
+            ->willReturn($this->mockDateTimeImmutable);
+
+        $node = $this->mockElement;
+        $node->expects($this->exactly(3))
+            ->method('appendChild');
+
+
+        $this->mockDocument->expects($this->exactly(4))
+            ->method('createElement')
+            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', ''])
+            ->willReturnOnConsecutiveCalls(
+                $node,
+                $this->mockElement,
+                $this->mockElement,
+                $this->mockElement
+            );
+    }
+
+    public function testAddEntryAppendsFeedElementWithNewEntry(): void
+    {
+        $this->setExpectationsForCreateEntryNode();
+
+        $mockNodeList = $this->createMock(\DOMNodeList::class);
+        $mockNodeList->expects($this->once())
+            ->method('item')
+            ->with(0)
+            ->willReturn($this->mockNode);
+
+        $this->mockNode->expects($this->once())
+            ->method('appendChild')
+            ->with(self::isInstanceOf(\DOMNode::class));
+
+        $this->mockDocument->expects($this->once())
+            ->method('getElementsByTagName')
+            ->with('feed')
+            ->willReturn($mockNodeList);
+
+        $generator = new XMLGenerator($this->mockDocument);
+        $generator->addEntry($this->mockEntry);
     }
 }
