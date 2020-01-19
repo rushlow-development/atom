@@ -21,9 +21,13 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests;
 
 use Geeshoe\Atom\AtomBuilder;
+use Geeshoe\Atom\Contract\EntryRequiredInterface;
+use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Model\Atom;
 use Geeshoe\Atom\Model\Entry;
 use Geeshoe\Atom\Model\Feed;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,6 +38,30 @@ use PHPUnit\Framework\TestCase;
  */
 class AtomBuilderTest extends TestCase
 {
+    public ?MockObject $mockGenerator;
+    public ?MockObject $mockAtom;
+    public ?MockObject $mockFeedEntry;
+
+    /**
+     * @inheritDoc
+     */
+    public function setUp(): void
+    {
+        $this->mockGenerator = $this->createMock(GeneratorInterface::class);
+        $this->mockAtom = $this->createMock(Atom::class);
+        $this->mockFeedEntry = $this->createMock(FeedRequiredInterface::class);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function tearDown(): void
+    {
+        $this->mockGenerator = null;
+        $this->mockAtom = null;
+        $this->mockFeedEntry = null;
+    }
+
     public function testConstructorCreatesAtomInstanceIfOneNotProvided(): void
     {
         $builder = new AtomBuilder();
@@ -76,5 +104,44 @@ class AtomBuilderTest extends TestCase
 
         $builder = new AtomBuilder($mockAtom);
         $builder->addEntry('testId', 'testTitle', $mockTime);
+    }
+
+    public function testPublishInitializesGenerator(): void
+    {
+        $this->mockGenerator->expects($this->once())
+            ->method('initialize');
+
+        $this->mockAtom->expects($this->once())
+            ->method('getFeedElement')
+            ->willReturn($this->mockFeedEntry);
+
+        $atom = new AtomBuilder($this->mockAtom, $this->mockGenerator);
+        $atom->publish();
+    }
+
+    public function testPublishAddsEntryElementsToGenerator(): void
+    {
+        $entryA = $this->createMock(EntryRequiredInterface::class);
+        $entryB = $this->createMock(EntryRequiredInterface::class);
+
+        $this->mockAtom->expects($this->once())
+            ->method('getEntryElements')
+            ->willReturn([$entryA, $entryB]);
+
+        $this->mockGenerator->expects($this->exactly(2))
+            ->method('addEntry')
+            ->withConsecutive([$entryA], [$entryB]);
+
+        $atom = new AtomBuilder($this->mockAtom, $this->mockGenerator);
+        $atom->publish();
+    }
+
+    public function testPublishCallsGeneratorGenerateMethodToReturnString(): void
+    {
+        $this->mockGenerator->expects($this->once())
+            ->method('generate');
+
+        $atom = new AtomBuilder($this->mockAtom, $this->mockGenerator);
+        $atom->publish();
     }
 }

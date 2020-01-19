@@ -21,8 +21,10 @@ declare(strict_types=1);
 namespace Geeshoe\Atom;
 
 use Geeshoe\Atom\Contract\BuilderInterface;
+use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Factory\EntryFactory;
 use Geeshoe\Atom\Factory\FeedFactory;
+use Geeshoe\Atom\Generator\XMLGenerator;
 use Geeshoe\Atom\Model\Atom;
 
 /**
@@ -34,19 +36,26 @@ use Geeshoe\Atom\Model\Atom;
 class AtomBuilder implements BuilderInterface
 {
     private Atom $atom;
+    private GeneratorInterface $generator;
 
     /**
      * AtomBuilder constructor.
      *
-     * @param Atom|null $atom
+     * @param Atom|null               $atom
+     * @param GeneratorInterface|null $generator
      */
-    public function __construct(Atom $atom = null)
+    public function __construct(Atom $atom = null, GeneratorInterface $generator = null)
     {
         if ($atom === null) {
             $atom = new Atom();
         }
 
+        if ($generator === null) {
+            $generator = new XMLGenerator();
+        }
+
         $this->atom = $atom;
+        $this->generator = $generator;
     }
 
     /**
@@ -71,5 +80,19 @@ class AtomBuilder implements BuilderInterface
     public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void
     {
         $this->atom->addEntryElement(EntryFactory::createEntry($id, $title, $lastUpdated));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function publish(): string
+    {
+        $this->generator->initialize($this->atom->getFeedElement());
+
+        foreach ($this->atom->getEntryElements() as $entryElement) {
+            $this->generator->addEntry($entryElement);
+        }
+
+        return $this->generator->generate();
     }
 }
