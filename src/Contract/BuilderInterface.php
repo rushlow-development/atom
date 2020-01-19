@@ -54,4 +54,11 @@ interface BuilderInterface
      * @param \DateTimeInterface $lastUpdated
      */
     public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void;
+
+    /**
+     * Get Atom XML string
+     *
+     * @return string
+     */
+    public function publish(): string;
 }
