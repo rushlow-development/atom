@@ -36,6 +36,7 @@ class Entry implements EntryRequiredInterface
     private string $title;
 
     private \DateTimeInterface $updated;
+    private Author $author;
 
     /**
      * Entry constructor.
@@ -87,5 +88,22 @@ class Entry implements EntryRequiredInterface
     public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
+    }
+
+    /**
+     * @throws \Geeshoe\Atom\Exception\ModelException
+     */
+    public function getAuthor(): Author
+    {
+        if (isset($this->author)) {
+            return $this->author;
+        }
+
+        throw ModelException::emptyPropertyException('Author');
+    }
+
+    public function setAuthor(Author $author): void
+    {
+        $this->author = $author;
     }
 }
