@@ -37,12 +37,14 @@ class Feed implements FeedRequiredInterface
 
     private \DateTimeInterface $updated;
 
+    private Author $author;
+
     /**
      * Feed constructor.
      *
-     * @param string             $id        Unique permanent feed URI.
-     * @param string             $title     Human readable title of the feed.
-     * @param \DateTimeInterface $updated   Time of last significant feed modification.
+     * @param string             $id      Unique permanent feed URI.
+     * @param string             $title   Human readable title of the feed.
+     * @param \DateTimeInterface $updated Time of last significant feed modification.
      */
     public function __construct(string $id, string $title, \DateTimeInterface $updated)
     {
@@ -87,5 +89,22 @@ class Feed implements FeedRequiredInterface
     public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
+    }
+
+    /**
+     * @throws \Geeshoe\Atom\Exception\ModelException
+     */
+    public function getAuthor(): Author
+    {
+        if (!empty($this->author)) {
+            return $this->author;
+        }
+
+        throw ModelException::emptyPropertyException('Author');
+    }
+
+    public function setAuthor(Author $author): void
+    {
+        $this->author = $author;
     }
 }

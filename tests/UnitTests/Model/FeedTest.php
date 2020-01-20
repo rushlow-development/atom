@@ -21,6 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests\Model;
 
 use Geeshoe\Atom\Exception\ModelException;
+use Geeshoe\Atom\Model\Author;
 use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
@@ -88,7 +89,8 @@ class FeedTest extends TestCase
 
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
-            ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]]
+            ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
+            ['getAuthor', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -109,5 +111,30 @@ class FeedTest extends TestCase
         $this->expectExceptionMessage("$expectedMsg value is empty or uninitialized");
 
         $feed->$methodName();
+    }
+
+    public function optionalElementGetterSetters(): array
+    {
+        return [
+            ['getAuthor', 'setAuthor', $this->createMock(Author::class)]
+        ];
+    }
+
+    /**
+     * @dataProvider optionalElementGetterSetters
+     * @param mixed $expected
+     */
+    public function testOptionalFeedGetterSetters(string $getter, string $setter, $expected): void
+    {
+        $params = [];
+        foreach ($this->expected as $value) {
+            $params[] = $value;
+        }
+
+        $feed = new Feed(...$params);
+
+        $feed->$setter($expected);
+
+        self::assertSame($expected, $feed->$getter());
     }
 }
