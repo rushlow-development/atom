@@ -11,3 +11,7 @@ parameters:
             message: '#, PHPUnit\Framework\MockObject\MockObject|[a-zA-Z0-9\\_] given.#'
             paths:
                 - tests/UnitTests
+        -
+            message: '#Unable to resolve the template type ExpectedType in call to method static method.#'
+            paths:
+                - tests/UnitTests/Contract/CollectionInterfaceTest.php
