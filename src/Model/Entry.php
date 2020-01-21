@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\EntryRequiredInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
@@ -36,7 +37,7 @@ class Entry implements EntryRequiredInterface
     private string $title;
 
     private \DateTimeInterface $updated;
-    private Author $author;
+    private CollectionInterface $author;
 
     /**
      * Entry constructor.
@@ -93,7 +94,7 @@ class Entry implements EntryRequiredInterface
     /**
      * @throws \Geeshoe\Atom\Exception\ModelException
      */
-    public function getAuthor(): Author
+    public function getAuthor(): CollectionInterface
     {
         if (isset($this->author)) {
             return $this->author;
@@ -102,7 +103,7 @@ class Entry implements EntryRequiredInterface
         throw ModelException::emptyPropertyException('Author');
     }
 
-    public function setAuthor(Author $author): void
+    public function setAuthor(CollectionInterface $author): void
     {
         $this->author = $author;
     }

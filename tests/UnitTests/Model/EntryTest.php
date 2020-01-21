@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
-use Geeshoe\Atom\Model\Author;
 use Geeshoe\Atom\Model\Entry;
 use PHPUnit\Framework\TestCase;
 
@@ -116,7 +116,7 @@ class EntryTest extends TestCase
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(Author::class)]
+            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)]
         ];
     }
 
