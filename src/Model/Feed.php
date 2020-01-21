@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedRequiredInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
@@ -37,12 +38,14 @@ class Feed implements FeedRequiredInterface
 
     private \DateTimeInterface $updated;
 
+    private CollectionInterface $author;
+
     /**
      * Feed constructor.
      *
-     * @param string             $id        Unique permanent feed URI.
-     * @param string             $title     Human readable title of the feed.
-     * @param \DateTimeInterface $updated   Time of last significant feed modification.
+     * @param string             $id      Unique permanent feed URI.
+     * @param string             $title   Human readable title of the feed.
+     * @param \DateTimeInterface $updated Time of last significant feed modification.
      */
     public function __construct(string $id, string $title, \DateTimeInterface $updated)
     {
@@ -87,5 +90,22 @@ class Feed implements FeedRequiredInterface
     public function getUpdated(): \DateTimeInterface
     {
         return $this->updated;
+    }
+
+    /**
+     * @throws \Geeshoe\Atom\Exception\ModelException
+     */
+    public function getAuthor(): CollectionInterface
+    {
+        if (!empty($this->author)) {
+            return $this->author;
+        }
+
+        throw ModelException::emptyPropertyException('Author');
+    }
+
+    public function setAuthor(CollectionInterface $author): void
+    {
+        $this->author = $author;
     }
 }

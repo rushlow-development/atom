@@ -5,6 +5,7 @@ parameters:
         - tests
 
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
 #        Ignore type errors with mock objects
         -

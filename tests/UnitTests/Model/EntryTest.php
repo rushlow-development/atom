@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Entry;
 use PHPUnit\Framework\TestCase;
@@ -88,7 +89,8 @@ class EntryTest extends TestCase
 
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
-            ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]]
+            ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
+            ['getAuthor', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -109,5 +111,30 @@ class EntryTest extends TestCase
         $this->expectExceptionMessage("$expectedMsg value is empty or uninitialized");
 
         $entry->$methodName();
+    }
+
+    public function optionalElementGetterSetters(): array
+    {
+        return [
+            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)]
+        ];
+    }
+
+    /**
+     * @dataProvider optionalElementGetterSetters
+     * @param mixed $expected
+     */
+    public function testOptionalEntryGetterSetters(string $getter, string $setter, $expected): void
+    {
+        $params = [];
+        foreach ($this->expected as $value) {
+            $params[] = $value;
+        }
+
+        $entry = new Entry(...$params);
+
+        $entry->$setter($expected);
+
+        self::assertSame($expected, $entry->$getter());
     }
 }
