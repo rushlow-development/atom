@@ -37,7 +37,7 @@ class Entry implements EntryInterface
     private string $title;
 
     private \DateTimeInterface $updated;
-    private CollectionInterface $author;
+    private CollectionInterface $authors;
 
     /**
      * Entry constructor.
@@ -94,17 +94,22 @@ class Entry implements EntryInterface
     /**
      * @throws \Geeshoe\Atom\Exception\ModelException
      */
-    public function getAuthor(): CollectionInterface
+    public function getAuthors(): CollectionInterface
     {
-        if (isset($this->author)) {
-            return $this->author;
+        if (isset($this->authors)) {
+            return $this->authors;
         }
 
         throw ModelException::emptyPropertyException('Author');
     }
 
-    public function setAuthor(CollectionInterface $author): void
+    public function setAuthors(CollectionInterface $authors): void
     {
-        $this->author = $author;
+        $this->authors = $authors;
+    }
+
+    public function addAuthor(Author $author): void
+    {
+        // TODO: Implement addAuthor() method.
     }
 }

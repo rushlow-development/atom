@@ -90,7 +90,7 @@ class EntryTest extends TestCase
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
             ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
-            ['getAuthor', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
+            ['getAuthors', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -116,7 +116,7 @@ class EntryTest extends TestCase
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)]
+            ['getAuthors', 'setAuthors', $this->createMock(CollectionInterface::class)]
         ];
     }
 

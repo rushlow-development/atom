@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Contract;
 
+use Geeshoe\Atom\Model\Author;
+
 /**
  * Interface ContainerElementInterface
  *
@@ -45,4 +47,10 @@ interface ContainerElementInterface
      * @see https://tools.ietf.org/html/rfc4287#section-4.2.15
      */
     public function getUpdated(): \DateTimeInterface;
+
+    public function getAuthors(): CollectionInterface;
+
+    public function setAuthors(CollectionInterface $authors): void;
+
+    public function addAuthor(Author $author): void;
 }

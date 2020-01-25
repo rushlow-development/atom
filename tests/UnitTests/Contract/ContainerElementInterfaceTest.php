@@ -37,6 +37,9 @@ class ContainerElementInterfaceTest extends TestCase
         yield ['getId'];
         yield ['getTitle'];
         yield ['getUpdated'];
+        yield ['getAuthors'];
+        yield ['setAuthors'];
+        yield ['addAuthor'];
     }
 
     /**
