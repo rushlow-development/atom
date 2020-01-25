@@ -25,6 +25,7 @@ use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Model\Atom;
+use Geeshoe\Atom\Model\Author;
 use Geeshoe\Atom\Model\Entry;
 use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -143,5 +144,23 @@ class AtomBuilderTest extends TestCase
 
         $atom = new AtomBuilder($this->mockAtom, $this->mockGenerator);
         $atom->publish();
+    }
+
+    public function testAddFeedAuthorAddsAuthorToFeedModel(): void
+    {
+        $this->mockAtom->expects($this->once())
+            ->method('getFeedElement')
+            ->willReturn($this->mockFeedEntry);
+
+        $this->mockFeedEntry->expects($this->once())
+            ->method('addAuthor')
+            ->with(self::isInstanceOf(Author::class));
+
+        $this->mockAtom->expects($this->once())
+            ->method('setFeedElement')
+            ->with($this->mockFeedEntry);
+
+        $builder = new AtomBuilder($this->mockAtom);
+        $builder->addFeedAuthor('');
     }
 }

@@ -22,6 +22,7 @@ namespace Geeshoe\Atom;
 
 use Geeshoe\Atom\Contract\BuilderInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
+use Geeshoe\Atom\Factory\AuthorFactory;
 use Geeshoe\Atom\Factory\EntryFactory;
 use Geeshoe\Atom\Factory\FeedFactory;
 use Geeshoe\Atom\Generator\XMLGenerator;
@@ -72,6 +73,16 @@ class AtomBuilder implements BuilderInterface
     public function createFeed(string $id, string $title, \DateTimeInterface $lastUpdated): void
     {
         $this->atom->setFeedElement(FeedFactory::createFeed($id, $title, $lastUpdated));
+    }
+
+    public function addFeedAuthor(string $name, string $uri = null, string $email = null): void
+    {
+        $author = AuthorFactory::createAuthor($name, $uri, $email);
+
+        $feed = $this->atom->getFeedElement();
+        $feed->addAuthor($author);
+
+        $this->atom->setFeedElement($feed);
     }
 
     /**
