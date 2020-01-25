@@ -38,9 +38,9 @@ interface GeneratorInterface
     /**
      * Add Atom 1.0 Entry element to the Feed element
      *
-     * @param EntryRequiredInterface $entry
+     * @param EntryInterface $entry
      */
-    public function addEntry(EntryRequiredInterface $entry): void;
+    public function addEntry(EntryInterface $entry): void;
 
     /**
      * Get the Atom 1.0 document

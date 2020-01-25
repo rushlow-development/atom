@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Factory;
 
-use Geeshoe\Atom\Contract\EntryRequiredInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Exception\FactoryException;
 use Geeshoe\Atom\Factory\EntryFactory;
 use PHPUnit\Framework\TestCase;
@@ -37,7 +37,7 @@ class EntryFactoryTest extends TestCase
     {
         $result = EntryFactory::createEntry('testId', 'test title', new \DateTime());
 
-        self::assertInstanceOf(EntryRequiredInterface::class, $result);
+        self::assertInstanceOf(EntryInterface::class, $result);
     }
 
     /**

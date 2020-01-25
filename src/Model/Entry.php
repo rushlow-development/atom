@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Model;
 
 use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\EntryRequiredInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
 /**
@@ -30,7 +30,7 @@ use Geeshoe\Atom\Exception\ModelException;
  * @package Geeshoe\Atom\Model
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class Entry implements EntryRequiredInterface
+class Entry implements EntryInterface
 {
     private string $id;
 
