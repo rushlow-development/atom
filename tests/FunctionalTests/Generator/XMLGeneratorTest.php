@@ -64,14 +64,14 @@ class XMLGeneratorTest extends TestCase
     {
         $notPretty = <<<'EOT'
             <?xml version="1.0" encoding="UTF-8"?>
-            <feed xmlns="https://www.w3.org/2005/Atom"><id>http://geeshoe.com/</id>
+            <feed xmlns="http://www.w3.org/2005/Atom"><id>http://geeshoe.com/</id>
             EOT;
 
         $notPretty .= '<title>Functional Title</title><updated>2019-12-31T18:30:02+00:00</updated></feed>' . "\n";
 
         $pretty = <<<'EOT'
             <?xml version="1.0" encoding="UTF-8"?>
-            <feed xmlns="https://www.w3.org/2005/Atom">
+            <feed xmlns="http://www.w3.org/2005/Atom">
               <id>http://geeshoe.com/</id>
               <title>Functional Title</title>
               <updated>2019-12-31T18:30:02+00:00</updated>
@@ -92,7 +92,7 @@ class XMLGeneratorTest extends TestCase
      */
     public function testGetXMLResultReturnsExpectedAtomXMLString(bool $pretty, string $expected): void
     {
-        $generator = new XMLGenerator(null, $pretty);
+        $generator = new XMLGenerator(null, null, $pretty);
         $generator->initialize($this->feed);
 
         $result = $generator->generate();
@@ -102,7 +102,7 @@ class XMLGeneratorTest extends TestCase
 
     public function testAddEntryAppendsFeedElement(): void
     {
-        $generator = new XMLGenerator(null, false);
+        $generator = new XMLGenerator(null, null, false);
         $generator->initialize($this->feed);
 
         $entry = new Entry('https://geeshoe.com', 'Entry Title 1', $this->time);

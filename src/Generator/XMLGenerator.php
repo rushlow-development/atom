@@ -33,6 +33,7 @@ use Geeshoe\Atom\Contract\GeneratorInterface;
 class XMLGenerator implements GeneratorInterface
 {
     protected \DOMDocument $document;
+    protected FeedGenerator $feed;
 
     protected bool $pretty;
 
@@ -42,11 +43,16 @@ class XMLGenerator implements GeneratorInterface
      * @param \DOMDocument|null $document
      * @param bool              $pretty     Return pretty XML Document
      */
-    public function __construct(\DOMDocument $document = null, bool $pretty = false)
-    {
+    public function __construct(
+        \DOMDocument $document = null,
+        FeedGenerator $feedGenerator = null,
+        bool $pretty = false
+    ) {
         if ($document === null) {
             $document = new \DOMDocument('1.0', 'UTF-8');
         }
+
+        $this->feed = $feedGenerator ?? new FeedGenerator($document);
 
         $this->document = $document;
         $this->pretty = $pretty;
@@ -59,17 +65,14 @@ class XMLGenerator implements GeneratorInterface
      */
     public function initialize(FeedInterface $feed): void
     {
-        $feedElement = $this->document->createElementNS(
-            'https://www.w3.org/2005/Atom',
-            'feed'
+        $updated = $feed->getUpdated()->format(\DATE_ATOM);
+
+        $feedElement = $this->feed->getFeed(
+            $feed->getId(),
+            $feed->getTitle(),
+            $updated
         );
 
-        $feedElement->appendChild($this->getIdElement($feed->getId()));
-        $feedElement->appendChild($this->getTitleElement($feed->getTitle()));
-
-        $timestamp = $feed->getUpdated()->format(\DATE_ATOM);
-
-        $feedElement->appendChild($this->getUpdatedElement($timestamp));
         $this->document->appendChild($feedElement);
     }
 
