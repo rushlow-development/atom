@@ -23,6 +23,7 @@ namespace Geeshoe\Atom\UnitTests\Generator;
 use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
+use Geeshoe\Atom\Generator\FeedGenerator;
 use Geeshoe\Atom\Generator\XMLGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -68,6 +69,16 @@ class XMLGeneratorTest extends TestCase
         $this->mockDateTimeImmutable = null;
     }
 
+    protected function setDateTimeExpectation(): void
+    {
+        $this->mockDateTimeImmutable
+            ->expects($this->once())
+            ->method('format')
+            ->with(\DATE_ATOM)
+            ->willReturn('time')
+        ;
+    }
+
     public function testXMLGeneratorImplementsGeneratorInterface(): void
     {
         $interfaces = class_implements(XMLGenerator::class);
@@ -85,80 +96,73 @@ class XMLGeneratorTest extends TestCase
         );
     }
 
-    /**
-     * @return array<array> {'method', 'elementTag', 'elementValue'}
-     * @throws \Exception
-     */
-    public function getElementWithTextNodeDataProvider(): array
-    {
-        return [
-            'getIdElement()' => ['getIdElement', 'id', 'some id'],
-            'getTitleElement()' => ['getTitleElement', 'title', 'test'],
-            'getUpdatedElement()' => ['getUpdatedElement', 'updated', 'time']
-        ];
-    }
-
-    /**
-     * @dataProvider getElementWithTextNodeDataProvider
-     * @param string $methodName
-     * @param string $elementName
-     * @param string $elementValue
-     */
-    public function testGetterElementWithTextNodeCreatesElementWithSuppliedParams(
-        string $methodName,
-        string $elementName,
-        string $elementValue
-    ): void {
-        $this->mockDocument->expects($this->once())
-            ->method('createElement')
-            ->with($elementName, $elementValue)
-            ->willReturn($this->mockElement)
-        ;
-
-        $generator = new XMLGenerator($this->mockDocument);
-        $generator->$methodName($elementValue);
-    }
-
     public function testInitializeCreatesAtomFeedElement(): void
     {
-        $this->mockDocument->expects($this->once())
-            ->method('createElementNS')
-            ->with('https://www.w3.org/2005/Atom', 'feed')
-            ->willReturn($this->mockNode);
+        $this->setDateTimeExpectation();
 
-        $this->mockNode->expects($this->exactly(3))
+        $this->mockFeed
+            ->expects($this->once())
+            ->method('getId')
+            ->willReturn('id')
+        ;
+
+        $this->mockFeed
+            ->expects($this->once())
+            ->method('getTitle')
+            ->willReturn('title')
+        ;
+
+        $this->mockFeed
+            ->expects($this->once())
+            ->method('getUpdated')
+            ->willReturn($this->mockDateTimeImmutable)
+        ;
+
+        $feedGenerator = $this->createMock(FeedGenerator::class);
+        $feedGenerator
+            ->expects($this->once())
+            ->method('getFeed')
+            ->with('id', 'title', 'time')
+        ;
+
+        $this->mockDocument
+            ->expects($this->once())
             ->method('appendChild')
             ->with(self::isInstanceOf(\DOMElement::class))
         ;
 
-        $this->setMockFeedExpectations();
-
-        $this->mockDocument->expects($this->exactly(3))
-            ->method('createElement')
-            ->willReturn($this->mockElement);
-
-        $generator = new XMLGenerator($this->mockDocument);
+        $generator = new XMLGenerator($this->mockDocument, $feedGenerator);
 
         $generator->initialize($this->mockFeed);
     }
 
-    protected function setMockFeedExpectations(): void
+    protected function setExpectationsForCreateEntryNode(): void
     {
-        $feedMethods = ['getId', 'getTitle'];
+        $this->setDateTimeExpectation();
 
-        foreach ($feedMethods as $method) {
-            $this->mockFeed->expects($this->once())
-                ->method($method);
-        }
-
-        $this->mockDateTimeImmutable->expects($this->once())
-            ->method('format')
-            ->with(\DATE_ATOM)
-            ->willReturn('time');
-
-        $this->mockFeed->expects($this->once())
+        $this->mockEntry
+            ->expects($this->once())
             ->method('getUpdated')
-            ->willReturn($this->mockDateTimeImmutable);
+            ->willReturn($this->mockDateTimeImmutable)
+        ;
+
+        $node = $this->mockElement;
+        $node
+            ->expects($this->exactly(3))
+            ->method('appendChild')
+        ;
+
+        $this->mockDocument
+            ->expects($this->exactly(4))
+            ->method('createElement')
+            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', 'time'])
+            ->willReturnOnConsecutiveCalls(
+                $node,
+                $this->mockElement,
+                $this->mockElement,
+                $this->mockElement
+            )
+        ;
     }
 
     public function testCreateEntryNodeCreatesNodeAndAppendsRequiredElementsToNode(): void
@@ -166,34 +170,7 @@ class XMLGeneratorTest extends TestCase
         $this->setExpectationsForCreateEntryNode();
 
         $generator = new XMLGenerator($this->mockDocument);
-        $generator->createEntryNode($this->mockEntry);
-    }
-
-    protected function setExpectationsForCreateEntryNode(): void
-    {
-        $this->mockDateTimeImmutable->expects($this->once())
-            ->method('format')
-            ->with(\DATE_ATOM)
-            ->willReturn('');
-
-        $this->mockEntry->expects($this->once())
-            ->method('getUpdated')
-            ->willReturn($this->mockDateTimeImmutable);
-
-        $node = $this->mockElement;
-        $node->expects($this->exactly(3))
-            ->method('appendChild');
-
-
-        $this->mockDocument->expects($this->exactly(4))
-            ->method('createElement')
-            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', ''])
-            ->willReturnOnConsecutiveCalls(
-                $node,
-                $this->mockElement,
-                $this->mockElement,
-                $this->mockElement
-            );
+        $generator->createEntryElement($this->mockEntry);
     }
 
     public function testAddEntryAppendsFeedElementWithNewEntry(): void
@@ -201,19 +178,25 @@ class XMLGeneratorTest extends TestCase
         $this->setExpectationsForCreateEntryNode();
 
         $mockNodeList = $this->createMock(\DOMNodeList::class);
-        $mockNodeList->expects($this->once())
+        $mockNodeList
+            ->expects($this->once())
             ->method('item')
             ->with(0)
-            ->willReturn($this->mockNode);
+            ->willReturn($this->mockNode)
+        ;
 
-        $this->mockNode->expects($this->once())
+        $this->mockNode
+            ->expects($this->once())
             ->method('appendChild')
-            ->with(self::isInstanceOf(\DOMNode::class));
+            ->with(self::isInstanceOf(\DOMNode::class))
+        ;
 
-        $this->mockDocument->expects($this->once())
+        $this->mockDocument
+            ->expects($this->once())
             ->method('getElementsByTagName')
             ->with('feed')
-            ->willReturn($mockNodeList);
+            ->willReturn($mockNodeList)
+        ;
 
         $generator = new XMLGenerator($this->mockDocument);
         $generator->addEntry($this->mockEntry);
