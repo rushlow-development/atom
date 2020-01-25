@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Exception\ModelException;
@@ -110,6 +111,10 @@ class Entry implements EntryInterface
 
     public function addAuthor(Author $author): void
     {
-        // TODO: Implement addAuthor() method.
+        if (!isset($this->authors)) {
+            $this->authors = new ElementCollection();
+        }
+
+        $this->authors->add($author);
     }
 }
