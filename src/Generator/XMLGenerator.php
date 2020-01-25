@@ -34,6 +34,7 @@ class XMLGenerator implements GeneratorInterface
 {
     protected \DOMDocument $document;
     protected FeedGenerator $feed;
+    protected EntryGenerator $entry;
 
     protected bool $pretty;
 
@@ -46,6 +47,7 @@ class XMLGenerator implements GeneratorInterface
     public function __construct(
         \DOMDocument $document = null,
         FeedGenerator $feedGenerator = null,
+        EntryGenerator $entryGenerator = null,
         bool $pretty = false
     ) {
         if ($document === null) {
@@ -53,7 +55,7 @@ class XMLGenerator implements GeneratorInterface
         }
 
         $this->feed = $feedGenerator ?? new FeedGenerator($document);
-
+        $this->entry = $entryGenerator ?? new EntryGenerator($document);
         $this->document = $document;
         $this->pretty = $pretty;
     }
@@ -90,17 +92,15 @@ class XMLGenerator implements GeneratorInterface
         $feed->appendChild($entryNode);
     }
 
-    public function createEntryNode(EntryInterface $entryRequired): \DOMNode
+    public function createEntryNode(EntryInterface $entry): \DOMNode
     {
-        $node = $this->document->createElement('entry');
+        $updated = $entry->getUpdated()->format(\DATE_ATOM);
 
-        $timeStamp = $entryRequired->getUpdated()->format(\DATE_ATOM);
-
-        $node->appendChild($this->getIdElement($entryRequired->getId()));
-        $node->appendChild($this->getTitleElement($entryRequired->getTitle()));
-        $node->appendChild($this->getUpdatedElement($timeStamp));
-
-        return $node;
+        return $this->entry->getEntry(
+            $entry->getId(),
+            $entry->getTitle(),
+            $updated
+        );
     }
 
     /**
@@ -113,37 +113,5 @@ class XMLGenerator implements GeneratorInterface
         $this->document->formatOutput = $this->pretty;
 
         return $this->document->saveXML();
-    }
-
-    /**
-     * @param string $idValue   Value of the id tag
-     * @return \DOMElement
-     */
-    public function getIdElement(string $idValue): \DOMElement
-    {
-        return $this->createElementWithTextNode('id', $idValue);
-    }
-
-    /**
-     * @param string $titleValue Text value of the element
-     * @return \DOMElement
-     */
-    public function getTitleElement(string $titleValue): \DOMElement
-    {
-        return $this->createElementWithTextNode('title', $titleValue);
-    }
-
-    /**
-     * @param string $atomTimeStamp \DateTime::ATOM formatted time stamp
-     * @return \DOMElement
-     */
-    public function getUpdatedElement(string $atomTimeStamp): \DOMElement
-    {
-        return $this->createElementWithTextNode('updated', $atomTimeStamp);
-    }
-
-    protected function createElementWithTextNode(string $name, string $text): \DOMElement
-    {
-        return $this->document->createElement($name, $text);
     }
 }

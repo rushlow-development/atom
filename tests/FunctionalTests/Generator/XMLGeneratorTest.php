@@ -92,7 +92,7 @@ class XMLGeneratorTest extends TestCase
      */
     public function testGetXMLResultReturnsExpectedAtomXMLString(bool $pretty, string $expected): void
     {
-        $generator = new XMLGenerator(null, null, $pretty);
+        $generator = new XMLGenerator(null, null, null, $pretty);
         $generator->initialize($this->feed);
 
         $result = $generator->generate();
@@ -102,7 +102,7 @@ class XMLGeneratorTest extends TestCase
 
     public function testAddEntryAppendsFeedElement(): void
     {
-        $generator = new XMLGenerator(null, null, false);
+        $generator = new XMLGenerator(null, null, null, false);
         $generator->initialize($this->feed);
 
         $entry = new Entry('https://geeshoe.com', 'Entry Title 1', $this->time);
