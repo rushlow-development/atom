@@ -20,8 +20,10 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
+use Geeshoe\Atom\Model\Author;
 use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
@@ -136,5 +138,28 @@ class FeedTest extends TestCase
         $feed->$setter($expected);
 
         self::assertSame($expected, $feed->$getter());
+    }
+
+    public function testAddAuthorCreatesNewAuthorsCollectionIfNotInitialized(): void
+    {
+        $feed = new Feed('', '', $this->expected['updated']);
+        $feed->addAuthor($this->createMock(Author::class));
+        self::assertInstanceOf(ElementCollection::class, $feed->getAuthors());
+    }
+
+    public function testAddAuthorAddsAuthorToExistingCollection(): void
+    {
+        $mockAuthor = $this->createMock(Author::class);
+
+        $feed = new Feed('', '', $this->expected['updated']);
+
+        $collection = $this->createMock(ElementCollection::class);
+        $collection->expects($this->once())
+            ->method('add')
+            ->with($mockAuthor);
+
+        $feed->setAuthors($collection);
+
+        $feed->addAuthor($mockAuthor);
     }
 }

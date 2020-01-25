@@ -20,13 +20,15 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Contract\ElementInterface;
+
 /**
  * Class Author
  *
  * @package Geeshoe\Atom\Model
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class Author
+class Author implements ElementInterface
 {
     private string $name;
     private ?string $uri;

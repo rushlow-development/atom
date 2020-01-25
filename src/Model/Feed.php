@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
@@ -111,6 +112,10 @@ class Feed implements FeedInterface
 
     public function addAuthor(Author $author): void
     {
-        // TODO: Implement addAuthor() method.
+        if (!isset($this->authors)) {
+            $this->authors = new ElementCollection();
+        }
+
+        $this->authors->add($author);
     }
 }
