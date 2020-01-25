@@ -32,4 +32,5 @@ namespace Geeshoe\Atom\Contract;
  */
 interface CollectionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
 {
+    public function add(ElementInterface $element): void;
 }

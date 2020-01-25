@@ -49,4 +49,18 @@ class CollectionInterfaceTest extends TestCase
 
         self::assertInstanceOf($interfaceSignature, $collection);
     }
+
+    /** @return \Generator<array<string>> */
+    public function methodDataProvider(): \Generator
+    {
+        yield ['add'];
+    }
+
+    /**
+     * @dataProvider methodDataProvider
+     */
+    public function testHasMethods(string $methodName): void
+    {
+        self::assertTrue(method_exists(CollectionInterface::class, $methodName));
+    }
 }
