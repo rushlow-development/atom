@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Model;
 
 use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
 /**
@@ -30,7 +30,7 @@ use Geeshoe\Atom\Exception\ModelException;
  * @package Geeshoe\Atom\Model
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-class Feed implements FeedRequiredInterface
+class Feed implements FeedInterface
 {
     private string $id;
 

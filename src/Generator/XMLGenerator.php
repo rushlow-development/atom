@@ -55,9 +55,9 @@ class XMLGenerator implements GeneratorInterface
     /**
      * Create Atom 1.0 XML Feed Element
      *
-     * @param FeedRequiredInterface $feed
+     * @param FeedInterface $feed
      */
-    public function initialize(FeedRequiredInterface $feed): void
+    public function initialize(FeedInterface $feed): void
     {
         $feedElement = $this->document->createElementNS(
             'https://www.w3.org/2005/Atom',

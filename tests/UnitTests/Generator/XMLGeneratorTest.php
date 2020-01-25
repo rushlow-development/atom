@@ -21,7 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests\Generator;
 
 use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Generator\XMLGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -50,7 +50,7 @@ class XMLGeneratorTest extends TestCase
         $this->mockDocument = $this->createMock(\DOMDocument::class);
         $this->mockElement = $this->createMock(\DOMElement::class);
         $this->mockNode = $this->createMock(\DOMNode::class);
-        $this->mockFeed = $this->createMock(FeedRequiredInterface::class);
+        $this->mockFeed = $this->createMock(FeedInterface::class);
         $this->mockEntry = $this->createMock(EntryInterface::class);
         $this->mockDateTimeImmutable = $this->createMock(\DateTimeImmutable::class);
     }

@@ -22,7 +22,7 @@ namespace Geeshoe\Atom\UnitTests;
 
 use Geeshoe\Atom\AtomBuilder;
 use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Model\Atom;
 use Geeshoe\Atom\Model\Entry;
@@ -49,7 +49,7 @@ class AtomBuilderTest extends TestCase
     {
         $this->mockGenerator = $this->createMock(GeneratorInterface::class);
         $this->mockAtom = $this->createMock(Atom::class);
-        $this->mockFeedEntry = $this->createMock(FeedRequiredInterface::class);
+        $this->mockFeedEntry = $this->createMock(FeedInterface::class);
     }
 
     /**

@@ -31,9 +31,9 @@ interface GeneratorInterface
     /**
      * Create Atom 1.0 Feed element
      *
-     * @param FeedRequiredInterface $feed
+     * @param FeedInterface $feed
      */
-    public function initialize(FeedRequiredInterface $feed): void;
+    public function initialize(FeedInterface $feed): void;
 
     /**
      * Add Atom 1.0 Entry element to the Feed element
