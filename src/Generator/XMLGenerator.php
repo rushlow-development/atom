@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Generator;
 
-use Geeshoe\Atom\Contract\EntryRequiredInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 
 /**
@@ -55,9 +55,9 @@ class XMLGenerator implements GeneratorInterface
     /**
      * Create Atom 1.0 XML Feed Element
      *
-     * @param FeedRequiredInterface $feed
+     * @param FeedInterface $feed
      */
-    public function initialize(FeedRequiredInterface $feed): void
+    public function initialize(FeedInterface $feed): void
     {
         $feedElement = $this->document->createElementNS(
             'https://www.w3.org/2005/Atom',
@@ -76,9 +76,9 @@ class XMLGenerator implements GeneratorInterface
     /**
      * Add entry element to Atom XML Feed
      *
-     * @param EntryRequiredInterface $entry
+     * @param EntryInterface $entry
      */
-    public function addEntry(EntryRequiredInterface $entry): void
+    public function addEntry(EntryInterface $entry): void
     {
         $entryNode = $this->createEntryNode($entry);
         $nodeList = $this->document->getElementsByTagName('feed');
@@ -87,7 +87,7 @@ class XMLGenerator implements GeneratorInterface
         $feed->appendChild($entryNode);
     }
 
-    public function createEntryNode(EntryRequiredInterface $entryRequired): \DOMNode
+    public function createEntryNode(EntryInterface $entryRequired): \DOMNode
     {
         $node = $this->document->createElement('entry');
 

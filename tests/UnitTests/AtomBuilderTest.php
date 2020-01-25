@@ -21,8 +21,8 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\UnitTests;
 
 use Geeshoe\Atom\AtomBuilder;
-use Geeshoe\Atom\Contract\EntryRequiredInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 use Geeshoe\Atom\Model\Atom;
 use Geeshoe\Atom\Model\Entry;
@@ -49,7 +49,7 @@ class AtomBuilderTest extends TestCase
     {
         $this->mockGenerator = $this->createMock(GeneratorInterface::class);
         $this->mockAtom = $this->createMock(Atom::class);
-        $this->mockFeedEntry = $this->createMock(FeedRequiredInterface::class);
+        $this->mockFeedEntry = $this->createMock(FeedInterface::class);
     }
 
     /**
@@ -121,8 +121,8 @@ class AtomBuilderTest extends TestCase
 
     public function testPublishAddsEntryElementsToGenerator(): void
     {
-        $entryA = $this->createMock(EntryRequiredInterface::class);
-        $entryB = $this->createMock(EntryRequiredInterface::class);
+        $entryA = $this->createMock(EntryInterface::class);
+        $entryB = $this->createMock(EntryInterface::class);
 
         $this->mockAtom->expects($this->once())
             ->method('getEntryElements')

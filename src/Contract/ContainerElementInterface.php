@@ -21,31 +21,28 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Contract;
 
 /**
- * Interface GeneratorInterface
+ * Interface ContainerElementInterface
  *
  * @package Geeshoe\Atom\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-interface GeneratorInterface
+interface ContainerElementInterface
 {
     /**
-     * Create Atom 1.0 Feed element
-     *
-     * @param FeedInterface $feed
+     * @return string Unique permanent URI of the feed.
+     * @see https://tools.ietf.org/html/rfc4287#section-4.2.15
      */
-    public function initialize(FeedInterface $feed): void;
+    public function getId(): string;
 
     /**
-     * Add Atom 1.0 Entry element to the Feed element
-     *
-     * @param EntryInterface $entry
+     * @return string Human readable title of the feed.
+     * @see https://tools.ietf.org/html/rfc4287#section-4.2.14
      */
-    public function addEntry(EntryInterface $entry): void;
+    public function getTitle(): string;
 
     /**
-     * Get the Atom 1.0 document
-     *
-     * @return string
+     * @return \DateTimeInterface
+     * @see https://tools.ietf.org/html/rfc4287#section-4.2.15
      */
-    public function generate(): string;
+    public function getUpdated(): \DateTimeInterface;
 }

@@ -18,34 +18,33 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Contract;
+namespace Geeshoe\Atom\UnitTests\Contract;
+
+use Geeshoe\Atom\Contract\ContainerElementInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Interface GeneratorInterface
+ * Class ContainerElementInterfaceTest
  *
- * @package Geeshoe\Atom\Contract
+ * @package Geeshoe\Atom\UnitTests\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-interface GeneratorInterface
+class ContainerElementInterfaceTest extends TestCase
 {
-    /**
-     * Create Atom 1.0 Feed element
-     *
-     * @param FeedInterface $feed
-     */
-    public function initialize(FeedInterface $feed): void;
+    /** @return \Generator<array<string>> */
+    public function methodDataProvider(): \Generator
+    {
+        yield ['getId'];
+        yield ['getTitle'];
+        yield ['getUpdated'];
+    }
 
     /**
-     * Add Atom 1.0 Entry element to the Feed element
-     *
-     * @param EntryInterface $entry
+     * @test
+     * @dataProvider methodDataProvider
      */
-    public function addEntry(EntryInterface $entry): void;
-
-    /**
-     * Get the Atom 1.0 document
-     *
-     * @return string
-     */
-    public function generate(): string;
+    public function hasMethod(string $methodName): void
+    {
+        self::assertTrue(method_exists(ContainerElementInterface::class, $methodName));
+    }
 }

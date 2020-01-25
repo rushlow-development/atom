@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Factory;
 
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\FactoryException;
 use Geeshoe\Atom\Factory\FeedFactory;
 use PHPUnit\Framework\TestCase;
@@ -37,7 +37,7 @@ class FeedFactoryTest extends TestCase
     {
         $result = FeedFactory::createFeed('testId', 'test title', new \DateTime());
 
-        self::assertInstanceOf(FeedRequiredInterface::class, $result);
+        self::assertInstanceOf(FeedInterface::class, $result);
     }
 
     /**

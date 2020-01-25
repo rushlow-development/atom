@@ -18,34 +18,24 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Contract;
+namespace Geeshoe\Atom\UnitTests\Contract;
+
+use Geeshoe\Atom\Contract\ContainerElementInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Interface GeneratorInterface
+ * Class EntryInterfaceTest
  *
- * @package Geeshoe\Atom\Contract
+ * @package Geeshoe\Atom\UnitTests\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-interface GeneratorInterface
+class EntryInterfaceTest extends TestCase
 {
-    /**
-     * Create Atom 1.0 Feed element
-     *
-     * @param FeedInterface $feed
-     */
-    public function initialize(FeedInterface $feed): void;
-
-    /**
-     * Add Atom 1.0 Entry element to the Feed element
-     *
-     * @param EntryInterface $entry
-     */
-    public function addEntry(EntryInterface $entry): void;
-
-    /**
-     * Get the Atom 1.0 document
-     *
-     * @return string
-     */
-    public function generate(): string;
+    /** @test */
+    public function interfaceExtends(): void
+    {
+        $entry = $this->createMock(EntryInterface::class);
+        self::assertInstanceOf(ContainerElementInterface::class, $entry);
+    }
 }

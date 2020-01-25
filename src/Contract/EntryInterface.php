@@ -21,31 +21,11 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Contract;
 
 /**
- * Interface GeneratorInterface
+ * Interface EntryInterface
  *
  * @package Geeshoe\Atom\Contract
  * @author  Jesse Rushlow <jr@geeshoe.com>
  */
-interface GeneratorInterface
+interface EntryInterface extends ContainerElementInterface
 {
-    /**
-     * Create Atom 1.0 Feed element
-     *
-     * @param FeedInterface $feed
-     */
-    public function initialize(FeedInterface $feed): void;
-
-    /**
-     * Add Atom 1.0 Entry element to the Feed element
-     *
-     * @param EntryInterface $entry
-     */
-    public function addEntry(EntryInterface $entry): void;
-
-    /**
-     * Get the Atom 1.0 document
-     *
-     * @return string
-     */
-    public function generate(): string;
 }

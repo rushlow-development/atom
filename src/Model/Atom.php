@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
-use Geeshoe\Atom\Contract\EntryRequiredInterface;
-use Geeshoe\Atom\Contract\FeedRequiredInterface;
+use Geeshoe\Atom\Contract\EntryInterface;
+use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
 /**
@@ -32,22 +32,22 @@ use Geeshoe\Atom\Exception\ModelException;
  */
 class Atom
 {
-    private FeedRequiredInterface $feedElement;
+    private FeedInterface $feedElement;
 
     private array $entryElements = [];
 
     /**
-     * @param FeedRequiredInterface $feed
+     * @param FeedInterface $feed
      */
-    public function setFeedElement(FeedRequiredInterface $feed): void
+    public function setFeedElement(FeedInterface $feed): void
     {
         $this->feedElement = $feed;
     }
 
     /**
-     * @return FeedRequiredInterface
+     * @return FeedInterface
      */
-    public function getFeedElement(): FeedRequiredInterface
+    public function getFeedElement(): FeedInterface
     {
         if (isset($this->feedElement)) {
             return $this->feedElement;
@@ -57,9 +57,9 @@ class Atom
     }
 
     /**
-     * @param EntryRequiredInterface $entryElement
+     * @param EntryInterface $entryElement
      */
-    public function addEntryElement(EntryRequiredInterface $entryElement): void
+    public function addEntryElement(EntryInterface $entryElement): void
     {
         $this->entryElements[] = $entryElement;
     }
