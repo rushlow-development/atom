@@ -85,14 +85,14 @@ class XMLGenerator implements GeneratorInterface
      */
     public function addEntry(EntryInterface $entry): void
     {
-        $entryNode = $this->createEntryNode($entry);
+        $entryNode = $this->createEntryElement($entry);
         $nodeList = $this->document->getElementsByTagName('feed');
 
         $feed = $nodeList->item(0);
         $feed->appendChild($entryNode);
     }
 
-    public function createEntryNode(EntryInterface $entry): \DOMNode
+    public function createEntryElement(EntryInterface $entry): \DOMElement
     {
         $updated = $entry->getUpdated()->format(\DATE_ATOM);
 
