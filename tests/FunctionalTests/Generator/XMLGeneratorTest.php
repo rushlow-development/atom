@@ -64,14 +64,14 @@ class XMLGeneratorTest extends TestCase
     {
         $notPretty = <<<'EOT'
             <?xml version="1.0" encoding="UTF-8"?>
-            <feed xmlns="http://www.w3.org/2005/Atom"><id>http://geeshoe.com/</id>
+            <feed xmlns="http://www.w3.org/2005/Atom" id="feed"><id>http://geeshoe.com/</id>
             EOT;
 
         $notPretty .= '<title>Functional Title</title><updated>2019-12-31T18:30:02+00:00</updated></feed>' . "\n";
 
         $pretty = <<<'EOT'
             <?xml version="1.0" encoding="UTF-8"?>
-            <feed xmlns="http://www.w3.org/2005/Atom">
+            <feed xmlns="http://www.w3.org/2005/Atom" id="feed">
               <id>http://geeshoe.com/</id>
               <title>Functional Title</title>
               <updated>2019-12-31T18:30:02+00:00</updated>
