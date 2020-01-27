@@ -177,25 +177,18 @@ class XMLGeneratorTest extends TestCase
     {
         $this->setExpectationsForCreateEntryNode();
 
-        $mockNodeList = $this->createMock(\DOMNodeList::class);
-        $mockNodeList
-            ->expects($this->once())
-            ->method('item')
-            ->with(0)
-            ->willReturn($this->mockNode)
-        ;
-
-        $this->mockNode
+        $mockFeedElement = $this->createMock(\DOMElement::class);
+        $mockFeedElement
             ->expects($this->once())
             ->method('appendChild')
-            ->with(self::isInstanceOf(\DOMNode::class))
+            ->with(self::isInstanceOf(\DOMElement::class))
         ;
 
         $this->mockDocument
             ->expects($this->once())
-            ->method('getElementsByTagName')
+            ->method('getElementById')
             ->with('feed')
-            ->willReturn($mockNodeList)
+            ->willReturn($mockFeedElement)
         ;
 
         $generator = new XMLGenerator($this->mockDocument);
