@@ -42,9 +42,14 @@ class FeedGenerator
 
     public function createFeedElement(): \DOMElement
     {
-        return $this->dom->createElementNS(
+        $feed = $this->dom->createElementNS(
             'http://www.w3.org/2005/Atom',
             'feed'
         );
+
+        $feed->setAttribute('id', 'feed');
+
+        $feed->setIdAttribute('id', true);
+        return $feed;
     }
 }

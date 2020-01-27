@@ -86,9 +86,8 @@ class XMLGenerator implements GeneratorInterface
     public function addEntry(EntryInterface $entry): void
     {
         $entryNode = $this->createEntryElement($entry);
-        $nodeList = $this->document->getElementsByTagName('feed');
 
-        $feed = $nodeList->item(0);
+        $feed = $this->document->getElementById('feed');
         $feed->appendChild($entryNode);
     }
 
