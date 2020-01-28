@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Feed;
@@ -135,5 +136,12 @@ class FeedTest extends TestCase
         $feed->$setter($expected);
 
         self::assertSame($expected, $feed->$getter());
+    }
+
+    /** @test */
+    public function constructCreatesAuthorElementCollection(): void
+    {
+        $feed = new Feed('', '', $this->expected['updated']);
+        self::assertInstanceOf(ElementCollection::class, $feed->getAuthor());
     }
 }
