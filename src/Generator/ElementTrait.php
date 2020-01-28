@@ -49,4 +49,20 @@ trait ElementTrait
     {
         return $this->dom->createElement('updated', $timeStampString);
     }
+
+    public function getAuthorElement(string $name, string $uri = null, string $email = null): \DOMElement
+    {
+        $author = $this->dom->createElement('author');
+        $author->appendChild($this->dom->createElement('name', $name));
+
+        if ($uri !== null) {
+            $author->appendChild($this->dom->createElement('uri', $uri));
+        }
+
+        if ($email !== null) {
+            $author->appendChild($this->dom->createElement('email', $email));
+        }
+
+        return $author;
+    }
 }

@@ -89,4 +89,58 @@ class ElementTraitTest extends TestCase
         $trait = new ElementTraitFixture($this->mockDocument);
         $trait->getUpdatedElement($updated);
     }
+
+    /** @test */
+    public function getAuthorAppendsNameDOMElementToAuthorDOMElement(): void
+    {
+        $mockNameElement = $this->createMock(\DOMElement::class);
+
+        $mockAuthorElement = $this->createMock(\DOMElement::class);
+        $mockAuthorElement
+            ->expects($this->once())
+            ->method('appendChild')
+            ->with($mockNameElement)
+        ;
+
+        $name = 'Unit test';
+        $this->mockDocument
+            ->expects($this->exactly(2))
+            ->method('createElement')
+            ->withConsecutive(['author'], ['name', $name])
+            ->willReturnOnConsecutiveCalls($mockAuthorElement, $mockNameElement)
+        ;
+
+        $trait = new ElementTraitFixture($this->mockDocument);
+        $trait->getAuthorElement($name);
+    }
+
+    /** @test */
+    public function getAuthorAppendsAllParamsToAuthorDOMElement(): void
+    {
+        $mockNameElement = $this->createMock(\DOMElement::class);
+        $mockUriElement = $mockNameElement;
+        $mockEmailElement = $mockNameElement;
+
+        $mockAuthorElement = $this->createMock(\DOMElement::class);
+        $mockAuthorElement
+            ->expects($this->exactly(3))
+            ->method('appendChild')
+            ->withConsecutive([$mockNameElement], [$mockUriElement], [$mockEmailElement])
+        ;
+
+        $this->mockDocument
+            ->expects($this->exactly(4))
+            ->method('createElement')
+            ->withConsecutive(
+                ['author'],
+                ['name', 'Unit test'],
+                ['uri', 'https://geeshoe.com'],
+                ['email', 'jr@geeshoe.com']
+            )
+            ->willReturnOnConsecutiveCalls($mockAuthorElement, $mockNameElement, $mockUriElement, $mockEmailElement)
+        ;
+
+        $trait = new ElementTraitFixture($this->mockDocument);
+        $trait->getAuthorElement('Unit test', 'https://geeshoe.com', 'jr@geeshoe.com');
+    }
 }
