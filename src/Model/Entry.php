@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\EntryInterface;
 use Geeshoe\Atom\Exception\ModelException;
@@ -53,6 +54,7 @@ class Entry implements EntryInterface
         $this->title = $title;
 
         $this->updated = $updated;
+        $this->author = new ElementCollection();
     }
 
     /**
@@ -96,11 +98,7 @@ class Entry implements EntryInterface
      */
     public function getAuthor(): CollectionInterface
     {
-        if (isset($this->author)) {
-            return $this->author;
-        }
-
-        throw ModelException::emptyPropertyException('Author');
+        return $this->author;
     }
 
     public function setAuthor(CollectionInterface $author): void
