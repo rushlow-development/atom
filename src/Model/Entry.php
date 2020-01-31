@@ -54,6 +54,7 @@ class Entry implements EntryInterface
         $this->title = $title;
 
         $this->updated = $updated;
+        $this->authors = new ElementCollection();
     }
 
     /**
@@ -92,16 +93,9 @@ class Entry implements EntryInterface
         return $this->updated;
     }
 
-    /**
-     * @throws \Geeshoe\Atom\Exception\ModelException
-     */
     public function getAuthors(): CollectionInterface
     {
-        if (isset($this->authors)) {
-            return $this->authors;
-        }
-
-        throw ModelException::emptyPropertyException('Author');
+        return $this->authors;
     }
 
     public function setAuthors(CollectionInterface $authors): void

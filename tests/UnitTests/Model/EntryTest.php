@@ -92,7 +92,6 @@ class EntryTest extends TestCase
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
             ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
-            ['getAuthors', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -161,5 +160,12 @@ class EntryTest extends TestCase
         $feed->setAuthors($collection);
 
         $feed->addAuthor($mockAuthor);
+    }
+
+    public function testConstructorCreatesCollectionForAuthor(): void
+    {
+        $entry = new Entry('', '', $this->expected['updated']);
+
+        self::assertInstanceOf(ElementCollection::class, $entry->getAuthors());
     }
 }

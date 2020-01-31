@@ -55,6 +55,7 @@ class Feed implements FeedInterface
         $this->title = $title;
 
         $this->updated = $updated;
+        $this->authors = new ElementCollection();
     }
 
     /**
@@ -93,16 +94,9 @@ class Feed implements FeedInterface
         return $this->updated;
     }
 
-    /**
-     * @throws \Geeshoe\Atom\Exception\ModelException
-     */
     public function getAuthors(): CollectionInterface
     {
-        if (!empty($this->authors)) {
-            return $this->authors;
-        }
-
-        throw ModelException::emptyPropertyException('Author');
+        return $this->authors;
     }
 
     public function setAuthors(CollectionInterface $authors): void

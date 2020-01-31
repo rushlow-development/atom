@@ -92,7 +92,6 @@ class FeedTest extends TestCase
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
             ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
-            ['getAuthors', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -161,5 +160,12 @@ class FeedTest extends TestCase
         $feed->setAuthors($collection);
 
         $feed->addAuthor($mockAuthor);
+    }
+
+    /** @test */
+    public function constructCreatesAuthorElementCollection(): void
+    {
+        $feed = new Feed('', '', $this->expected['updated']);
+        self::assertInstanceOf(ElementCollection::class, $feed->getAuthors());
     }
 }
