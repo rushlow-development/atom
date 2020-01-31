@@ -93,9 +93,6 @@ class Entry implements EntryInterface
         return $this->updated;
     }
 
-    /**
-     * @throws \Geeshoe\Atom\Exception\ModelException
-     */
     public function getAuthor(): CollectionInterface
     {
         return $this->author;
