@@ -106,10 +106,6 @@ class Feed implements FeedInterface
 
     public function addAuthor(Author $author): void
     {
-        if (!isset($this->authors)) {
-            $this->authors = new ElementCollection();
-        }
-
         $this->authors->add($author);
     }
 }

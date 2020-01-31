@@ -139,13 +139,6 @@ class EntryTest extends TestCase
         self::assertSame($expected, $entry->$getter());
     }
 
-    public function testAddAuthorCreatesNewAuthorsCollectionIfNotInitialized(): void
-    {
-        $feed = new Entry('', '', $this->expected['updated']);
-        $feed->addAuthor($this->createMock(Author::class));
-        self::assertInstanceOf(ElementCollection::class, $feed->getAuthors());
-    }
-
     public function testAddAuthorAddsAuthorToExistingCollection(): void
     {
         $mockAuthor = $this->createMock(Author::class);
