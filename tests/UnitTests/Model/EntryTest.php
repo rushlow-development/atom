@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Entry;
@@ -90,7 +91,6 @@ class EntryTest extends TestCase
         return [
             ['getId', 'Id', ['', $this->expected['title'], $this->expected['updated']]],
             ['getTitle', 'Title', [$this->expected['id'], '', $this->expected['updated']]],
-            ['getAuthor', 'Author', [$this->expected['id'], $this->expected['title'], $this->expected['updated']]]
         ];
     }
 
@@ -136,5 +136,12 @@ class EntryTest extends TestCase
         $entry->$setter($expected);
 
         self::assertSame($expected, $entry->$getter());
+    }
+
+    public function testConstructorCreatesCollectionForAuthor(): void
+    {
+        $entry = new Entry('', '', $this->expected['updated']);
+
+        self::assertInstanceOf(ElementCollection::class, $entry->getAuthor());
     }
 }

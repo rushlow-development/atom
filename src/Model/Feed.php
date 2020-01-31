@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
@@ -54,6 +55,7 @@ class Feed implements FeedInterface
         $this->title = $title;
 
         $this->updated = $updated;
+        $this->author = new ElementCollection();
     }
 
     /**
@@ -92,16 +94,9 @@ class Feed implements FeedInterface
         return $this->updated;
     }
 
-    /**
-     * @throws \Geeshoe\Atom\Exception\ModelException
-     */
     public function getAuthor(): CollectionInterface
     {
-        if (!empty($this->author)) {
-            return $this->author;
-        }
-
-        throw ModelException::emptyPropertyException('Author');
+        return $this->author;
     }
 
     public function setAuthor(CollectionInterface $author): void

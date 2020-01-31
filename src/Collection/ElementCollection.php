@@ -40,6 +40,11 @@ class ElementCollection implements CollectionInterface
         $this->elements[] = $element;
     }
 
+    public function isEmpty(): bool
+    {
+        return empty($this->elements);
+    }
+
     /**
      * @inheritDoc
      */

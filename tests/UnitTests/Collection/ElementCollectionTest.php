@@ -151,4 +151,13 @@ class ElementCollectionTest extends TestCase
         $collection->offsetUnset(5);
         self::assertCount(0, $collection);
     }
+
+    public function testIsEmptyReturnsExpectedResult(): void
+    {
+        $collection = new ElementCollection();
+        self::assertTrue($collection->isEmpty());
+
+        $collection[] = $this->mockElementInterface;
+        self::assertFalse($collection->isEmpty());
+    }
 }
