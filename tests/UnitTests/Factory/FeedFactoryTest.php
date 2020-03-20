@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,9 @@ use Geeshoe\Atom\Factory\FeedFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class FeedFactoryTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Factory
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class FeedFactoryTest extends TestCase
 {
@@ -49,15 +48,13 @@ class FeedFactoryTest extends TestCase
             ['id', 'title', true],
             ['', 'title', false],
             ['id', '', false],
-            ['', '', false]
+            ['', '', false],
         ];
     }
 
     /**
      * @dataProvider validateRequiredDataProvider
-     * @param string $id
-     * @param string $title
-     * @param bool   $expected
+     *
      * @throws \Exception
      */
     public function testCreateFeedThrowsExceptionOnEmptyParams(string $id, string $title, bool $expected): void

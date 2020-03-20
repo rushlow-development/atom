@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,29 +28,20 @@ use Geeshoe\Atom\Generator\XMLGenerator;
 use Geeshoe\Atom\Model\Atom;
 
 /**
- * Class AtomBuilder
- *
- * @package Geeshoe\Atom
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class AtomBuilder implements BuilderInterface
 {
     private Atom $atom;
     private GeneratorInterface $generator;
 
-    /**
-     * AtomBuilder constructor.
-     *
-     * @param Atom|null               $atom
-     * @param GeneratorInterface|null $generator
-     */
     public function __construct(Atom $atom = null, GeneratorInterface $generator = null)
     {
-        if ($atom === null) {
+        if (null === $atom) {
             $atom = new Atom();
         }
 
-        if ($generator === null) {
+        if (null === $generator) {
             $generator = new XMLGenerator();
         }
 
@@ -59,7 +50,7 @@ class AtomBuilder implements BuilderInterface
     }
 
     /**
-     * @@inheritDoc
+     * @{@inheritdoc}
      */
     public function getAtom(): Atom
     {
@@ -67,7 +58,7 @@ class AtomBuilder implements BuilderInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function createFeed(string $id, string $title, \DateTimeInterface $lastUpdated): void
     {
@@ -75,7 +66,7 @@ class AtomBuilder implements BuilderInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void
     {
@@ -83,7 +74,7 @@ class AtomBuilder implements BuilderInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function publish(): string
     {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,32 +27,20 @@ use Geeshoe\Atom\Model\Entry;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class EntryTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class EntryTest extends TestCase
 {
     public array $expected = [];
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function setUp(): void
     {
         $this->getExpected();
-    }
-
-    protected function getExpected(): void
-    {
-        $time = $this->createMock(\DateTime::class);
-
-        $this->expected = [
-            'id' => 'test_id',
-            'title' => 'test_title',
-            'updated' => $time
-        ];
     }
 
     /**
@@ -65,14 +53,14 @@ class EntryTest extends TestCase
         return [
             ['getId', $this->expected['id']],
             ['getTitle', $this->expected['title']],
-            ['getUpdated', $this->expected['updated']]
+            ['getUpdated', $this->expected['updated']],
         ];
     }
 
     /**
      * @dataProvider getterDataProvider
-     * @param string $methodName
-     * @param mixed  $expected
+     *
+     * @param mixed $expected
      */
     public function testGetters(string $methodName, $expected): void
     {
@@ -96,9 +84,6 @@ class EntryTest extends TestCase
 
     /**
      * @dataProvider exceptionDataProvider
-     * @param string $methodName
-     * @param string $expectedMsg
-     * @param array  $constructorParams
      */
     public function testGetterExceptions(
         string $methodName,
@@ -116,12 +101,13 @@ class EntryTest extends TestCase
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)]
+            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)],
         ];
     }
 
     /**
      * @dataProvider optionalElementGetterSetters
+     *
      * @param mixed $expected
      */
     public function testOptionalEntryGetterSetters(string $getter, string $setter, $expected): void
@@ -143,5 +129,16 @@ class EntryTest extends TestCase
         $entry = new Entry('', '', $this->expected['updated']);
 
         self::assertInstanceOf(ElementCollection::class, $entry->getAuthor());
+    }
+
+    protected function getExpected(): void
+    {
+        $time = $this->createMock(\DateTime::class);
+
+        $this->expected = [
+            'id' => 'test_id',
+            'title' => 'test_title',
+            'updated' => $time,
+        ];
     }
 }

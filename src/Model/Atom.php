@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,7 @@ use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
 /**
- * Class Atom
- *
- * @package Geeshoe\Atom\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class Atom
 {
@@ -36,17 +33,11 @@ class Atom
 
     private array $entryElements = [];
 
-    /**
-     * @param FeedInterface $feed
-     */
     public function setFeedElement(FeedInterface $feed): void
     {
         $this->feedElement = $feed;
     }
 
-    /**
-     * @return FeedInterface
-     */
     public function getFeedElement(): FeedInterface
     {
         if (isset($this->feedElement)) {
@@ -56,17 +47,11 @@ class Atom
         throw ModelException::emptyPropertyException('Feed');
     }
 
-    /**
-     * @param EntryInterface $entryElement
-     */
     public function addEntryElement(EntryInterface $entryElement): void
     {
         $this->entryElements[] = $entryElement;
     }
 
-    /**
-     * @return array
-     */
     public function getEntryElements(): array
     {
         return $this->entryElements;

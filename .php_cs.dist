@@ -10,6 +10,7 @@ $finder = PhpCsFixer\Finder::create()
 
 return PhpCsFixer\Config::create()
     ->setRules(array(
+        '@PSR2' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHPUnit75Migration:risky' => true,
@@ -17,6 +18,12 @@ return PhpCsFixer\Config::create()
         'protected_to_private' => false,
         'semicolon_after_instruction' => false,
         'native_function_invocation' => true,
+        'ordered_class_elements' => true,
+        'ordered_imports' => true,
+        'php_unit_internal_class' => true,
+        'php_unit_method_casing' => true,
+        'phpdoc_no_empty_return' => true,
+        'phpdoc_add_missing_param_annotation' => true,
     ))
     ->setRiskyAllowed(true)
     ->setFinder($finder)

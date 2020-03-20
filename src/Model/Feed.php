@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,7 @@ use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
 /**
- * Class Feed
- *
- * @package Geeshoe\Atom\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class Feed implements FeedInterface
 {
@@ -44,9 +41,9 @@ class Feed implements FeedInterface
     /**
      * Feed constructor.
      *
-     * @param string             $id      Unique permanent feed URI.
-     * @param string             $title   Human readable title of the feed.
-     * @param \DateTimeInterface $updated Time of last significant feed modification.
+     * @param string             $id      unique permanent feed URI
+     * @param string             $title   human readable title of the feed
+     * @param \DateTimeInterface $updated time of last significant feed modification
      */
     public function __construct(string $id, string $title, \DateTimeInterface $updated)
     {
@@ -59,7 +56,7 @@ class Feed implements FeedInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @throws \Geeshoe\Atom\Exception\ModelException;
      */
@@ -73,7 +70,7 @@ class Feed implements FeedInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @throws \Geeshoe\Atom\Exception\ModelException;
      */
@@ -87,7 +84,7 @@ class Feed implements FeedInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getUpdated(): \DateTimeInterface
     {

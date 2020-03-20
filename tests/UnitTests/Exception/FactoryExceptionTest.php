@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,16 +25,15 @@ use Geeshoe\Atom\Exception\FactoryException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class FactoryExceptionTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Exception
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class FactoryExceptionTest extends TestCase
 {
     public function testFactoryExceptionImplementsAtomExceptionInterface(): void
     {
-        $implements = class_implements(FactoryException::class);
+        $implements = \class_implements(FactoryException::class);
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }
@@ -45,19 +44,17 @@ class FactoryExceptionTest extends TestCase
     public function staticExceptionMsgDataProvider(): array
     {
         return [
-            ['REQUIRED_MSG', 'A required attribute is empty.']
+            ['REQUIRED_MSG', 'A required attribute is empty.'],
         ];
     }
 
     /**
      * @dataProvider staticExceptionMsgDataProvider
-     * @param string $signature
-     * @param string $message
      */
     public function testStaticExceptionMessagesAreDefined(string $signature, string $message): void
     {
         $class = '\Geeshoe\Atom\Exception\FactoryException::';
-        self::assertSame(constant($class . $signature), $message);
+        self::assertSame(\constant($class.$signature), $message);
     }
 
     public function testRequiredExceptionProvidesRequiredMsgConst(): void

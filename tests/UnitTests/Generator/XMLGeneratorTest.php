@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class XMLGeneratorTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Generator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class XMLGeneratorTest extends TestCase
 {
@@ -44,7 +43,7 @@ class XMLGeneratorTest extends TestCase
     public ?MockObject $mockDateTimeImmutable;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function setUp(): void
     {
@@ -57,7 +56,7 @@ class XMLGeneratorTest extends TestCase
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function tearDown(): void
     {
@@ -69,19 +68,9 @@ class XMLGeneratorTest extends TestCase
         $this->mockDateTimeImmutable = null;
     }
 
-    protected function setDateTimeExpectation(): void
-    {
-        $this->mockDateTimeImmutable
-            ->expects($this->once())
-            ->method('format')
-            ->with(\DATE_ATOM)
-            ->willReturn('time')
-        ;
-    }
-
     public function testXMLGeneratorImplementsGeneratorInterface(): void
     {
-        $interfaces = class_implements(XMLGenerator::class);
+        $interfaces = \class_implements(XMLGenerator::class);
 
         self::assertArrayHasKey(GeneratorInterface::class, $interfaces);
     }
@@ -91,7 +80,7 @@ class XMLGeneratorTest extends TestCase
         $generator = new XMLGenerator();
 
         self::assertSame(
-            '<?xml version="1.0" encoding="UTF-8"?>' . "\n",
+            '<?xml version="1.0" encoding="UTF-8"?>'."\n",
             $generator->generate()
         );
     }
@@ -136,35 +125,6 @@ class XMLGeneratorTest extends TestCase
         $generator->initialize($this->mockFeed);
     }
 
-    protected function setExpectationsForCreateEntryNode(): void
-    {
-        $this->setDateTimeExpectation();
-
-        $this->mockEntry
-            ->expects($this->once())
-            ->method('getUpdated')
-            ->willReturn($this->mockDateTimeImmutable)
-        ;
-
-        $node = $this->mockElement;
-        $node
-            ->expects($this->exactly(3))
-            ->method('appendChild')
-        ;
-
-        $this->mockDocument
-            ->expects($this->exactly(4))
-            ->method('createElement')
-            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', 'time'])
-            ->willReturnOnConsecutiveCalls(
-                $node,
-                $this->mockElement,
-                $this->mockElement,
-                $this->mockElement
-            )
-        ;
-    }
-
     public function testCreateEntryNodeCreatesNodeAndAppendsRequiredElementsToNode(): void
     {
         $this->setExpectationsForCreateEntryNode();
@@ -193,5 +153,44 @@ class XMLGeneratorTest extends TestCase
 
         $generator = new XMLGenerator($this->mockDocument);
         $generator->addEntry($this->mockEntry);
+    }
+
+    protected function setDateTimeExpectation(): void
+    {
+        $this->mockDateTimeImmutable
+            ->expects($this->once())
+            ->method('format')
+            ->with(\DATE_ATOM)
+            ->willReturn('time')
+        ;
+    }
+
+    protected function setExpectationsForCreateEntryNode(): void
+    {
+        $this->setDateTimeExpectation();
+
+        $this->mockEntry
+            ->expects($this->once())
+            ->method('getUpdated')
+            ->willReturn($this->mockDateTimeImmutable)
+        ;
+
+        $node = $this->mockElement;
+        $node
+            ->expects($this->exactly(3))
+            ->method('appendChild')
+        ;
+
+        $this->mockDocument
+            ->expects($this->exactly(4))
+            ->method('createElement')
+            ->withConsecutive(['entry'], ['id', ''], ['title', ''], ['updated', 'time'])
+            ->willReturnOnConsecutiveCalls(
+                $node,
+                $this->mockElement,
+                $this->mockElement,
+                $this->mockElement
+            )
+        ;
     }
 }

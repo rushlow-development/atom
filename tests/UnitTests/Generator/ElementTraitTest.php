@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ElementTraitTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Generator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class ElementTraitTest extends TestCase
 {
-    /** @var \DOMDocument&MockObject  */
+    /** @var \DOMDocument&MockObject */
     public $mockDocument;
 
     protected function setUp(): void

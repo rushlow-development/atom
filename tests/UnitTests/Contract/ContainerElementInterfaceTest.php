@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@ use Geeshoe\Atom\Contract\ContainerElementInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ContainerElementInterfaceTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class ContainerElementInterfaceTest extends TestCase
 {
@@ -45,6 +44,6 @@ class ContainerElementInterfaceTest extends TestCase
      */
     public function hasMethod(string $methodName): void
     {
-        self::assertTrue(method_exists(ContainerElementInterface::class, $methodName));
+        self::assertTrue(\method_exists(ContainerElementInterface::class, $methodName));
     }
 }

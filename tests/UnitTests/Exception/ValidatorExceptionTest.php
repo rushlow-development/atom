@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,9 @@ use Geeshoe\Atom\Exception\ValidatorException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ValidatorExceptionTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Exception
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class ValidatorExceptionTest extends TestCase
 {
@@ -39,7 +38,7 @@ class ValidatorExceptionTest extends TestCase
 
     public function testValidatorExceptionImplementsAtomExceptionInterface(): void
     {
-        $implements = class_implements(ValidatorException::class);
+        $implements = \class_implements(ValidatorException::class);
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }

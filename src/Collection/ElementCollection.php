@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,8 @@ use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\ElementInterface;
 
 /**
- * Class ElementCollection
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\Collection
- * @author  Jesse Rushlow <jr@geeshoe.com>
  * @template-implements CollectionInterface<int|null, ElementInterface>
  */
 class ElementCollection implements CollectionInterface
@@ -46,7 +44,7 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function offsetExists($offset): bool
     {
@@ -54,7 +52,7 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -62,12 +60,13 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value): void
     {
-        if ($offset === null) {
+        if (null === $offset) {
             $this->elements[] = $value;
+
             return;
         }
 
@@ -75,7 +74,7 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function offsetUnset($offset): void
     {
@@ -83,7 +82,7 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getIterator(): \Traversable
     {
@@ -91,10 +90,10 @@ class ElementCollection implements CollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function count(): int
     {
-        return count($this->elements);
+        return \count($this->elements);
     }
 }

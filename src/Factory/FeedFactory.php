@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,19 +24,10 @@ use Geeshoe\Atom\Exception\FactoryException;
 use Geeshoe\Atom\Model\Feed;
 
 /**
- * Class FeedFactory
- *
- * @package Geeshoe\Atom\Factory
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class FeedFactory
 {
-    /**
-     * @param string             $id
-     * @param string             $title
-     * @param \DateTimeInterface $updated
-     * @return Feed
-     */
     public static function createFeed(string $id, string $title, \DateTimeInterface $updated): Feed
     {
         if (self::validateRequiredFeedElements($id, $title)) {
@@ -46,11 +37,6 @@ class FeedFactory
         throw FactoryException::requiredException();
     }
 
-    /**
-     * @param string $id
-     * @param string $title
-     * @return bool
-     */
     protected static function validateRequiredFeedElements(string $id, string $title): bool
     {
         return !empty($id) && !empty($title);

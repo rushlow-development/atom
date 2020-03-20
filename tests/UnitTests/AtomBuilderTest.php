@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class AtomBuilderTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class AtomBuilderTest extends TestCase
 {
@@ -43,7 +42,7 @@ class AtomBuilderTest extends TestCase
     public ?MockObject $mockFeedEntry;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setUp(): void
     {
@@ -53,7 +52,7 @@ class AtomBuilderTest extends TestCase
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function tearDown(): void
     {
