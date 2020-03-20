@@ -2,3 +2,6 @@
 /vendor
 .phpcs-cache
 .phpunit.result.cache
+/.php_cs
+/.php_cs.cache
+/phpunit.xml
