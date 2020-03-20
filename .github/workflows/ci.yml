@@ -17,11 +17,14 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Code sniffer
-        run: vendor/bin/phpcs
+      - name: Psalm Static Analysis
+        run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml --diff --diff-format=udiff --dry-run
+        if: always()
 
       - name: PHPStan
         run: vendor/bin/phpstan analyze -c $GITHUB_WORKSPACE/phpstan.neon
+        if: always()
 
       - name: PHPUnit
         run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --coverage-text
+        if: always()
