@@ -20,10 +20,12 @@ jobs:
       - name: Psalm Static Analysis
         run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml --diff --diff-format=udiff --dry-run
         if: always()
+        continue-on-error: true
 
       - name: PHPStan
         run: vendor/bin/phpstan analyze -c $GITHUB_WORKSPACE/phpstan.neon
         if: always()
+        continue-on-error: true
 
       - name: PHPUnit
         run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --coverage-text
