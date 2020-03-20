@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class AtomTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class AtomTest extends TestCase
 {
@@ -41,13 +40,12 @@ class AtomTest extends TestCase
     {
         return [
             'FeedElement Property not found' => ['feedElement'],
-            'EntryElements Property not found' => ['entryElements']
+            'EntryElements Property not found' => ['entryElements'],
         ];
     }
 
     /**
      * @dataProvider requiredPropertyDataProvider
-     * @param string $propertyName
      */
     public function testAtomHasRequiredProperties(string $propertyName): void
     {

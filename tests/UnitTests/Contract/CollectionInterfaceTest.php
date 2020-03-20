@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@ use Geeshoe\Atom\Contract\CollectionInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class CollectionInterfaceTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class CollectionInterfaceTest extends TestCase
 {
@@ -36,7 +35,7 @@ class CollectionInterfaceTest extends TestCase
         return [
             [\ArrayAccess::class],
             [\Countable::class],
-            [\IteratorAggregate::class]
+            [\IteratorAggregate::class],
         ];
     }
 
@@ -61,6 +60,6 @@ class CollectionInterfaceTest extends TestCase
      */
     public function testHasMethods(string $methodName): void
     {
-        self::assertTrue(method_exists(CollectionInterface::class, $methodName));
+        self::assertTrue(\method_exists(CollectionInterface::class, $methodName));
     }
 }

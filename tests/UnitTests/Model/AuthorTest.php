@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@ use Geeshoe\Atom\Model\Author;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class AuthorTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class AuthorTest extends TestCase
 {
@@ -36,7 +35,7 @@ class AuthorTest extends TestCase
         return [
             ['name'],
             ['uri'],
-            ['email']
+            ['email'],
         ];
     }
 
@@ -55,7 +54,7 @@ class AuthorTest extends TestCase
             ['getUri'],
             ['setUri'],
             ['getEmail'],
-            ['setEmail']
+            ['setEmail'],
         ];
     }
 
@@ -64,7 +63,7 @@ class AuthorTest extends TestCase
      */
     public function testAuthorHasRequiredMethods(string $methodName): void
     {
-        self::assertTrue(method_exists(Author::class, $methodName));
+        self::assertTrue(\method_exists(Author::class, $methodName));
     }
 
     public function testAllPropertiesAreInitializedWithConstructor(): void
@@ -93,11 +92,11 @@ class AuthorTest extends TestCase
     {
         return [
             'Author Uri Setter Test' => [
-                'getUri', 'setUri', 'https://geeshoe.com'
+                'getUri', 'setUri', 'https://geeshoe.com',
             ],
             'Author Email Setter Test' => [
-                'getEmail', 'setEmail', 'jr@rushlow.dev'
-            ]
+                'getEmail', 'setEmail', 'jr@rushlow.dev',
+            ],
         ];
     }
 

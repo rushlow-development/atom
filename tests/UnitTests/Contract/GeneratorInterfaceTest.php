@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@ use Geeshoe\Atom\Contract\GeneratorInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class GeneratorInterfaceTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class GeneratorInterfaceTest extends TestCase
 {
@@ -39,16 +38,15 @@ class GeneratorInterfaceTest extends TestCase
         return [
             ['initialize'],
             ['addEntry'],
-            ['generate']
+            ['generate'],
         ];
     }
 
     /**
      * @dataProvider requiredMethodDataProvider
-     * @param string $methodName
      */
     public function testRequiredMethodsExistInInterface(string $methodName): void
     {
-        self::assertTrue(method_exists(GeneratorInterface::class, $methodName));
+        self::assertTrue(\method_exists(GeneratorInterface::class, $methodName));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,31 +21,22 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Contract;
 
 /**
- * Interface GeneratorInterface
- *
- * @package Geeshoe\Atom\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 interface GeneratorInterface
 {
     /**
-     * Create Atom 1.0 Feed element
-     *
-     * @param FeedInterface $feed
+     * Create Atom 1.0 Feed element.
      */
     public function initialize(FeedInterface $feed): void;
 
     /**
-     * Add Atom 1.0 Entry element to the Feed element
-     *
-     * @param EntryInterface $entry
+     * Add Atom 1.0 Entry element to the Feed element.
      */
     public function addEntry(EntryInterface $entry): void;
 
     /**
-     * Get the Atom 1.0 document
-     *
-     * @return string
+     * Get the Atom 1.0 document.
      */
     public function generate(): string;
 }

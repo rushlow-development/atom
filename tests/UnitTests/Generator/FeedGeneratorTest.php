@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,31 +26,24 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class FeedGeneratorTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Generator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class FeedGeneratorTest extends TestCase
 {
     /** @var \DOMDocument|MockObject */
     public $mockDocument;
 
-    /** @inheritDoc */
+    /** {@inheritdoc} */
     protected function setUp(): void
     {
         $this->mockDocument = $this->createMock(\DOMDocument::class);
     }
 
-    /** @return \DOMElement&MockObject */
-    protected function getMockElement()
-    {
-        return $this->createMock(\DOMElement::class);
-    }
-
     public function usesElementTrait(): void
     {
-        $traits = class_uses(FeedGenerator::class);
+        $traits = \class_uses(FeedGenerator::class);
         self::assertArrayHasKey(ElementTrait::class, $traits);
     }
 
@@ -109,5 +102,11 @@ class FeedGeneratorTest extends TestCase
 
         $generator = new FeedGenerator($this->mockDocument);
         $generator->getFeed($id, $title, $updated);
+    }
+
+    /** @return \DOMElement&MockObject */
+    protected function getMockElement()
+    {
+        return $this->createMock(\DOMElement::class);
     }
 }

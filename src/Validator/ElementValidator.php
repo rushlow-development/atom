@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,18 +25,12 @@ use League\Uri\Contracts\UriException;
 use League\Uri\Uri;
 
 /**
- * Class ElementValidator
- *
- * @package Geeshoe\Atom\Validator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class ElementValidator
 {
     /**
-     * Return true if ID is a valid URI/IRI
-     *
-     * @param string $id
-     * @return bool
+     * Return true if ID is a valid URI/IRI.
      */
     public static function validIdElement(string $id): bool
     {
@@ -46,6 +40,7 @@ class ElementValidator
 
         try {
             Uri::createFromString($id);
+
             return true;
         } catch (UriException $exception) {
             throw new ValidatorException($exception->getMessage(), 0, $exception);

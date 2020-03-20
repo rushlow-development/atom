@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,9 @@ use Geeshoe\Atom\Validator\ElementValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ElementValidatorTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Validator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class ElementValidatorTest extends TestCase
 {

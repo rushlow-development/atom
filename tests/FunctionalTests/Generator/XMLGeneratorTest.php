@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,9 @@ use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class XMLGeneratorTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\FunctionalTests\Generator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class XMLGeneratorTest extends TestCase
 {
@@ -39,7 +38,8 @@ class XMLGeneratorTest extends TestCase
     public ?Feed $feed;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @throws \Exception
      */
     protected function setUp(): void
@@ -49,7 +49,7 @@ class XMLGeneratorTest extends TestCase
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function tearDown(): void
     {
@@ -67,7 +67,7 @@ class XMLGeneratorTest extends TestCase
             <feed xmlns="http://www.w3.org/2005/Atom" id="feed"><id>http://geeshoe.com/</id>
             EOT;
 
-        $notPretty .= '<title>Functional Title</title><updated>2019-12-31T18:30:02+00:00</updated></feed>' . "\n";
+        $notPretty .= '<title>Functional Title</title><updated>2019-12-31T18:30:02+00:00</updated></feed>'."\n";
 
         $pretty = <<<'EOT'
             <?xml version="1.0" encoding="UTF-8"?>
@@ -81,14 +81,12 @@ class XMLGeneratorTest extends TestCase
 
         return [
             'Not pretty XML' => [false, $notPretty],
-            'Pretty XML' => [true, $pretty]
+            'Pretty XML' => [true, $pretty],
         ];
     }
 
     /**
      * @dataProvider xmlResultDataProvider
-     * @param bool   $pretty
-     * @param string $expected
      */
     public function testGetXMLResultReturnsExpectedAtomXMLString(bool $pretty, string $expected): void
     {
@@ -113,15 +111,15 @@ class XMLGeneratorTest extends TestCase
         //@TODO Refactor with a more elegant solution
         $xml = $this->xmlResultDataProvider();
         $entryXML = '<entry><id>https://geeshoe.com</id><title>Entry Title 1</title>'
-            . '<updated>2019-12-31T18:30:02+00:00</updated></entry>';
+            .'<updated>2019-12-31T18:30:02+00:00</updated></entry>';
 
         $haystack = $xml['Not pretty XML'][1];
-        $position = strrpos($haystack, '</feed>');
+        $position = \strrpos($haystack, '</feed>');
 
         self::assertIsInt($position);
-        $entryXML .= substr($haystack, $position);
+        $entryXML .= \substr($haystack, $position);
 
-        $expected = substr_replace(
+        $expected = \substr_replace(
             $haystack,
             $entryXML,
             $position

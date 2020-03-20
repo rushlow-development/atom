@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,7 @@ declare(strict_types=1);
 namespace Geeshoe\Atom\Contract;
 
 /**
- * Interface AtomExceptionInterface
- *
- * @package Geeshoe\Atom\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 interface AtomExceptionInterface extends \Throwable
 {

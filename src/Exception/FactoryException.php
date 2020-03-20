@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,7 @@ namespace Geeshoe\Atom\Exception;
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
 
 /**
- * Class FactoryException
- *
- * @package Geeshoe\Atom\Exception
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class FactoryException extends \RuntimeException implements AtomExceptionInterface
 {
@@ -34,7 +31,6 @@ class FactoryException extends \RuntimeException implements AtomExceptionInterfa
 
     /**
      * @param \Throwable $previous
-     * @return self
      */
     public static function requiredException(\Throwable $previous = null): self
     {

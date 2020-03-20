@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,42 +23,27 @@ namespace Geeshoe\Atom\Contract;
 use Geeshoe\Atom\Model\Atom;
 
 /**
- * Interface BuilderInterface
- *
- * @package Geeshoe\Atom\Contract
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 interface BuilderInterface
 {
     /**
-     * Get representation of all required Atom 1.0 elements
-     *
-     * @return Atom
+     * Get representation of all required Atom 1.0 elements.
      */
     public function getAtom(): Atom;
 
     /**
-     * Create the Feed element required for Atom 1.0
-     *
-     * @param string             $id
-     * @param string             $title
-     * @param \DateTimeInterface $lastUpdated
+     * Create the Feed element required for Atom 1.0.
      */
     public function createFeed(string $id, string $title, \DateTimeInterface $lastUpdated): void;
 
     /**
-     * Add a entry element for a Atom 1.0 feed
-     *
-     * @param string             $id
-     * @param string             $title
-     * @param \DateTimeInterface $lastUpdated
+     * Add a entry element for a Atom 1.0 feed.
      */
     public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void;
 
     /**
-     * Get Atom XML string
-     *
-     * @return string
+     * Get Atom XML string.
      */
     public function publish(): string;
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,18 +23,10 @@ namespace Geeshoe\Atom\Exception;
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
 
 /**
- * Class ModelException
- *
- * @package Geeshoe\Atom\Exception
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class ModelException extends \RuntimeException implements AtomExceptionInterface
 {
-    /**
-     * @param string          $propertySignature
-     * @param \Throwable|null $previous
-     * @return self
-     */
     public static function emptyPropertyException(string $propertySignature, \Throwable $previous = null): self
     {
         return new self("$propertySignature value is empty or uninitialized", 0, $previous);

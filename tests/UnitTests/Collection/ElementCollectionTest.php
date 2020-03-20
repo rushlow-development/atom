@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,16 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ElementCollectionTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Collection
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class ElementCollectionTest extends TestCase
 {
     protected ?MockObject $mockElementInterface;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function setUp(): void
     {
@@ -45,7 +44,7 @@ class ElementCollectionTest extends TestCase
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function tearDown(): void
     {
@@ -77,7 +76,7 @@ class ElementCollectionTest extends TestCase
      */
     public function testElementCollectionImplementsInterfaceMethods(string $methodName): void
     {
-        self::assertTrue(method_exists(ElementCollection::class, $methodName));
+        self::assertTrue(\method_exists(ElementCollection::class, $methodName));
     }
 
     public function testAddMethodAddsElementInterfaceToCollection(): void

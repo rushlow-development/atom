@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,7 @@ use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Contract\GeneratorInterface;
 
 /**
- * Class XMLGenerator
- *
- * @package Geeshoe\Atom\Generator
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class XMLGenerator implements GeneratorInterface
 {
@@ -41,8 +38,7 @@ class XMLGenerator implements GeneratorInterface
     /**
      * XMLGenerator constructor.
      *
-     * @param \DOMDocument|null $document
-     * @param bool              $pretty     Return pretty XML Document
+     * @param bool $pretty Return pretty XML Document
      */
     public function __construct(
         \DOMDocument $document = null,
@@ -50,7 +46,7 @@ class XMLGenerator implements GeneratorInterface
         EntryGenerator $entryGenerator = null,
         bool $pretty = false
     ) {
-        if ($document === null) {
+        if (null === $document) {
             $document = new \DOMDocument('1.0', 'UTF-8');
         }
 
@@ -61,9 +57,7 @@ class XMLGenerator implements GeneratorInterface
     }
 
     /**
-     * Create Atom 1.0 XML Feed Element
-     *
-     * @param FeedInterface $feed
+     * Create Atom 1.0 XML Feed Element.
      */
     public function initialize(FeedInterface $feed): void
     {
@@ -79,9 +73,7 @@ class XMLGenerator implements GeneratorInterface
     }
 
     /**
-     * Add entry element to Atom XML Feed
-     *
-     * @param EntryInterface $entry
+     * Add entry element to Atom XML Feed.
      */
     public function addEntry(EntryInterface $entry): void
     {
@@ -103,9 +95,7 @@ class XMLGenerator implements GeneratorInterface
     }
 
     /**
-     * Get XML Document
-     *
-     * @return string
+     * Get XML Document.
      */
     public function generate(): string
     {

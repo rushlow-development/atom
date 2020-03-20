@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,19 +26,10 @@ use Geeshoe\Atom\Model\Entry;
 use Geeshoe\Atom\Validator\ElementValidator;
 
 /**
- * Class EntryFactory
- *
- * @package Geeshoe\Atom\Factory
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class EntryFactory
 {
-    /**
-     * @param string             $id
-     * @param string             $title
-     * @param \DateTimeInterface $updated
-     * @return Entry
-     */
     public static function createEntry(string $id, string $title, \DateTimeInterface $updated): Entry
     {
         try {

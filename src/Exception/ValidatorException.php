@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,14 @@ namespace Geeshoe\Atom\Exception;
 use Geeshoe\Atom\Contract\AtomExceptionInterface;
 
 /**
- * Class ValidatorException
- *
- * @package Geeshoe\Atom\Exception
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @author Jesse Rushlow <jr@rushlow.dev>
  */
 class ValidatorException extends \InvalidArgumentException implements AtomExceptionInterface
 {
     public const INVALID_TITLE = 'Title represents a atom:title element and therefor must not be empty.';
 
     /**
-     * Exception for invalid atom:title:element representation
-
-     * @param \Throwable|null $previous
-     * @return self
+     * Exception for invalid atom:title:element representation.
      */
     public static function invalidTitle(\Throwable $previous = null): self
     {

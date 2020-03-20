@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development
+ * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,32 +27,20 @@ use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class FeedTest
+ * @author Jesse Rushlow <jr@rushlow.dev>
  *
- * @package Geeshoe\Atom\UnitTests\Model
- * @author  Jesse Rushlow <jr@geeshoe.com>
+ * @internal
  */
 class FeedTest extends TestCase
 {
     public array $expected = [];
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function setUp(): void
     {
         $this->getExpected();
-    }
-
-    protected function getExpected(): void
-    {
-        $time = $this->createMock(\DateTime::class);
-
-        $this->expected = [
-            'id' => 'test_id',
-            'title' => 'test_title',
-            'updated' => $time
-        ];
     }
 
     /**
@@ -65,13 +53,13 @@ class FeedTest extends TestCase
         return [
             ['getId', $this->expected['id']],
             ['getTitle', $this->expected['title']],
-            ['getUpdated', $this->expected['updated']]
+            ['getUpdated', $this->expected['updated']],
         ];
     }
 
     /**
      * @dataProvider getterDateProvider
-     * @param string $name
+     *
      * @param mixed $expected
      */
     public function testGetters(string $name, $expected): void
@@ -81,9 +69,6 @@ class FeedTest extends TestCase
         self::assertEquals($expected, $feed->$name());
     }
 
-    /**
-     * @return array
-     */
     public function exceptionDataProvider(): array
     {
         $this->getExpected();
@@ -96,9 +81,6 @@ class FeedTest extends TestCase
 
     /**
      * @dataProvider exceptionDataProvider
-     * @param string $methodName
-     * @param string $expectedMsg
-     * @param array  $constructorParams
      */
     public function testGetIdThrowsExceptionWithEmptyValue(
         string $methodName,
@@ -116,12 +98,13 @@ class FeedTest extends TestCase
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)]
+            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)],
         ];
     }
 
     /**
      * @dataProvider optionalElementGetterSetters
+     *
      * @param mixed $expected
      */
     public function testOptionalFeedGetterSetters(string $getter, string $setter, $expected): void
@@ -143,5 +126,16 @@ class FeedTest extends TestCase
     {
         $feed = new Feed('', '', $this->expected['updated']);
         self::assertInstanceOf(ElementCollection::class, $feed->getAuthor());
+    }
+
+    protected function getExpected(): void
+    {
+        $time = $this->createMock(\DateTime::class);
+
+        $this->expected = [
+            'id' => 'test_id',
+            'title' => 'test_title',
+            'updated' => $time,
+        ];
     }
 }
