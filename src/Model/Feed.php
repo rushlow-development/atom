@@ -31,12 +31,17 @@ use Geeshoe\Atom\Exception\ModelException;
 class Feed implements FeedInterface
 {
     private string $id;
-
     private string $title;
-
     private \DateTimeInterface $updated;
-
     private CollectionInterface $author;
+    private ?CollectionInterface $category;
+    private ?CollectionInterface $contributor;
+    private ?string $generator;
+    private ?string $icon;
+    private ?string $logo;
+    private ?CollectionInterface $link;
+    private ?string $rights;
+    private ?string $subtitle;
 
     /**
      * Feed constructor.
