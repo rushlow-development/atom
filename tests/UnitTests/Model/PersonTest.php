@@ -16,35 +16,32 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Model\Author;
-use PHPUnit\Framework\TestCase;
+use Geeshoe\Atom\Model\Person;
+use Geeshoe\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  *
  * @internal
  */
-class AuthorTest extends TestCase
+final class PersonTest extends AbstractModelTest
 {
-    public function requiredPropertyDataProvider(): array
+    protected function setUp(): void
     {
-        return [
-            ['name'],
-            ['uri'],
-            ['email'],
-        ];
+        $this->classUnderTest = Person::class;
     }
 
-    /**
-     * @dataProvider requiredPropertyDataProvider
-     */
-    public function testAuthorHasRequiredProperties(string $property): void
+    public function requiredPropertyPerRFCDataProvider(): \Generator
     {
-        self::assertClassHasAttribute($property, Author::class);
+        yield 'Name property' => ['name'];
+    }
+
+    public function optionalPropertyPerRFCDataProvider(): \Generator
+    {
+        yield 'Email property' => ['email'];
+        yield 'Uri property' => ['uri'];
     }
 
     public function requiredMethodDataProvider(): array
@@ -63,12 +60,12 @@ class AuthorTest extends TestCase
      */
     public function testAuthorHasRequiredMethods(string $methodName): void
     {
-        self::assertTrue(\method_exists(Author::class, $methodName));
+        self::assertTrue(\method_exists(Person::class, $methodName));
     }
 
     public function testAllPropertiesAreInitializedWithConstructor(): void
     {
-        $author = new Author('');
+        $author = new Person('');
 
         self::assertSame('', $author->getName());
         self::assertNull($author->getUri());
@@ -81,7 +78,7 @@ class AuthorTest extends TestCase
         $uri = 'https://geeshoe.com/';
         $email = 'jr@rushlow.dev';
 
-        $author = new Author($name, $uri, $email);
+        $author = new Person($name, $uri, $email);
 
         self::assertSame($name, $author->getName());
         self::assertSame($uri, $author->getUri());
@@ -91,10 +88,10 @@ class AuthorTest extends TestCase
     public function setterDataProvider(): array
     {
         return [
-            'Author Uri Setter Test' => [
+            'Person Uri Setter Test' => [
                 'getUri', 'setUri', 'https://geeshoe.com',
             ],
-            'Author Email Setter Test' => [
+            'Person Email Setter Test' => [
                 'getEmail', 'setEmail', 'jr@rushlow.dev',
             ],
         ];
@@ -105,7 +102,7 @@ class AuthorTest extends TestCase
      */
     public function testAuthorSettersSetGivenParamToProperty(string $getter, string $setter, string $expected): void
     {
-        $author = new Author('');
+        $author = new Person('');
 
         $author->$setter($expected);
         self::assertSame($expected, $author->$getter());

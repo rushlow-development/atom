@@ -16,22 +16,20 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\UnitTests\Model;
 
 use Geeshoe\Atom\Collection\ElementCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Entry;
-use PHPUnit\Framework\TestCase;
+use Geeshoe\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  *
  * @internal
  */
-class EntryTest extends TestCase
+final class EntryTest extends AbstractModelTest
 {
     public array $expected = [];
 
@@ -40,7 +38,28 @@ class EntryTest extends TestCase
      */
     protected function setUp(): void
     {
+        $this->classUnderTest = Entry::class;
         $this->getExpected();
+    }
+
+    public function requiredPropertyPerRFCDataProvider(): \Generator
+    {
+        yield 'Author' => ['author'];
+        yield 'Id' => ['id'];
+        yield 'Title' => ['title'];
+        yield 'Updated' => ['updated'];
+    }
+
+    public function optionalPropertyPerRFCDataProvider(): \Generator
+    {
+        yield 'Category' => ['category'];
+        yield 'Content' => ['content'];
+        yield 'Contributor' => ['contributor'];
+        yield 'Link' => ['link'];
+        yield 'Published' => ['published'];
+        yield 'Rights' => ['rights'];
+        yield 'Source' => ['source'];
+        yield 'Summary' => ['summary'];
     }
 
     /**

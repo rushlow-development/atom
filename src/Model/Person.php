@@ -16,14 +16,12 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\Model;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Author
+class Person
 {
     private string $name;
     private ?string $uri;

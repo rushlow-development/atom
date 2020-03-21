@@ -31,11 +31,17 @@ use Geeshoe\Atom\Exception\ModelException;
 class Entry implements EntryInterface
 {
     private string $id;
-
     private string $title;
-
     private \DateTimeInterface $updated;
     private CollectionInterface $author;
+    private ?CollectionInterface $category;
+    private $content;
+    private ?CollectionInterface $contributor;
+    private ?string $link;
+    private ?\DateTimeInterface $published;
+    private ?string $rights;
+    private ?string $source;
+    private ?string $summary;
 
     /**
      * Entry constructor.
