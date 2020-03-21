@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
@@ -20,15 +19,22 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Collection;
 
-use Geeshoe\Atom\Contract\ElementInterface;
+use Geeshoe\Atom\Model\Person;
 
-/**
- * @author Jesse Rushlow <jr@rushlow.dev>
- */
-final class ElementCollection extends AbstractCollection
+class PersonCollection extends AbstractCollection
 {
-    public function add(ElementInterface $element): void
+    public function addPerson(Person $person): void
     {
-        $this->elements[] = $element;
+        $this->offsetSet($person->getName(), $person);
+    }
+
+    public function removePerson(Person $person): void
+    {
+        $this->offsetUnset($person->getName());
+    }
+
+    public function getPerson(string $name): Person
+    {
+        return $this->offsetGet($name);
     }
 }

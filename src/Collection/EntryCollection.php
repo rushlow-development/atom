@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2020 Jesse Rushlow - Geeshoe Development.
  *
@@ -16,19 +15,24 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\Collection;
 
-use Geeshoe\Atom\Contract\ElementInterface;
+use Geeshoe\Atom\Model\Entry;
 
-/**
- * @author Jesse Rushlow <jr@rushlow.dev>
- */
-final class ElementCollection extends AbstractCollection
+class EntryCollection extends AbstractCollection
 {
-    public function add(ElementInterface $element): void
+    public function addEntry(Entry $entry): void
     {
-        $this->elements[] = $element;
+        $this->offsetSet($entry->getId(), $entry);
+    }
+
+    public function removeEntry(Entry $entry): void
+    {
+        $this->offsetUnset($entry->getId());
+    }
+
+    public function getEntry(string $id): Entry
+    {
+        return $this->offsetGet($id);
     }
 }
