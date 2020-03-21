@@ -20,80 +20,15 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Collection;
 
-use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\ElementInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
- *
- * @template-implements CollectionInterface<int|null, ElementInterface>
  */
-class ElementCollection implements CollectionInterface
+final class ElementCollection extends AbstractCollection
 {
-    /** @var array<ElementInterface> */
-    private array $elements = [];
-
     public function add(ElementInterface $element): void
     {
         $this->elements[] = $element;
-    }
-
-    public function isEmpty(): bool
-    {
-        return empty($this->elements);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetExists($offset): bool
-    {
-        return isset($this->elements[$offset]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetGet($offset)
-    {
-        return $this->elements[$offset];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetSet($offset, $value): void
-    {
-        if (null === $offset) {
-            $this->elements[] = $value;
-
-            return;
-        }
-
-        $this->elements[$offset] = $value;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->elements[$offset]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIterator(): \Traversable
-    {
-        return new \ArrayIterator($this->elements);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function count(): int
-    {
-        return \count($this->elements);
     }
 }

@@ -29,5 +29,8 @@ namespace Geeshoe\Atom\Contract;
  */
 interface CollectionInterface extends \ArrayAccess, \Countable, \IteratorAggregate
 {
+    /**
+     * Returns true if collection contains no members.
+     */
     public function isEmpty(): bool;
 }
