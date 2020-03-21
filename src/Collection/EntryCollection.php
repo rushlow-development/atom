@@ -19,7 +19,7 @@ namespace Geeshoe\Atom\Collection;
 
 use Geeshoe\Atom\Model\Entry;
 
-class EntryCollection extends AbstractCollection
+final class EntryCollection extends AbstractCollection
 {
     public function addEntry(Entry $entry): void
     {

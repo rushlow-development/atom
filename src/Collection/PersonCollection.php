@@ -21,7 +21,7 @@ namespace Geeshoe\Atom\Collection;
 
 use Geeshoe\Atom\Model\Person;
 
-class PersonCollection extends AbstractCollection
+final class PersonCollection extends AbstractCollection
 {
     public function addPerson(Person $person): void
     {
