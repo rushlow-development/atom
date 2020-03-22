@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
+use Geeshoe\Atom\Collection\CategoryCollection;
+use Geeshoe\Atom\Collection\LinkCollection;
 use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
@@ -34,12 +36,12 @@ class Feed implements FeedInterface
     private string $title;
     private \DateTimeInterface $updated;
     private PersonCollection $author;
-    private ?CollectionInterface $category;
+    private ?CategoryCollection $category;
     private ?CollectionInterface $contributor;
     private ?string $generator;
     private ?string $icon;
     private ?string $logo;
-    private ?CollectionInterface $link;
+    private ?LinkCollection $link;
     private ?string $rights;
     private ?string $subtitle;
 
