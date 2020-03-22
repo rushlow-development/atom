@@ -16,12 +16,11 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
+use Geeshoe\Atom\Collection\CategoryCollection;
+use Geeshoe\Atom\Collection\LinkCollection;
+use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
@@ -33,19 +32,17 @@ class Feed implements FeedInterface
     private string $id;
     private string $title;
     private \DateTimeInterface $updated;
-    private CollectionInterface $author;
-    private ?CollectionInterface $category;
-    private ?CollectionInterface $contributor;
-    private ?string $generator;
-    private ?string $icon;
-    private ?string $logo;
-    private ?CollectionInterface $link;
-    private ?string $rights;
-    private ?string $subtitle;
+    private ?PersonCollection $author = null;
+    private ?CategoryCollection $category = null;
+    private ?PersonCollection $contributor = null;
+    private ?string $generator = null;
+    private ?string $icon = null;
+    private ?string $logo = null;
+    private ?LinkCollection $link = null;
+    private ?string $rights = null;
+    private ?string $subtitle = null;
 
     /**
-     * Feed constructor.
-     *
      * @param string             $id      unique permanent feed URI
      * @param string             $title   human readable title of the feed
      * @param \DateTimeInterface $updated time of last significant feed modification
@@ -53,17 +50,14 @@ class Feed implements FeedInterface
     public function __construct(string $id, string $title, \DateTimeInterface $updated)
     {
         $this->id = $id;
-
         $this->title = $title;
-
         $this->updated = $updated;
-        $this->author = new ElementCollection();
     }
 
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws ModelException
      */
     public function getId(): string
     {
@@ -77,7 +71,7 @@ class Feed implements FeedInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws ModelException
      */
     public function getTitle(): string
     {
@@ -96,13 +90,93 @@ class Feed implements FeedInterface
         return $this->updated;
     }
 
-    public function getAuthor(): CollectionInterface
+    public function getAuthor(): ?PersonCollection
     {
         return $this->author;
     }
 
-    public function setAuthor(CollectionInterface $author): void
+    public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
+    }
+
+    public function getCategory(): ?CategoryCollection
+    {
+        return $this->category;
+    }
+
+    public function setCategory(CategoryCollection $categoryCollection): void
+    {
+        $this->category = $categoryCollection;
+    }
+
+    public function getContributor(): ?PersonCollection
+    {
+        return $this->contributor;
+    }
+
+    public function setContributor(PersonCollection $personCollection): void
+    {
+        $this->contributor = $personCollection;
+    }
+
+    public function getLink(): ?LinkCollection
+    {
+        return $this->link;
+    }
+
+    public function setLink(LinkCollection $linkCollection): void
+    {
+        $this->link = $linkCollection;
+    }
+
+    public function getGenerator(): ?string
+    {
+        return $this->generator;
+    }
+
+    public function setGenerator(string $generator): void
+    {
+        $this->generator = $generator;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): void
+    {
+        $this->logo = $logo;
+    }
+
+    public function getRights(): ?string
+    {
+        return $this->rights;
+    }
+
+    public function setRights(string $rights): void
+    {
+        $this->rights = $rights;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): void
+    {
+        $this->subtitle = $subtitle;
     }
 }

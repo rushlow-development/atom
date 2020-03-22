@@ -18,8 +18,9 @@
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
+use Geeshoe\Atom\Collection\CategoryCollection;
+use Geeshoe\Atom\Collection\LinkCollection;
+use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Feed;
 use Geeshoe\Atom\UnitTests\AbstractModelTest;
@@ -31,7 +32,7 @@ use Geeshoe\Atom\UnitTests\AbstractModelTest;
  */
 class FeedTest extends AbstractModelTest
 {
-    public array $expected = [];
+    private array $expected = [];
 
     /**
      * {@inheritdoc}
@@ -44,48 +45,59 @@ class FeedTest extends AbstractModelTest
 
     public function requiredPropertyPerRFCDataProvider(): \Generator
     {
-        yield 'Author' => ['author'];
-        yield 'Id' => ['id'];
-        yield 'Title' => ['title'];
-        yield 'Updated' => ['updated'];
+        $this->getExpected();
+
+        yield 'Id' => ['id', $this->expected['id']];
+        yield 'Title' => ['title', $this->expected['title']];
+        yield 'Updated' => ['updated', $this->expected['updated']];
     }
 
     public function optionalPropertyPerRFCDataProvider(): \Generator
     {
-        yield 'Category' => ['category'];
-        yield 'Contributor' => ['contributor'];
-        yield 'Generator' => ['generator'];
-        yield 'Icon' => ['icon'];
-        yield 'Logo' => ['logo'];
-        yield 'Link' => ['link'];
-        yield 'Rights' => ['rights'];
-        yield 'Subtitle' => ['subtitle'];
+        yield 'Author' => ['author', new PersonCollection()];
+        yield 'Category' => ['category', new CategoryCollection()];
+        yield 'Contributor' => ['contributor', new PersonCollection()];
+        yield 'Generator' => ['generator', 'generated'];
+        yield 'Icon' => ['icon', 'link-to-icon'];
+        yield 'Logo' => ['logo', 'link-to-logo'];
+        yield 'Link' => ['link', new LinkCollection()];
+        yield 'Rights' => ['rights', 'rights'];
+        yield 'Subtitle' => ['subtitle', 'this is the subtitle'];
     }
 
     /**
-     * @return array<array>
-     */
-    public function getterDateProvider(): array
-    {
-        $this->getExpected();
-
-        return [
-            ['getId', $this->expected['id']],
-            ['getTitle', $this->expected['title']],
-            ['getUpdated', $this->expected['updated']],
-        ];
-    }
-
-    /**
-     * @dataProvider getterDateProvider
+     * @dataProvider requiredPropertyPerRFCDataProvider
      *
      * @param mixed $expected
      */
-    public function testGetters(string $name, $expected): void
+    public function testRequiredGetters(string $name, $expected): void
     {
         $feed = new Feed($this->expected['id'], $this->expected['title'], $this->expected['updated']);
 
-        self::assertEquals($expected, $feed->$name());
+        $getter = 'get'.\ucfirst($name);
+        self::assertEquals($expected, $feed->$getter());
+    }
+
+    /**
+     * @dataProvider optionalPropertyPerRFCDataProvider
+     *
+     * @param mixed $expected
+     */
+    public function testOptionalGetterSetters(string $property, $expected): void
+    {
+        $params = [];
+        foreach ($this->expected as $value) {
+            $params[] = $value;
+        }
+
+        $feed = new Feed(...$params);
+
+        $setter = 'set'.\ucfirst($property);
+        $getter = 'get'.\ucfirst($property);
+
+        $feed->$setter($expected);
+
+        self::assertSame($expected, $feed->$getter());
     }
 
     public function exceptionDataProvider(): array
@@ -112,39 +124,6 @@ class FeedTest extends AbstractModelTest
         $this->expectExceptionMessage("$expectedMsg value is empty or uninitialized");
 
         $feed->$methodName();
-    }
-
-    public function optionalElementGetterSetters(): array
-    {
-        return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)],
-        ];
-    }
-
-    /**
-     * @dataProvider optionalElementGetterSetters
-     *
-     * @param mixed $expected
-     */
-    public function testOptionalFeedGetterSetters(string $getter, string $setter, $expected): void
-    {
-        $params = [];
-        foreach ($this->expected as $value) {
-            $params[] = $value;
-        }
-
-        $feed = new Feed(...$params);
-
-        $feed->$setter($expected);
-
-        self::assertSame($expected, $feed->$getter());
-    }
-
-    /** @test */
-    public function constructCreatesAuthorElementCollection(): void
-    {
-        $feed = new Feed('', '', $this->expected['updated']);
-        self::assertInstanceOf(ElementCollection::class, $feed->getAuthor());
     }
 
     protected function getExpected(): void
