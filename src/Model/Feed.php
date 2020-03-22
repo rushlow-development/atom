@@ -16,8 +16,6 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
-
 namespace Geeshoe\Atom\Model;
 
 use Geeshoe\Atom\Collection\CategoryCollection;
@@ -34,19 +32,17 @@ class Feed implements FeedInterface
     private string $id;
     private string $title;
     private \DateTimeInterface $updated;
-    private PersonCollection $author;
-    private ?CategoryCollection $category;
-    private ?PersonCollection $contributor;
-    private ?string $generator;
-    private ?string $icon;
-    private ?string $logo;
-    private ?LinkCollection $link;
-    private ?string $rights;
-    private ?string $subtitle;
+    private ?PersonCollection $author = null;
+    private ?CategoryCollection $category = null;
+    private ?PersonCollection $contributor = null;
+    private ?string $generator = null;
+    private ?string $icon = null;
+    private ?string $logo = null;
+    private ?LinkCollection $link = null;
+    private ?string $rights = null;
+    private ?string $subtitle = null;
 
     /**
-     * Feed constructor.
-     *
      * @param string             $id      unique permanent feed URI
      * @param string             $title   human readable title of the feed
      * @param \DateTimeInterface $updated time of last significant feed modification
@@ -54,17 +50,14 @@ class Feed implements FeedInterface
     public function __construct(string $id, string $title, \DateTimeInterface $updated)
     {
         $this->id = $id;
-
         $this->title = $title;
-
         $this->updated = $updated;
-        $this->author = new PersonCollection();
     }
 
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws ModelException
      */
     public function getId(): string
     {
@@ -78,7 +71,7 @@ class Feed implements FeedInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws ModelException
      */
     public function getTitle(): string
     {
@@ -97,7 +90,7 @@ class Feed implements FeedInterface
         return $this->updated;
     }
 
-    public function getAuthor(): PersonCollection
+    public function getAuthor(): ?PersonCollection
     {
         return $this->author;
     }
@@ -135,5 +128,55 @@ class Feed implements FeedInterface
     public function setLink(LinkCollection $linkCollection): void
     {
         $this->link = $linkCollection;
+    }
+
+    public function getGenerator(): ?string
+    {
+        return $this->generator;
+    }
+
+    public function setGenerator(string $generator): void
+    {
+        $this->generator = $generator;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): void
+    {
+        $this->logo = $logo;
+    }
+
+    public function getRights(): ?string
+    {
+        return $this->rights;
+    }
+
+    public function setRights(string $rights): void
+    {
+        $this->rights = $rights;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): void
+    {
+        $this->subtitle = $subtitle;
     }
 }
