@@ -18,6 +18,8 @@
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
+use Geeshoe\Atom\Collection\CategoryCollection;
+use Geeshoe\Atom\Collection\LinkCollection;
 use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Feed;
@@ -116,7 +118,10 @@ class FeedTest extends AbstractModelTest
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', new PersonCollection()],
+            ['Author', new PersonCollection()],
+            ['Category', new CategoryCollection()],
+            ['Contributor', new PersonCollection()],
+            ['Link', new LinkCollection()],
         ];
     }
 
@@ -125,7 +130,7 @@ class FeedTest extends AbstractModelTest
      *
      * @param mixed $expected
      */
-    public function testOptionalFeedGetterSetters(string $getter, string $setter, $expected): void
+    public function testOptionalFeedGetterSetters(string $property, $expected): void
     {
         $params = [];
         foreach ($this->expected as $value) {
@@ -133,6 +138,9 @@ class FeedTest extends AbstractModelTest
         }
 
         $feed = new Feed(...$params);
+
+        $setter = 'set'.$property;
+        $getter = 'get'.$property;
 
         $feed->$setter($expected);
 

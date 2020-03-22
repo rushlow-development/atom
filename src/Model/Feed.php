@@ -23,7 +23,6 @@ namespace Geeshoe\Atom\Model;
 use Geeshoe\Atom\Collection\CategoryCollection;
 use Geeshoe\Atom\Collection\LinkCollection;
 use Geeshoe\Atom\Collection\PersonCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
 
@@ -37,7 +36,7 @@ class Feed implements FeedInterface
     private \DateTimeInterface $updated;
     private PersonCollection $author;
     private ?CategoryCollection $category;
-    private ?CollectionInterface $contributor;
+    private ?PersonCollection $contributor;
     private ?string $generator;
     private ?string $icon;
     private ?string $logo;
@@ -106,5 +105,35 @@ class Feed implements FeedInterface
     public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
+    }
+
+    public function getCategory(): ?CategoryCollection
+    {
+        return $this->category;
+    }
+
+    public function setCategory(CategoryCollection $categoryCollection): void
+    {
+        $this->category = $categoryCollection;
+    }
+
+    public function getContributor(): ?PersonCollection
+    {
+        return $this->contributor;
+    }
+
+    public function setContributor(PersonCollection $personCollection): void
+    {
+        $this->contributor = $personCollection;
+    }
+
+    public function getLink(): ?LinkCollection
+    {
+        return $this->link;
+    }
+
+    public function setLink(LinkCollection $linkCollection): void
+    {
+        $this->link = $linkCollection;
     }
 }
