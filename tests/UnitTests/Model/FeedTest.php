@@ -18,8 +18,7 @@
 
 namespace Geeshoe\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
+use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Exception\ModelException;
 use Geeshoe\Atom\Model\Feed;
 use Geeshoe\Atom\UnitTests\AbstractModelTest;
@@ -117,7 +116,7 @@ class FeedTest extends AbstractModelTest
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)],
+            ['getAuthor', 'setAuthor', new PersonCollection()],
         ];
     }
 
@@ -144,7 +143,7 @@ class FeedTest extends AbstractModelTest
     public function constructCreatesAuthorElementCollection(): void
     {
         $feed = new Feed('', '', $this->expected['updated']);
-        self::assertInstanceOf(ElementCollection::class, $feed->getAuthor());
+        self::assertInstanceOf(PersonCollection::class, $feed->getAuthor());
     }
 
     protected function getExpected(): void

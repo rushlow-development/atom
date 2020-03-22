@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace Geeshoe\Atom\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
+use Geeshoe\Atom\Collection\PersonCollection;
 use Geeshoe\Atom\Contract\CollectionInterface;
 use Geeshoe\Atom\Contract\FeedInterface;
 use Geeshoe\Atom\Exception\ModelException;
@@ -33,7 +33,7 @@ class Feed implements FeedInterface
     private string $id;
     private string $title;
     private \DateTimeInterface $updated;
-    private CollectionInterface $author;
+    private PersonCollection $author;
     private ?CollectionInterface $category;
     private ?CollectionInterface $contributor;
     private ?string $generator;
@@ -57,7 +57,7 @@ class Feed implements FeedInterface
         $this->title = $title;
 
         $this->updated = $updated;
-        $this->author = new ElementCollection();
+        $this->author = new PersonCollection();
     }
 
     /**
@@ -96,12 +96,12 @@ class Feed implements FeedInterface
         return $this->updated;
     }
 
-    public function getAuthor(): CollectionInterface
+    public function getAuthor(): PersonCollection
     {
         return $this->author;
     }
 
-    public function setAuthor(CollectionInterface $author): void
+    public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
     }
