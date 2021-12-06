@@ -1,0 +1,74 @@
+name: Static Tests
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+    release:
+
+jobs:
+    composer-validate:
+        name: Validate composer.json
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Set PHP Version
+                run: sudo update-alternatives --set php /usr/bin/php8.0
+
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Validate
+                run: composer validate --strict
+
+    php-cs-fixer:
+        name: Lint PHP Source
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Set PHP Version
+                run: sudo update-alternatives --set php /usr/bin/php8.0
+
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Install PHP-CS-Fixer
+                run: composer install -d $GITHUB_WORKSPACE/tools/php-cs-fixer --prefer-dist --no-progress
+
+            -   name: Enforce coding standards
+                run: $GITHUB_WORKSPACE/tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config $GITHUB_WORKSPACE/tools/php-cs-fixer/.php-cs-fixer.dist.php --dry-run --allow-risky=yes
+
+#    psalm:
+#        name: Psalm Static Analysis
+#        runs-on: ubuntu-latest
+#
+#        steps:
+#            -   name: Set PHP Version
+#                run: sudo update-alternatives --set php /usr/bin/php8.0
+#
+#            -   name: Checkout
+#                uses: actions/checkout@v2
+#
+#            -   name: Install Dependencies
+#                run: composer install --prefer-dist --no-progress
+#
+#            -   name: Analyze Source
+#                run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml
+#
+    rector:
+        name: Rector PHP Source
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Set PHP Version
+                run: sudo update-alternatives --set php /usr/bin/php8.0
+
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Install Dependencies
+                run: composer install -d $GITHUB_WORKSPACE/tools/rector --prefer-dist --no-progress
+
+            -   name: Analyse With Rector
+                run: $GITHUB_WORKSPACE/tools/rector/vendor/bin/rector process --dry-run -vvv
