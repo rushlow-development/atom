@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +18,11 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Contract;
 
-namespace Geeshoe\Atom\UnitTests\Contract;
-
-use Geeshoe\Atom\Contract\ContainerElementInterface;
-use Geeshoe\Atom\Contract\EntryInterface;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Contract\ContainerElementInterface;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

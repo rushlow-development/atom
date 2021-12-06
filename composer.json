@@ -1,13 +1,13 @@
 {
-  "name": "geeshoe/atom",
+  "name": "rushlow-development/atom",
   "description": "Create RSS/ATOM feeds using PHP.",
   "type": "library",
   "license": "Apache-2.0",
-  "homepage": "http://www.geeshoe.com",
+  "homepage": "https://www.rushlow.dev",
   "authors": [
     {
       "name": "Jesse Rushlow",
-      "email": "jr@geeshoe.com"
+      "email": "jr@rushlow.dev"
     }
   ],
   "require": {
@@ -25,12 +25,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Geeshoe\\Atom\\": "src/"
+      "RushlowDevelopment\\Atom\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Geeshoe\\Atom\\": "tests"
+      "RushlowDevelopment\\Atom\\": "tests"
     }
   }
 }

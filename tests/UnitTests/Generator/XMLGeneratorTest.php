@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +18,15 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-namespace Geeshoe\Atom\UnitTests\Generator;
-
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedInterface;
-use Geeshoe\Atom\Contract\GeneratorInterface;
-use Geeshoe\Atom\Generator\FeedGenerator;
-use Geeshoe\Atom\Generator\XMLGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Contract\FeedInterface;
+use RushlowDevelopment\Atom\Contract\GeneratorInterface;
+use RushlowDevelopment\Atom\Generator\FeedGenerator;
+use RushlowDevelopment\Atom\Generator\XMLGenerator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

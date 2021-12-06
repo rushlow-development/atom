@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +18,13 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Collection;
 
-namespace Geeshoe\Atom\UnitTests\Collection;
-
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\ElementInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Contract\ElementInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

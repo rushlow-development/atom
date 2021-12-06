@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +18,12 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\Model;
 
-namespace Geeshoe\Atom\Model;
-
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Exception\ModelException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -63,7 +63,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws \RushlowDevelopment\Atom\Exception\ModelException;
      */
     public function getId(): string
     {
@@ -77,7 +77,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws \RushlowDevelopment\Atom\Exception\ModelException;
      */
     public function getTitle(): string
     {

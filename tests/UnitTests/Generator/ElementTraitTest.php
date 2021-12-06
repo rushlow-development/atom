@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +18,11 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-namespace Geeshoe\Atom\UnitTests\Generator;
-
-use Geeshoe\Atom\Fixtures\ElementTraitFixture;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Fixtures\ElementTraitFixture;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

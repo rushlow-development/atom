@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +18,11 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Exception;
 
-namespace Geeshoe\Atom\UnitTests\Exception;
-
-use Geeshoe\Atom\Contract\AtomExceptionInterface;
-use Geeshoe\Atom\Exception\FactoryException;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
+use RushlowDevelopment\Atom\Exception\FactoryException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -53,7 +53,7 @@ class FactoryExceptionTest extends TestCase
      */
     public function testStaticExceptionMessagesAreDefined(string $signature, string $message): void
     {
-        $class = '\Geeshoe\Atom\Exception\FactoryException::';
+        $class = '\RushlowDevelopment\Atom\Exception\FactoryException::';
         self::assertSame(\constant($class.$signature), $message);
     }
 

@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +18,12 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\Factory;
 
-namespace Geeshoe\Atom\Factory;
-
-use Geeshoe\Atom\Exception\FactoryException;
-use Geeshoe\Atom\Exception\ValidatorException;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Validator\ElementValidator;
+use RushlowDevelopment\Atom\Exception\FactoryException;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Validator\ElementValidator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

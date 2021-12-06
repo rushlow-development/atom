@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +18,14 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom;
 
-namespace Geeshoe\Atom;
-
-use Geeshoe\Atom\Contract\BuilderInterface;
-use Geeshoe\Atom\Contract\GeneratorInterface;
-use Geeshoe\Atom\Factory\EntryFactory;
-use Geeshoe\Atom\Factory\FeedFactory;
-use Geeshoe\Atom\Generator\XMLGenerator;
-use Geeshoe\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Contract\BuilderInterface;
+use RushlowDevelopment\Atom\Contract\GeneratorInterface;
+use RushlowDevelopment\Atom\Factory\EntryFactory;
+use RushlowDevelopment\Atom\Factory\FeedFactory;
+use RushlowDevelopment\Atom\Generator\XMLGenerator;
+use RushlowDevelopment\Atom\Model\Atom;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +18,13 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-namespace Geeshoe\Atom\UnitTests\Model;
-
-use Geeshoe\Atom\Exception\ModelException;
-use Geeshoe\Atom\Model\Atom;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Feed;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

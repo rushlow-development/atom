@@ -1,7 +1,9 @@
 <?php
 
-/**
- * Copyright 2020 Jesse Rushlow - Geeshoe Development.
+declare(strict_types=1);
+
+/*
+ * Copyright 2020 Jesse Rushlow - Rushlow Development.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +18,11 @@
  * limitations under the License.
  */
 
-declare(strict_types=1);
+namespace RushlowDevelopment\Atom\UnitTests\Validator;
 
-namespace Geeshoe\Atom\UnitTests\Validator;
-
-use Geeshoe\Atom\Exception\ValidatorException;
-use Geeshoe\Atom\Validator\ElementValidator;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Validator\ElementValidator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
