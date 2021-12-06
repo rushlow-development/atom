@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-use RushlowDevelopment\Atom\Generator\ElementTrait;
-use RushlowDevelopment\Atom\Generator\EntryGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Generator\ElementTrait;
+use RushlowDevelopment\Atom\Generator\EntryGenerator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Contract;
 
-use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

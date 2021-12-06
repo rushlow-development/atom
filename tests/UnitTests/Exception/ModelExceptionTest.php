@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Exception;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

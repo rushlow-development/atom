@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Factory;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Contract\EntryInterface;
 use RushlowDevelopment\Atom\Exception\FactoryException;
 use RushlowDevelopment\Atom\Factory\EntryFactory;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Contract;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Contract\ContainerElementInterface;
 use RushlowDevelopment\Atom\Contract\FeedInterface;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

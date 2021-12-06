@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Validator;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Exception\ValidatorException;
 use RushlowDevelopment\Atom\Validator\ElementValidator;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

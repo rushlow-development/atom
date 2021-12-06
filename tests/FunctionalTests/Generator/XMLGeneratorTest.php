@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\FunctionalTests\Generator;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Generator\XMLGenerator;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

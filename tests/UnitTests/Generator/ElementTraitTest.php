@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-use RushlowDevelopment\Atom\Fixtures\ElementTraitFixture;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Fixtures\ElementTraitFixture;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

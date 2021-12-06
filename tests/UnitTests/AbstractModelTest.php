@@ -2,8 +2,8 @@
 
 namespace RushlowDevelopment\Atom\UnitTests;
 
-use RushlowDevelopment\Atom\Contract\ModelUnitTestInterface;
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Contract\ModelUnitTestInterface;
 
 abstract class AbstractModelTest extends TestCase implements ModelUnitTestInterface
 {

@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Model;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Exception\ModelException;
 use RushlowDevelopment\Atom\Model\Atom;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

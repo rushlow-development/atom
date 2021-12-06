@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Collection;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Collection\ElementCollection;
 use RushlowDevelopment\Atom\Contract\CollectionInterface;
 use RushlowDevelopment\Atom\Contract\ElementInterface;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

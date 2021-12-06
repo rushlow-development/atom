@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\Validator;
 
-use RushlowDevelopment\Atom\Exception\ValidatorException;
 use League\Uri\Contracts\UriException;
 use League\Uri\Uri;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

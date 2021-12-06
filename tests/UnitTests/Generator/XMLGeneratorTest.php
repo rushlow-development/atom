@@ -20,13 +20,13 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Contract\EntryInterface;
 use RushlowDevelopment\Atom\Contract\FeedInterface;
 use RushlowDevelopment\Atom\Contract\GeneratorInterface;
 use RushlowDevelopment\Atom\Generator\FeedGenerator;
 use RushlowDevelopment\Atom\Generator\XMLGenerator;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
