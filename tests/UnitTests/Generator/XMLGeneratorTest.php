@@ -70,7 +70,7 @@ class XMLGeneratorTest extends TestCase
 
     public function testXMLGeneratorImplementsGeneratorInterface(): void
     {
-        $interfaces = \class_implements(XMLGenerator::class);
+        $interfaces = class_implements(XMLGenerator::class);
 
         self::assertArrayHasKey(GeneratorInterface::class, $interfaces);
     }

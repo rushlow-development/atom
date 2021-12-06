@@ -31,8 +31,7 @@ use PHPUnit\Framework\TestCase;
  */
 class EntryInterfaceTest extends TestCase
 {
-    /** @test */
-    public function interfaceExtends(): void
+    public function testInterfaceExtends(): void
     {
         $entry = $this->createMock(EntryInterface::class);
         self::assertInstanceOf(ContainerElementInterface::class, $entry);

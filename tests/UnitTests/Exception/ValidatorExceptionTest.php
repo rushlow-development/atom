@@ -38,7 +38,7 @@ class ValidatorExceptionTest extends TestCase
 
     public function testValidatorExceptionImplementsAtomExceptionInterface(): void
     {
-        $implements = \class_implements(ValidatorException::class);
+        $implements = class_implements(ValidatorException::class);
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }

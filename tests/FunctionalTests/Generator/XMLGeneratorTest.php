@@ -114,12 +114,12 @@ class XMLGeneratorTest extends TestCase
             .'<updated>2019-12-31T18:30:02+00:00</updated></entry>';
 
         $haystack = $xml['Not pretty XML'][1];
-        $position = \strrpos($haystack, '</feed>');
+        $position = strrpos($haystack, '</feed>');
 
         self::assertIsInt($position);
-        $entryXML .= \substr($haystack, $position);
+        $entryXML .= substr($haystack, $position);
 
-        $expected = \substr_replace(
+        $expected = substr_replace(
             $haystack,
             $entryXML,
             $position

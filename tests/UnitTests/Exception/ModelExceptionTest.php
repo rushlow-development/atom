@@ -33,7 +33,7 @@ class ModelExceptionTest extends TestCase
 {
     public function testModelExceptionImplementsAtomExceptionInterface(): void
     {
-        $implements = \class_implements(ModelException::class);
+        $implements = class_implements(ModelException::class);
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }
@@ -45,7 +45,7 @@ class ModelExceptionTest extends TestCase
 
     public function testModelExceptionHasMethodEmptyPropertyException(): void
     {
-        $this->assertTrue(\method_exists(ModelException::class, 'emptyPropertyException'));
+        $this->assertTrue(method_exists(ModelException::class, 'emptyPropertyException'));
     }
 
     public function testEmptyPropertyExceptionContainsMessage(): void

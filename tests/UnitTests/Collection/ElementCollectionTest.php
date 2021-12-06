@@ -76,7 +76,7 @@ class ElementCollectionTest extends TestCase
      */
     public function testElementCollectionImplementsInterfaceMethods(string $methodName): void
     {
-        self::assertTrue(\method_exists(ElementCollection::class, $methodName));
+        self::assertTrue(method_exists(ElementCollection::class, $methodName));
     }
 
     public function testAddMethodAddsElementInterfaceToCollection(): void

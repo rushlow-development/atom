@@ -60,6 +60,6 @@ class CollectionInterfaceTest extends TestCase
      */
     public function testHasMethods(string $methodName): void
     {
-        self::assertTrue(\method_exists(CollectionInterface::class, $methodName));
+        self::assertTrue(method_exists(CollectionInterface::class, $methodName));
     }
 }

@@ -74,7 +74,7 @@ class FeedTest extends AbstractModelTest
     {
         $feed = new Feed($this->expected['id'], $this->expected['title'], $this->expected['updated']);
 
-        $getter = 'get'.\ucfirst($name);
+        $getter = 'get'.ucfirst($name);
         self::assertEquals($expected, $feed->$getter());
     }
 
@@ -92,8 +92,8 @@ class FeedTest extends AbstractModelTest
 
         $feed = new Feed(...$params);
 
-        $setter = 'set'.\ucfirst($property);
-        $getter = 'get'.\ucfirst($property);
+        $setter = 'set'.ucfirst($property);
+        $getter = 'get'.ucfirst($property);
 
         $feed->$setter($expected);
 

@@ -44,7 +44,7 @@ class AtomBuilderTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->mockGenerator = $this->createMock(GeneratorInterface::class);
         $this->mockAtom = $this->createMock(Atom::class);
@@ -54,7 +54,7 @@ class AtomBuilderTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->mockGenerator = null;
         $this->mockAtom = null;

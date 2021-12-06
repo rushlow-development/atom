@@ -27,6 +27,6 @@ abstract class AbstractModelTest extends TestCase implements ModelUnitTestInterf
 
     private function getPropertyErrorMessage(string $property): string
     {
-        return \sprintf('%s does not have %s property defined as required to comply with RFC4287', $property, $this->classUnderTest);
+        return sprintf('%s does not have %s property defined as required to comply with RFC4287', $property, $this->classUnderTest);
     }
 }
