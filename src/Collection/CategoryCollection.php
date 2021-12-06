@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Geeshoe\Atom\Collection;
+namespace RushlowDevelopment\Atom\Collection;
 
 class CategoryCollection extends AbstractCollection
 {

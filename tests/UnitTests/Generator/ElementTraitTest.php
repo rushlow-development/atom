@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Generator;
+namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-use Geeshoe\Atom\Fixtures\ElementTraitFixture;
+use RushlowDevelopment\Atom\Fixtures\ElementTraitFixture;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

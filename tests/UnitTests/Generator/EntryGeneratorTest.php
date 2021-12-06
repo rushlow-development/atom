@@ -18,10 +18,10 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Generator;
+namespace RushlowDevelopment\Atom\UnitTests\Generator;
 
-use Geeshoe\Atom\Generator\ElementTrait;
-use Geeshoe\Atom\Generator\EntryGenerator;
+use RushlowDevelopment\Atom\Generator\ElementTrait;
+use RushlowDevelopment\Atom\Generator\EntryGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

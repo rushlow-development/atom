@@ -18,11 +18,11 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Collection;
+namespace RushlowDevelopment\Atom\UnitTests\Collection;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\ElementInterface;
+use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Contract\ElementInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

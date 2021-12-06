@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Contract;
+namespace RushlowDevelopment\Atom\UnitTests\Contract;
 
-use Geeshoe\Atom\Contract\AtomExceptionInterface;
+use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
 use PHPUnit\Framework\TestCase;
 
 /**

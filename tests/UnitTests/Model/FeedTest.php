@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-namespace Geeshoe\Atom\UnitTests\Model;
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Collection\CategoryCollection;
-use Geeshoe\Atom\Collection\LinkCollection;
-use Geeshoe\Atom\Collection\PersonCollection;
-use Geeshoe\Atom\Exception\ModelException;
-use Geeshoe\Atom\Model\Feed;
-use Geeshoe\Atom\UnitTests\AbstractModelTest;
+use RushlowDevelopment\Atom\Collection\CategoryCollection;
+use RushlowDevelopment\Atom\Collection\LinkCollection;
+use RushlowDevelopment\Atom\Collection\PersonCollection;
+use RushlowDevelopment\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Model\Feed;
+use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

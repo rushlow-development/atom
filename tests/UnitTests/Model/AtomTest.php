@@ -18,12 +18,12 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Model;
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Exception\ModelException;
-use Geeshoe\Atom\Model\Atom;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
 /**

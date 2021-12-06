@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Geeshoe\Atom\Model;
+namespace RushlowDevelopment\Atom\Model;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

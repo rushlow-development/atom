@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-namespace Geeshoe\Atom\UnitTests\Model;
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Exception\ModelException;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\UnitTests\AbstractModelTest;
+use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

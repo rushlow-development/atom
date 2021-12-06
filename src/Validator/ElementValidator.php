@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Validator;
+namespace RushlowDevelopment\Atom\Validator;
 
-use Geeshoe\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
 use League\Uri\Contracts\UriException;
 use League\Uri\Uri;
 

@@ -18,12 +18,12 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Factory;
+namespace RushlowDevelopment\Atom\Factory;
 
-use Geeshoe\Atom\Exception\FactoryException;
-use Geeshoe\Atom\Exception\ValidatorException;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Validator\ElementValidator;
+use RushlowDevelopment\Atom\Exception\FactoryException;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Validator\ElementValidator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

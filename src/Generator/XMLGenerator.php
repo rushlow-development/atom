@@ -18,11 +18,11 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Generator;
+namespace RushlowDevelopment\Atom\Generator;
 
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedInterface;
-use Geeshoe\Atom\Contract\GeneratorInterface;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Contract\FeedInterface;
+use RushlowDevelopment\Atom\Contract\GeneratorInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

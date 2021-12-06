@@ -18,11 +18,11 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Factory;
+namespace RushlowDevelopment\Atom\UnitTests\Factory;
 
-use Geeshoe\Atom\Contract\FeedInterface;
-use Geeshoe\Atom\Exception\FactoryException;
-use Geeshoe\Atom\Factory\FeedFactory;
+use RushlowDevelopment\Atom\Contract\FeedInterface;
+use RushlowDevelopment\Atom\Exception\FactoryException;
+use RushlowDevelopment\Atom\Factory\FeedFactory;
 use PHPUnit\Framework\TestCase;
 
 /**

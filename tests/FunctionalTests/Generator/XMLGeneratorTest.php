@@ -18,11 +18,11 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\FunctionalTests\Generator;
+namespace RushlowDevelopment\Atom\FunctionalTests\Generator;
 
-use Geeshoe\Atom\Generator\XMLGenerator;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Generator\XMLGenerator;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Feed;
 use PHPUnit\Framework\TestCase;
 
 /**

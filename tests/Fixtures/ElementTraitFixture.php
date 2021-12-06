@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Fixtures;
+namespace RushlowDevelopment\Atom\Fixtures;
 
-use Geeshoe\Atom\Generator\ElementTrait;
+use RushlowDevelopment\Atom\Generator\ElementTrait;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

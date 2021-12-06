@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Contract;
+namespace RushlowDevelopment\Atom\UnitTests\Contract;
 
-use Geeshoe\Atom\Contract\ContainerElementInterface;
+use RushlowDevelopment\Atom\Contract\ContainerElementInterface;
 use PHPUnit\Framework\TestCase;
 
 /**

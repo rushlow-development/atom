@@ -17,7 +17,7 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Collection;
+namespace RushlowDevelopment\Atom\Collection;
 
 use Geeshoe\Atom\Model\Person;
 

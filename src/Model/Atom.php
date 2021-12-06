@@ -18,11 +18,11 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Model;
+namespace RushlowDevelopment\Atom\Model;
 
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedInterface;
-use Geeshoe\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Contract\FeedInterface;
+use RushlowDevelopment\Atom\Exception\ModelException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

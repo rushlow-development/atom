@@ -18,7 +18,7 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Contract;
+namespace RushlowDevelopment\Atom\Contract;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

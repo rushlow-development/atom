@@ -18,14 +18,14 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom;
+namespace RushlowDevelopment\Atom;
 
-use Geeshoe\Atom\Contract\BuilderInterface;
-use Geeshoe\Atom\Contract\GeneratorInterface;
-use Geeshoe\Atom\Factory\EntryFactory;
-use Geeshoe\Atom\Factory\FeedFactory;
-use Geeshoe\Atom\Generator\XMLGenerator;
-use Geeshoe\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Contract\BuilderInterface;
+use RushlowDevelopment\Atom\Contract\GeneratorInterface;
+use RushlowDevelopment\Atom\Factory\EntryFactory;
+use RushlowDevelopment\Atom\Factory\FeedFactory;
+use RushlowDevelopment\Atom\Generator\XMLGenerator;
+use RushlowDevelopment\Atom\Model\Atom;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

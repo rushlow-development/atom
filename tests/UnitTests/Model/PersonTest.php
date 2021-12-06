@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-namespace Geeshoe\Atom\UnitTests\Model;
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use Geeshoe\Atom\Model\Person;
-use Geeshoe\Atom\UnitTests\AbstractModelTest;
+use RushlowDevelopment\Atom\Model\Person;
+use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

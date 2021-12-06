@@ -18,9 +18,9 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Exception;
+namespace RushlowDevelopment\Atom\Exception;
 
-use Geeshoe\Atom\Contract\AtomExceptionInterface;
+use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

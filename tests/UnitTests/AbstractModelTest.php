@@ -1,8 +1,8 @@
 <?php
 
-namespace Geeshoe\Atom\UnitTests;
+namespace RushlowDevelopment\Atom\UnitTests;
 
-use Geeshoe\Atom\Contract\ModelUnitTestInterface;
+use RushlowDevelopment\Atom\Contract\ModelUnitTestInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class AbstractModelTest extends TestCase implements ModelUnitTestInterface

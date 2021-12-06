@@ -18,7 +18,7 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Generator;
+namespace RushlowDevelopment\Atom\Generator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

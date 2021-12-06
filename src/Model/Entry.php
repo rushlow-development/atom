@@ -18,12 +18,12 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Model;
+namespace RushlowDevelopment\Atom\Model;
 
-use Geeshoe\Atom\Collection\ElementCollection;
-use Geeshoe\Atom\Contract\CollectionInterface;
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Exception\ModelException;
+use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Exception\ModelException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

@@ -18,10 +18,10 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests\Exception;
+namespace RushlowDevelopment\Atom\UnitTests\Exception;
 
-use Geeshoe\Atom\Contract\AtomExceptionInterface;
-use Geeshoe\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Contract\AtomExceptionInterface;
+use RushlowDevelopment\Atom\Exception\ValidatorException;
 use PHPUnit\Framework\TestCase;
 
 /**

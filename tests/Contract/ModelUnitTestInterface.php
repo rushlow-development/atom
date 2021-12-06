@@ -1,6 +1,6 @@
 <?php
 
-namespace Geeshoe\Atom\Contract;
+namespace RushlowDevelopment\Atom\Contract;
 
 interface ModelUnitTestInterface
 {

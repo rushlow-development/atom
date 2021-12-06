@@ -18,15 +18,15 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\UnitTests;
+namespace RushlowDevelopment\Atom\UnitTests;
 
-use Geeshoe\Atom\AtomBuilder;
-use Geeshoe\Atom\Contract\EntryInterface;
-use Geeshoe\Atom\Contract\FeedInterface;
-use Geeshoe\Atom\Contract\GeneratorInterface;
-use Geeshoe\Atom\Model\Atom;
-use Geeshoe\Atom\Model\Entry;
-use Geeshoe\Atom\Model\Feed;
+use RushlowDevelopment\Atom\AtomBuilder;
+use RushlowDevelopment\Atom\Contract\EntryInterface;
+use RushlowDevelopment\Atom\Contract\FeedInterface;
+use RushlowDevelopment\Atom\Contract\GeneratorInterface;
+use RushlowDevelopment\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Feed;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

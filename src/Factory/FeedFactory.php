@@ -18,10 +18,10 @@
 
 declare(strict_types=1);
 
-namespace Geeshoe\Atom\Factory;
+namespace RushlowDevelopment\Atom\Factory;
 
-use Geeshoe\Atom\Exception\FactoryException;
-use Geeshoe\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Exception\FactoryException;
+use RushlowDevelopment\Atom\Model\Feed;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
