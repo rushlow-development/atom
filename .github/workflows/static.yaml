@@ -56,19 +56,19 @@ jobs:
 #            -   name: Analyze Source
 #                run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml
 #
-#    rector:
-#        name: Rector PHP Source
-#        runs-on: ubuntu-latest
-#
-#        steps:
-#            -   name: Set PHP Version
-#                run: sudo update-alternatives --set php /usr/bin/php8.0
-#
-#            -   name: Checkout
-#                uses: actions/checkout@v2
-#
-#            -   name: Install Dependencies
-#                run: composer install -d $GITHUB_WORKSPACE/tools/rector --prefer-dist --no-progress
-#
-#            -   name: Analyse With Rector
-#                run: $GITHUB_WORKSPACE/tools/rector/vendor/bin/rector process --dry-run -vvv
+    rector:
+        name: Rector PHP Source
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Set PHP Version
+                run: sudo update-alternatives --set php /usr/bin/php8.0
+
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Install Dependencies
+                run: composer install -d $GITHUB_WORKSPACE/tools/rector --prefer-dist --no-progress
+
+            -   name: Analyse With Rector
+                run: $GITHUB_WORKSPACE/tools/rector/vendor/bin/rector process --dry-run -vvv
