@@ -18,7 +18,7 @@
 
 namespace RushlowDevelopment\Atom\Collection;
 
-use Geeshoe\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Contract\CollectionInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\Collection;
 
-use Geeshoe\Atom\Contract\ElementInterface;
+use RushlowDevelopment\Atom\Contract\ElementInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>

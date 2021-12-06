@@ -18,7 +18,7 @@
 
 namespace RushlowDevelopment\Atom\Collection;
 
-use Geeshoe\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Entry;
 
 final class EntryCollection extends AbstractCollection
 {

@@ -63,7 +63,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws \RushlowDevelopment\Atom\Exception\ModelException;
      */
     public function getId(): string
     {
@@ -77,7 +77,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      *
-     * @throws \Geeshoe\Atom\Exception\ModelException;
+     * @throws \RushlowDevelopment\Atom\Exception\ModelException;
      */
     public function getTitle(): string
     {

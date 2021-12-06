@@ -20,7 +20,7 @@ declare(strict_types=1);
 
 namespace RushlowDevelopment\Atom\Collection;
 
-use Geeshoe\Atom\Model\Person;
+use RushlowDevelopment\Atom\Model\Person;
 
 final class PersonCollection extends AbstractCollection
 {
