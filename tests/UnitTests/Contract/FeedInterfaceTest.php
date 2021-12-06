@@ -31,8 +31,7 @@ use PHPUnit\Framework\TestCase;
  */
 class FeedInterfaceTest extends TestCase
 {
-    /** @test */
-    public function interfaceExtends(): void
+    public function testInterfaceExtends(): void
     {
         $entry = $this->createMock(FeedInterface::class);
         self::assertInstanceOf(ContainerElementInterface::class, $entry);

@@ -60,7 +60,7 @@ final class PersonTest extends AbstractModelTest
      */
     public function testAuthorHasRequiredMethods(string $methodName): void
     {
-        self::assertTrue(\method_exists(Person::class, $methodName));
+        self::assertTrue(method_exists(Person::class, $methodName));
     }
 
     public function testAllPropertiesAreInitializedWithConstructor(): void

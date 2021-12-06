@@ -47,6 +47,6 @@ class BuilderInterfaceTest extends TestCase
      */
     public function testBuilderInterfaceDefinesRequiredMethods(string $methodName): void
     {
-        self::assertTrue(\method_exists(BuilderInterface::class, $methodName));
+        self::assertTrue(method_exists(BuilderInterface::class, $methodName));
     }
 }

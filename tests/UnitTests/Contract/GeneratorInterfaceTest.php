@@ -47,6 +47,6 @@ class GeneratorInterfaceTest extends TestCase
      */
     public function testRequiredMethodsExistInInterface(string $methodName): void
     {
-        self::assertTrue(\method_exists(GeneratorInterface::class, $methodName));
+        self::assertTrue(method_exists(GeneratorInterface::class, $methodName));
     }
 }

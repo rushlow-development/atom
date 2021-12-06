@@ -43,12 +43,11 @@ class FeedGeneratorTest extends TestCase
 
     public function usesElementTrait(): void
     {
-        $traits = \class_uses(FeedGenerator::class);
+        $traits = class_uses(FeedGenerator::class);
         self::assertArrayHasKey(ElementTrait::class, $traits);
     }
 
-    /** @test */
-    public function createFeedElementUsesFeedTagWithRFCNamespace(): void
+    public function testCreateFeedElementUsesFeedTagWithRFCNamespace(): void
     {
         $tag = 'feed';
         $namespaceURI = 'http://www.w3.org/2005/Atom';
@@ -65,8 +64,7 @@ class FeedGeneratorTest extends TestCase
         $generator->createFeedElement();
     }
 
-    /** @test */
-    public function getFeedCreatesFeedsWithRequiredElements(): void
+    public function testGetFeedCreatesFeedsWithRequiredElements(): void
     {
         $id = 'http://geeshoe.com/';
         $title = 'Unit Test';

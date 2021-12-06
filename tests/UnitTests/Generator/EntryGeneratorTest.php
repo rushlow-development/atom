@@ -32,15 +32,13 @@ use PHPUnit\Framework\TestCase;
  */
 class EntryGeneratorTest extends TestCase
 {
-    /** @test */
-    public function usesElementTrait(): void
+    public function testUsesElementTrait(): void
     {
-        $traits = \class_uses(EntryGenerator::class);
+        $traits = class_uses(EntryGenerator::class);
         self::assertArrayHasKey(ElementTrait::class, $traits);
     }
 
-    /** @test */
-    public function getElementCreatesElementWithRequiredElements(): void
+    public function testGetElementCreatesElementWithRequiredElements(): void
     {
         $id = 'https://geeshoe/com/';
         $title = 'Unit Tests';

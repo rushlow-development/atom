@@ -33,7 +33,7 @@ class FactoryExceptionTest extends TestCase
 {
     public function testFactoryExceptionImplementsAtomExceptionInterface(): void
     {
-        $implements = \class_implements(FactoryException::class);
+        $implements = class_implements(FactoryException::class);
 
         $this->assertArrayHasKey(AtomExceptionInterface::class, $implements);
     }

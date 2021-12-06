@@ -39,8 +39,7 @@ class ElementTraitTest extends TestCase
         $this->mockDocument = $this->createMock(\DOMDocument::class);
     }
 
-    /** @test */
-    public function idPassesParamsToCreateElement(): void
+    public function testIdPassesParamsToCreateElement(): void
     {
         $id = 'https://geeshoe.com/';
 
@@ -56,8 +55,7 @@ class ElementTraitTest extends TestCase
         $trait->getIdElement($id);
     }
 
-    /** @test */
-    public function titlePassesParamsToCreateElement(): void
+    public function testTitlePassesParamsToCreateElement(): void
     {
         $title = 'Unit Test';
 
@@ -72,8 +70,7 @@ class ElementTraitTest extends TestCase
         $trait->getTitleElement($title);
     }
 
-    /** @test */
-    public function updatedPassesParamsToCreateElement(): void
+    public function testUpdatedPassesParamsToCreateElement(): void
     {
         $date = new \DateTimeImmutable();
         $updated = $date->format(\DATE_ATOM);

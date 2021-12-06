@@ -39,11 +39,10 @@ class ContainerElementInterfaceTest extends TestCase
     }
 
     /**
-     * @test
      * @dataProvider methodDataProvider
      */
-    public function hasMethod(string $methodName): void
+    public function testHasMethod(string $methodName): void
     {
-        self::assertTrue(\method_exists(ContainerElementInterface::class, $methodName));
+        self::assertTrue(method_exists(ContainerElementInterface::class, $methodName));
     }
 }
