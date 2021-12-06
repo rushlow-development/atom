@@ -11,17 +11,17 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.0",
     "league/uri": "^6.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^9.0",
-    "phpstan/phpstan": "^0.12.4",
-    "phpstan/extension-installer": "^1.0",
-    "phpstan/phpstan-phpunit": "^0.12.6",
-    "vimeo/psalm": "^3.9",
-    "psalm/plugin-phpunit": "^0.9.0"
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^1.2",
+    "phpstan/extension-installer": "^1.1",
+    "phpstan/phpstan-phpunit": "^1.0",
+    "vimeo/psalm": "^4.14",
+    "psalm/plugin-phpunit": "^0.16.1"
   },
   "autoload": {
     "psr-4": {
