@@ -9,3 +9,5 @@
 tools/*/vendor
 tools/*/composer.lock
 .php-cs-fixer.cache
+
+composer.lock
