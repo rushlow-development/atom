@@ -18,15 +18,17 @@
 
 namespace RushlowDevelopment\Atom\Collection;
 
+use RushlowDevelopment\Atom\Model\Link;
+
 class LinkCollection extends AbstractCollection
 {
-    public function addLink(string $link): void
+    public function addLink(Link $link): void
     {
-        $this->offsetSet(null, $link);
+        $this->offsetSet($link->getHref(), $link);
     }
 
-    public function hasLink(string $link): bool
+    public function removeLink(Link $link): void
     {
-        return \in_array($link, $this->elements, true);
+        $this->offsetUnset($link->getHref());
     }
 }
