@@ -31,15 +31,15 @@ class Entry implements EntryInterface
     // Recommended Optional Elements
     private PersonCollection $author;
     private ?Content $content = null;
-    private ?Link $link;
-    private ?string $summary;
+    private ?Link $link = null;
+    private ?string $summary = null;
 
     // Optional Elements
-    private ?CollectionInterface $category;
-    private ?PersonCollection $contributor;
-    private ?\DateTimeInterface $published;
-    private ?string $rights;
-    private ?string $source;
+    private ?CollectionInterface $category = null;
+    private ?PersonCollection $contributor = null;
+    private ?\DateTimeInterface $published = null;
+    private ?string $rights = null;
+    private ?string $source = null;
 
     /**
      * @param string             $id      unique permanent feed URI
@@ -98,5 +98,85 @@ class Entry implements EntryInterface
     public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
+    }
+
+    public function getContent(): ?Content
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Content $content): void
+    {
+        $this->content = $content;
+    }
+
+    public function getLink(): ?Link
+    {
+        return $this->link;
+    }
+
+    public function setLink(?Link $link): void
+    {
+        $this->link = $link;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(?string $summary): void
+    {
+        $this->summary = $summary;
+    }
+
+    public function getCategory(): ?CollectionInterface
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CollectionInterface $category): void
+    {
+        $this->category = $category;
+    }
+
+    public function getContributor(): ?PersonCollection
+    {
+        return $this->contributor;
+    }
+
+    public function setContributor(?PersonCollection $contributor): void
+    {
+        $this->contributor = $contributor;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?\DateTimeInterface $published): void
+    {
+        $this->published = $published;
+    }
+
+    public function getRights(): ?string
+    {
+        return $this->rights;
+    }
+
+    public function setRights(?string $rights): void
+    {
+        $this->rights = $rights;
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->source;
+    }
+
+    public function setSource(?string $source): void
+    {
+        $this->source = $source;
     }
 }
