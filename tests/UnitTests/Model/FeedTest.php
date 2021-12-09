@@ -23,6 +23,7 @@ use RushlowDevelopment\Atom\Collection\LinkCollection;
 use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Exception\ModelException;
 use RushlowDevelopment\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Model\Link;
 use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
 
 /**
@@ -60,7 +61,7 @@ class FeedTest extends AbstractModelTest
         yield 'Generator' => ['generator', 'generated'];
         yield 'Icon' => ['icon', 'link-to-icon'];
         yield 'Logo' => ['logo', 'link-to-logo'];
-        yield 'Link' => ['link', new LinkCollection()];
+        yield 'Link' => ['link', new Link('https://rushlow.dev')];
         yield 'Rights' => ['rights', 'rights'];
         yield 'Subtitle' => ['subtitle', 'this is the subtitle'];
     }
