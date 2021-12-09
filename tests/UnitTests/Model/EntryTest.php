@@ -18,9 +18,7 @@
 
 namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use RushlowDevelopment\Atom\Collection\ElementCollection;
 use RushlowDevelopment\Atom\Collection\PersonCollection;
-use RushlowDevelopment\Atom\Contract\CollectionInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;

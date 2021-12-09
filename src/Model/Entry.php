@@ -41,7 +41,6 @@ class Entry implements EntryInterface
     private ?string $rights;
     private ?string $source;
 
-
     /**
      * @param string             $id      unique permanent feed URI
      * @param string             $title   human readable title of the feed

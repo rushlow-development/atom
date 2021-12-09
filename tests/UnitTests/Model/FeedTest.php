@@ -19,7 +19,6 @@
 namespace RushlowDevelopment\Atom\UnitTests\Model;
 
 use RushlowDevelopment\Atom\Collection\CategoryCollection;
-use RushlowDevelopment\Atom\Collection\LinkCollection;
 use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Exception\ModelException;
 use RushlowDevelopment\Atom\Model\Feed;
