@@ -100,7 +100,7 @@ class AtomBuilderTest extends TestCase
         $mockTime = $this->createMock(\DateTime::class);
 
         $builder = new AtomBuilder($mockAtom);
-        $builder->addEntry('testId', 'testTitle', $mockTime);
+        $builder->addEntry(new Entry('https://example.com', 'A Title', $mockTime));
     }
 
     public function testPublishInitializesGenerator(): void
