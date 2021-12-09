@@ -18,7 +18,7 @@
 
 namespace RushlowDevelopment\Atom\Model;
 
-use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Contract\CollectionInterface;
 use RushlowDevelopment\Atom\Contract\EntryInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
@@ -28,34 +28,31 @@ use RushlowDevelopment\Atom\Exception\ModelException;
  */
 class Entry implements EntryInterface
 {
-    private string $id;
-    private string $title;
-    private \DateTimeInterface $updated;
-    private CollectionInterface $author;
+    // Recommended Optional Elements
+    private PersonCollection $author;
+    private ?Content $content = null;
+    private ?Link $link;
+    private ?string $summary;
+
+    // Optional Elements
     private ?CollectionInterface $category;
-    private $content;
-    private ?CollectionInterface $contributor;
-    private ?string $link;
+    private ?PersonCollection $contributor;
     private ?\DateTimeInterface $published;
     private ?string $rights;
     private ?string $source;
-    private ?string $summary;
+
 
     /**
-     * Entry constructor.
-     *
      * @param string             $id      unique permanent feed URI
      * @param string             $title   human readable title of the feed
      * @param \DateTimeInterface $updated time of last significant feed modification
      */
-    public function __construct(string $id, string $title, \DateTimeInterface $updated)
-    {
-        $this->id = $id;
-
-        $this->title = $title;
-
-        $this->updated = $updated;
-        $this->author = new ElementCollection();
+    public function __construct(
+        private string $id,
+        private string $title,
+        private \DateTimeInterface $updated
+    ) {
+        $this->author = new PersonCollection();
     }
 
     /**
@@ -94,12 +91,12 @@ class Entry implements EntryInterface
         return $this->updated;
     }
 
-    public function getAuthor(): CollectionInterface
+    public function getAuthor(): PersonCollection
     {
         return $this->author;
     }
 
-    public function setAuthor(CollectionInterface $author): void
+    public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
     }

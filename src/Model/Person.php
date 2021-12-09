@@ -23,15 +23,12 @@ namespace RushlowDevelopment\Atom\Model;
  */
 class Person
 {
-    private string $name;
-    private ?string $uri;
-    private ?string $email;
+    private ?string $uri = null;
+    private ?string $email = null;
 
-    public function __construct(string $name, string $uri = null, string $email = null)
-    {
-        $this->name = $name;
-        $this->uri = $uri;
-        $this->email = $email;
+    public function __construct(
+        private string $name
+    ) {
     }
 
     public function getName(): string
