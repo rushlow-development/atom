@@ -19,7 +19,6 @@
 namespace RushlowDevelopment\Atom\Model;
 
 use RushlowDevelopment\Atom\Collection\CategoryCollection;
-use RushlowDevelopment\Atom\Collection\LinkCollection;
 use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Contract\FeedInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
@@ -29,16 +28,16 @@ use RushlowDevelopment\Atom\Exception\ModelException;
  */
 class Feed implements FeedInterface
 {
-    private string $id;
-    private string $title;
-    private \DateTimeInterface $updated;
+    // Recommended Optional Elements
     private ?PersonCollection $author = null;
+    private ?Link $link = null;
+
+    // Optional
     private ?CategoryCollection $category = null;
     private ?PersonCollection $contributor = null;
     private ?string $generator = null;
     private ?string $icon = null;
     private ?string $logo = null;
-    private ?LinkCollection $link = null;
     private ?string $rights = null;
     private ?string $subtitle = null;
 
@@ -47,11 +46,11 @@ class Feed implements FeedInterface
      * @param string             $title   human readable title of the feed
      * @param \DateTimeInterface $updated time of last significant feed modification
      */
-    public function __construct(string $id, string $title, \DateTimeInterface $updated)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->updated = $updated;
+    public function __construct(
+        private string $id,
+        private string $title,
+        private \DateTimeInterface $updated
+    ) {
     }
 
     /**
@@ -120,14 +119,14 @@ class Feed implements FeedInterface
         $this->contributor = $personCollection;
     }
 
-    public function getLink(): ?LinkCollection
+    public function getLink(): ?Link
     {
         return $this->link;
     }
 
-    public function setLink(LinkCollection $linkCollection): void
+    public function setLink(Link $link): void
     {
-        $this->link = $linkCollection;
+        $this->link = $link;
     }
 
     public function getGenerator(): ?string

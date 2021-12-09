@@ -72,19 +72,6 @@ final class PersonTest extends AbstractModelTest
         self::assertNull($author->getEmail());
     }
 
-    public function testConstructorPassesOptionalParamsToProperties(): void
-    {
-        $name = 'unit test';
-        $uri = 'https://geeshoe.com/';
-        $email = 'jr@rushlow.dev';
-
-        $author = new Person($name, $uri, $email);
-
-        self::assertSame($name, $author->getName());
-        self::assertSame($uri, $author->getUri());
-        self::assertSame($email, $author->getEmail());
-    }
-
     public function setterDataProvider(): array
     {
         return [

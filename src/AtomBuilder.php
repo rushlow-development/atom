@@ -20,10 +20,10 @@ namespace RushlowDevelopment\Atom;
 
 use RushlowDevelopment\Atom\Contract\BuilderInterface;
 use RushlowDevelopment\Atom\Contract\GeneratorInterface;
-use RushlowDevelopment\Atom\Factory\EntryFactory;
 use RushlowDevelopment\Atom\Factory\FeedFactory;
 use RushlowDevelopment\Atom\Generator\XMLGenerator;
 use RushlowDevelopment\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Model\Entry;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -66,9 +66,9 @@ class AtomBuilder implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void
+    public function addEntry(Entry $entry): void
     {
-        $this->atom->addEntryElement(EntryFactory::createEntry($id, $title, $lastUpdated));
+        $this->atom->addEntryElement($entry);
     }
 
     /**

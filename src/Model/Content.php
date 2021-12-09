@@ -21,38 +21,44 @@ namespace RushlowDevelopment\Atom\Model;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Person
+class Content
 {
-    private ?string $uri = null;
-    private ?string $email = null;
+    public const TYPE_TEXT = 'text';
+    public const TYPE_HTML = 'html';
+    public const TYPE_XHTML = 'xhtml';
+
+    private string $type;
 
     public function __construct(
-        private string $name
+        private string $content,
+        string $type = self::TYPE_TEXT
     ) {
+        $this->validate($type);
+
+        $this->type = $type;
     }
 
-    public function getName(): string
+    public function getContent(): string
     {
-        return $this->name;
+        return $this->content;
     }
 
-    public function getUri(): ?string
+    public function getType(): string
     {
-        return $this->uri;
+        return $this->type;
     }
 
-    public function setUri(string $uri): void
+    public function setType(string $type): void
     {
-        $this->uri = $uri;
+        $this->validate($type);
+
+        $this->type = $type;
     }
 
-    public function getEmail(): ?string
+    private function validate(string $type): void
     {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
+        if (!\in_array($type, [self::TYPE_TEXT, self::TYPE_HTML, self::TYPE_XHTML])) {
+            throw new \RuntimeException('You must use one of Content::TYPE_TEXT, Content::TYPE_HTML, or Content::TYPE_XHTML types.');
+        }
     }
 }

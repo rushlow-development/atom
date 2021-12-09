@@ -19,6 +19,7 @@
 namespace RushlowDevelopment\Atom\Contract;
 
 use RushlowDevelopment\Atom\Model\Atom;
+use RushlowDevelopment\Atom\Model\Entry;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -36,9 +37,9 @@ interface BuilderInterface
     public function createFeed(string $id, string $title, \DateTimeInterface $lastUpdated): void;
 
     /**
-     * Add a entry element for a Atom 1.0 feed.
+     * Add an entry element to the Atom 1.0 feed.
      */
-    public function addEntry(string $id, string $title, \DateTimeInterface $lastUpdated): void;
+    public function addEntry(Entry $entry): void;
 
     /**
      * Get Atom XML string.

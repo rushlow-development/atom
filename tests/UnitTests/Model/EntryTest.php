@@ -18,8 +18,7 @@
 
 namespace RushlowDevelopment\Atom\UnitTests\Model;
 
-use RushlowDevelopment\Atom\Collection\ElementCollection;
-use RushlowDevelopment\Atom\Contract\CollectionInterface;
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Exception\ModelException;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
@@ -120,7 +119,7 @@ final class EntryTest extends AbstractModelTest
     public function optionalElementGetterSetters(): array
     {
         return [
-            ['getAuthor', 'setAuthor', $this->createMock(CollectionInterface::class)],
+            ['getAuthor', 'setAuthor', new PersonCollection()],
         ];
     }
 
@@ -147,7 +146,7 @@ final class EntryTest extends AbstractModelTest
     {
         $entry = new Entry('', '', $this->expected['updated']);
 
-        self::assertInstanceOf(ElementCollection::class, $entry->getAuthor());
+        self::assertInstanceOf(PersonCollection::class, $entry->getAuthor());
     }
 
     protected function getExpected(): void

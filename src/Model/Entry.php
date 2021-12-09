@@ -18,7 +18,7 @@
 
 namespace RushlowDevelopment\Atom\Model;
 
-use RushlowDevelopment\Atom\Collection\ElementCollection;
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Contract\CollectionInterface;
 use RushlowDevelopment\Atom\Contract\EntryInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
@@ -28,34 +28,30 @@ use RushlowDevelopment\Atom\Exception\ModelException;
  */
 class Entry implements EntryInterface
 {
-    private string $id;
-    private string $title;
-    private \DateTimeInterface $updated;
-    private CollectionInterface $author;
-    private ?CollectionInterface $category;
-    private $content;
-    private ?CollectionInterface $contributor;
-    private ?string $link;
-    private ?\DateTimeInterface $published;
-    private ?string $rights;
-    private ?string $source;
-    private ?string $summary;
+    // Recommended Optional Elements
+    private PersonCollection $author;
+    private ?Content $content = null;
+    private ?Link $link = null;
+    private ?string $summary = null;
+
+    // Optional Elements
+    private ?CollectionInterface $category = null;
+    private ?PersonCollection $contributor = null;
+    private ?\DateTimeInterface $published = null;
+    private ?string $rights = null;
+    private ?string $source = null;
 
     /**
-     * Entry constructor.
-     *
      * @param string             $id      unique permanent feed URI
      * @param string             $title   human readable title of the feed
      * @param \DateTimeInterface $updated time of last significant feed modification
      */
-    public function __construct(string $id, string $title, \DateTimeInterface $updated)
-    {
-        $this->id = $id;
-
-        $this->title = $title;
-
-        $this->updated = $updated;
-        $this->author = new ElementCollection();
+    public function __construct(
+        private string $id,
+        private string $title,
+        private \DateTimeInterface $updated
+    ) {
+        $this->author = new PersonCollection();
     }
 
     /**
@@ -94,13 +90,93 @@ class Entry implements EntryInterface
         return $this->updated;
     }
 
-    public function getAuthor(): CollectionInterface
+    public function getAuthor(): PersonCollection
     {
         return $this->author;
     }
 
-    public function setAuthor(CollectionInterface $author): void
+    public function setAuthor(PersonCollection $author): void
     {
         $this->author = $author;
+    }
+
+    public function getContent(): ?Content
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Content $content): void
+    {
+        $this->content = $content;
+    }
+
+    public function getLink(): ?Link
+    {
+        return $this->link;
+    }
+
+    public function setLink(?Link $link): void
+    {
+        $this->link = $link;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(?string $summary): void
+    {
+        $this->summary = $summary;
+    }
+
+    public function getCategory(): ?CollectionInterface
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?CollectionInterface $category): void
+    {
+        $this->category = $category;
+    }
+
+    public function getContributor(): ?PersonCollection
+    {
+        return $this->contributor;
+    }
+
+    public function setContributor(?PersonCollection $contributor): void
+    {
+        $this->contributor = $contributor;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?\DateTimeInterface $published): void
+    {
+        $this->published = $published;
+    }
+
+    public function getRights(): ?string
+    {
+        return $this->rights;
+    }
+
+    public function setRights(?string $rights): void
+    {
+        $this->rights = $rights;
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->source;
+    }
+
+    public function setSource(?string $source): void
+    {
+        $this->source = $source;
     }
 }

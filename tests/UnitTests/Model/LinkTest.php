@@ -16,19 +16,31 @@
  * limitations under the License.
  */
 
-namespace RushlowDevelopment\Atom\Collection;
+namespace RushlowDevelopment\Atom\UnitTests\Model;
 
 use RushlowDevelopment\Atom\Model\Link;
 
-class LinkCollection extends AbstractCollection
+/**
+ * @author Jesse Rushlow <jr@rushlow.dev>
+ */
+class LinkTest extends AbstractModelTest
 {
-    public function addLink(Link $link): void
+    public function requiredModelPropertiesPerRFCDataProvider(): \Generator
     {
-        $this->offsetSet($link->getHref(), $link);
+        yield ['href'];
     }
 
-    public function removeLink(Link $link): void
+    public function optionalModelPropertiesPerRFCDataProvider(): \Generator
     {
-        $this->offsetUnset($link->getHref());
+        yield ['rel'];
+        yield ['type'];
+        yield ['hreflang'];
+        yield ['title'];
+        yield ['length'];
+    }
+
+    protected function getModelName(): string
+    {
+        return Link::class;
     }
 }

@@ -21,38 +21,39 @@ namespace RushlowDevelopment\Atom\Model;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Person
+class Category
 {
-    private ?string $uri = null;
-    private ?string $email = null;
+    // Optional
+    private ?string $scheme = null;
+    private ?string $label = null;
 
     public function __construct(
-        private string $name
+        private string $term
     ) {
     }
 
-    public function getName(): string
+    public function getTerm(): string
     {
-        return $this->name;
+        return $this->term;
     }
 
-    public function getUri(): ?string
+    public function getScheme(): ?string
     {
-        return $this->uri;
+        return $this->scheme;
     }
 
-    public function setUri(string $uri): void
+    public function setScheme(?string $scheme): void
     {
-        $this->uri = $uri;
+        $this->scheme = $scheme;
     }
 
-    public function getEmail(): ?string
+    public function getLabel(): ?string
     {
-        return $this->email;
+        return $this->label;
     }
 
-    public function setEmail(string $email): void
+    public function setLabel(?string $label): void
     {
-        $this->email = $email;
+        $this->label = $label;
     }
 }
