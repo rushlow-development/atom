@@ -20,8 +20,10 @@ namespace RushlowDevelopment\Atom\Contract;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
+ *
  * @template TKey
  * @template T
+ *
  * @template-extends \IteratorAggregate<TKey, T>
  * @template-extends \ArrayAccess<TKey, T>
  */

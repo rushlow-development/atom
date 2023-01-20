@@ -1,32 +1,41 @@
-name: Atom CI
-on: [push, pull_request]
+name: PHPUnit
+on:
+  push:
+    branches: ['main']
+  pull_request:
+  schedule:
+    - cron: '0 */12 * * *'
+
 jobs:
-  atom:
-    name: Atom
+  tests:
+    name: "${{ matrix.php-version }} ${{ matrix.dependency-versions }}"
     runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        # normal, highest, non-dev installs
+        php-version: ['8.1', '8.2']
+        composer-options: ['--prefer-stable']
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.0.0
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
 
-      - name: Validate Composer .json and .lock
-        run: composer validate
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ matrix.php-version }}"
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+      - name: "Composer install"
+        uses: "ramsey/composer-install@v1"
+        with:
+          dependency-versions: "${{ matrix.dependency-versions }}"
+          composer-options: "--prefer-dist --no-progress"
 
-      - name: Psalm Static Analysis
-        run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml --diff --diff-format=udiff --dry-run
-        if: always()
-        continue-on-error: true
+      - name: Unit Tests
+        run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --testsuite unit
 
-      - name: PHPStan
-        run: vendor/bin/phpstan analyze -c $GITHUB_WORKSPACE/phpstan.neon
-        if: always()
-        continue-on-error: true
-
-      - name: PHPUnit
-        run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --coverage-text
-        if: always()
+      - name: Functional Tests
+        run: vendor/bin/phpunit -c $GITHUB_WORKSPACE/phpunit.xml.dist --testsuite functional

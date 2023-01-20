@@ -1,8 +1,13 @@
 <?php
 
+if (!file_exists(__DIR__.'/src') || !file_exists(__DIR__.'/tests')) {
+    exit(0);
+}
+
 $finder = (new PhpCsFixer\Finder())
-    ->in(dirname(__DIR__, 2))
+    ->in([__DIR__.'/src', __DIR__.'/tests'])
 ;
+
 
 $copyright = <<< 'EOT'
 Copyright 2020 Jesse Rushlow - Rushlow Development.
