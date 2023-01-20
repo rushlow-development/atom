@@ -21,7 +21,7 @@ namespace RushlowDevelopment\Atom\Model;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Content
+final class Content
 {
     public const TYPE_TEXT = 'text';
     public const TYPE_HTML = 'html';

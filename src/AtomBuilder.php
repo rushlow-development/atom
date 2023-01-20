@@ -18,70 +18,60 @@
 
 namespace RushlowDevelopment\Atom;
 
-use RushlowDevelopment\Atom\Contract\BuilderInterface;
-use RushlowDevelopment\Atom\Contract\GeneratorInterface;
-use RushlowDevelopment\Atom\Factory\FeedFactory;
-use RushlowDevelopment\Atom\Generator\XMLGenerator;
+use RushlowDevelopment\Atom\Generator\AtomXmlGenerator;
 use RushlowDevelopment\Atom\Model\Atom;
 use RushlowDevelopment\Atom\Model\Entry;
+use RushlowDevelopment\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Model\Link;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class AtomBuilder implements BuilderInterface
+final class AtomBuilder
 {
-    private Atom $atom;
-    private GeneratorInterface $generator;
+    public function __construct(
+        private Atom $atom,
+        private AtomXmlGenerator $generator,
+    ) {
+    }
 
-    public function __construct(Atom $atom = null, GeneratorInterface $generator = null)
-    {
-        if (null === $atom) {
-            $atom = new Atom();
+    public static function createFeed(
+        string $id,
+        string $title,
+        \DateTimeInterface $lastUpdated,
+         null|Link $link = null,
+        null|string $subtitle = null,
+    ): self {
+        $feed = new Feed($id, $title, $lastUpdated);
+
+        if (null !== $link) {
+            $feed->setLink($link);
         }
 
-        if (null === $generator) {
-            $generator = new XMLGenerator();
+        if (null !== $subtitle) {
+            $feed->setSubtitle($subtitle);
         }
 
-        $this->atom = $atom;
-        $this->generator = $generator;
+        $atom = (new Atom())->setFeedElement($feed);
+
+        return new self($atom, new AtomXmlGenerator());
     }
 
-    /**
-     * @{@inheritdoc}
-     */
-    public function getAtom(): Atom
-    {
-        return $this->atom;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function createFeed(string $id, string $title, \DateTimeInterface $lastUpdated): void
-    {
-        $this->atom->setFeedElement(FeedFactory::createFeed($id, $title, $lastUpdated));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addEntry(Entry $entry): void
+    public function addEntry(Entry $entry): self
     {
         $this->atom->addEntryElement($entry);
+
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function publish(): string
+    public function generate(bool $formatOutput = true): string
     {
-        $this->generator->initialize($this->atom->getFeedElement());
+        $this->generator->buildFeedElement($this->atom->getFeedElement());
+        $this->generator->addEntriesToFeedElement($this->atom->getEntryElements());
 
-        foreach ($this->atom->getEntryElements() as $entryElement) {
-            $this->generator->addEntry($entryElement);
-        }
+        $domDocument = $this->generator->getDocument();
+        $domDocument->formatOutput = $formatOutput;
 
-        return $this->generator->generate();
+        return $domDocument->saveXML();
     }
 }

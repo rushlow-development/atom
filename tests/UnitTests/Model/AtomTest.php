@@ -60,12 +60,12 @@ class AtomTest extends TestCase
 
     public function testFeedElementGetterSetter(): void
     {
-        $mockFeed = $this->createMock(Feed::class);
+        $feed = new Feed('id', 'title', new \DateTimeImmutable());
 
         $atom = new Atom();
-        $atom->setFeedElement($mockFeed);
+        $atom->setFeedElement($feed);
 
-        $this->assertSame($mockFeed, $atom->getFeedElement());
+        $this->assertSame($feed, $atom->getFeedElement());
     }
 
     public function testEntryElementGetterAlwaysReturnsArray(): void
@@ -77,12 +77,12 @@ class AtomTest extends TestCase
 
     public function testEntryElementsGetterSetter(): void
     {
-        $mockEntry = $this->createMock(Entry::class);
+        $entry = new Entry('a', 'b', new \DateTimeImmutable());
 
         $atom = new Atom();
-        $atom->addEntryElement($mockEntry);
+        $atom->addEntryElement($entry);
 
-        $expected[] = $mockEntry;
+        $expected[] = $entry;
 
         $this->assertSame($expected, $atom->getEntryElements());
     }

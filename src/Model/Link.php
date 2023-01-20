@@ -21,11 +21,11 @@ namespace RushlowDevelopment\Atom\Model;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Link
+final class Link
 {
     // Optional
     /** @var string One of alternate, enclosure, related, self, or via */
-    public string $rel;
+    public string $rel = 'self';
     public string $type;
     public string $hreflang;
     public string $title;
