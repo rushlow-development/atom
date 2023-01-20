@@ -106,7 +106,7 @@ class XMLGeneratorTest extends TestCase
 
         $result = $generator->generate();
 
-        //@TODO Refactor with a more elegant solution
+        // @TODO Refactor with a more elegant solution
         $xml = $this->xmlResultDataProvider();
         $entryXML = '<entry><id>https://geeshoe.com</id><title>Entry Title 1</title>'
             .'<updated>2019-12-31T18:30:02+00:00</updated></entry>';
