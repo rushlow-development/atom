@@ -69,6 +69,21 @@ final class AtomBuilderTest extends TestCase
         self::assertSame($this->getExpectedXml('feed-with-entry.xml'), $builder->generate());
     }
 
+    public function testExceptionThrownIfMissingAuthors(): void
+    {
+        $builder = AtomBuilder::createFeed('id', 'title', new \DateTimeImmutable());
+        $builder->setValidateFeed(false);
+
+        // No exception should be thrown.
+        $builder->generate();
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Feed is not compliant with Atom 1.0 Specification - Missing Author(s) in either the atom:feed or atom:entry.');
+
+        $builder->setValidateFeed(true);
+        $builder->generate();
+    }
+
     private function getExpectedXml(string $filename): string
     {
         return file_get_contents(sprintf('%s/Fixture/expected/%s', __DIR__, $filename));
