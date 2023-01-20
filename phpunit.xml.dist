@@ -4,10 +4,10 @@
         backupStaticAttributes="true"
 >
     <testsuites>
-        <testsuite name="UnitTests">
+        <testsuite name="unit">
             <directory>tests/UnitTests</directory>
         </testsuite>
-        <testsuite name="FunctionalTests">
+        <testsuite name="functional">
             <directory>tests/FunctionalTests</directory>
         </testsuite>
     </testsuites>
