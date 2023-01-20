@@ -27,14 +27,18 @@ use RushlowDevelopment\Atom\Model\Person;
  */
 final class PersonCollection extends AbstractCollection
 {
-    public function addPerson(Person $person): void
+    public function addPerson(Person $person): self
     {
         $this->offsetSet($person->name, $person);
+
+        return $this;
     }
 
-    public function removePerson(Person $person): void
+    public function removePerson(Person $person): self
     {
         $this->offsetUnset($person->name);
+
+        return $this;
     }
 
     public function getPerson(string $name): Person

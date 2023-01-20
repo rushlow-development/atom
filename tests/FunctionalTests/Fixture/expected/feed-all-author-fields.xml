@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://rushlow.dev</id>
+  <title>Rushlow.dev XMLGenerator Test</title>
+  <updated>2023-01-17T23:00:00+00:00</updated>
+  <author>
+    <name>Jesse Rushlow</name>
+    <uri>https://rushlow.dev</uri>
+    <email>jr@rushlow.dev</email>
+  </author>
+  <entry>
+    <id>id</id>
+    <title>title</title>
+    <updated>2023-01-20T23:00:00+00:00</updated>
+    <author>
+      <name>Jesse Rushlow</name>
+      <uri>https://rushlow.dev</uri>
+      <email>jr@rushlow.dev</email>
+    </author>
+  </entry>
+</feed>
