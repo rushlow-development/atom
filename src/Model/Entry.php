@@ -26,7 +26,7 @@ use RushlowDevelopment\Atom\Exception\ModelException;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Entry implements EntryInterface
+final class Entry implements EntryInterface
 {
     // Recommended Optional Elements
     private PersonCollection $author;

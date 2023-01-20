@@ -20,6 +20,8 @@ namespace RushlowDevelopment\Atom\FunctionalTests\Generator;
 
 use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Generator\AtomXmlGenerator;
+use RushlowDevelopment\Atom\Model\Content;
+use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
 use RushlowDevelopment\Atom\Model\Link;
 
@@ -66,6 +68,21 @@ final class AtomXmlGeneratorTest extends TestCase
         $result = $result->saveXML();
 
         self::assertSame($this->getExpectedXml('feed-no-entries.xml'), $result);
+    }
+
+    public function testFeedWithEntries(): void
+    {
+        $entry = new Entry('https://rushlow.dev/some-link', 'Entry Test Title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00'));
+        $entry->setContent(new Content('<p>Howdy!</p>', Content::TYPE_HTML));
+
+        $this->generator->buildFeedElement($this->feedFixture);
+        $this->generator->addEntriesToFeedElement([$entry]);
+
+        $result = $this->generator->getDocument();
+        $result->formatOutput = true;
+        $result = $result->saveXML();
+
+        self::assertSame($this->getExpectedXml('feed-with-entry.xml'), $result);
     }
 
     private function getExpectedXml(string $filename): string
