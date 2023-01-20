@@ -26,7 +26,7 @@ use RushlowDevelopment\Atom\Exception\ModelException;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Feed implements FeedInterface
+final class Feed implements FeedInterface
 {
     // Recommended Optional Elements
     private ?PersonCollection $author = null;
@@ -124,9 +124,11 @@ class Feed implements FeedInterface
         return $this->link;
     }
 
-    public function setLink(Link $link): void
+    public function setLink(Link $link): self
     {
         $this->link = $link;
+
+        return $this;
     }
 
     public function getGenerator(): ?string
@@ -174,8 +176,10 @@ class Feed implements FeedInterface
         return $this->subtitle;
     }
 
-    public function setSubtitle(string $subtitle): void
+    public function setSubtitle(string $subtitle): self
     {
         $this->subtitle = $subtitle;
+
+        return $this;
     }
 }
