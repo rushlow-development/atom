@@ -20,7 +20,12 @@ namespace RushlowDevelopment\Atom\Validator;
 
 use RushlowDevelopment\Atom\Model\Atom;
 
-class FeedValidator
+/**
+ * @author Jesse Rushlow <jr@rushlow.dev>
+ *
+ * @internal
+ */
+final class FeedValidator
 {
     public static function hasRequiredAuthors(Atom $atom): bool
     {

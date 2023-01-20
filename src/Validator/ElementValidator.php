@@ -24,8 +24,10 @@ use RushlowDevelopment\Atom\Exception\ValidatorException;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
+ *
+ * @internal
  */
-class ElementValidator
+final class ElementValidator
 {
     /**
      * Return true if ID is a valid URI/IRI.
