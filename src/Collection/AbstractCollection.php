@@ -23,6 +23,8 @@ use RushlowDevelopment\Atom\Contract\CollectionInterface;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  *
+ * @internal
+ *
  * @template T
  */
 abstract class AbstractCollection implements CollectionInterface

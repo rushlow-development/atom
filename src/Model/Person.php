@@ -19,10 +19,17 @@
 namespace RushlowDevelopment\Atom\Model;
 
 /**
+ * An RFC 4287 Complaint Person Construct Representation.
+ *
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
 final class Person
 {
+    /**
+     * @param string      $name  a human-readable & language sensitive name for the person
+     * @param string|null $uri   the IRI for the person
+     * @param string|null $email the persons "addr-spec" (RFC2822) compliant email address
+     */
     public function __construct(
         public readonly string $name,
         public readonly null|string $uri = null,
