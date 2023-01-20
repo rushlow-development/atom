@@ -24,6 +24,7 @@ use RushlowDevelopment\Atom\Model\Content;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
 use RushlowDevelopment\Atom\Model\Link;
+use RushlowDevelopment\Atom\Model\Person;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -59,6 +60,7 @@ final class AtomXmlGeneratorTest extends TestCase
         $this->feedFixture
             ->setSubtitle('XMLGenerator Feed Test')
             ->setLink(new Link('https://rushlow.dev/feed'))
+            ->setAuthor(new Person('Jesse Rushlow'))
         ;
 
         $this->generator->buildFeedElement($this->feedFixture);
@@ -72,8 +74,10 @@ final class AtomXmlGeneratorTest extends TestCase
 
     public function testFeedWithEntries(): void
     {
-        $entry = new Entry('https://rushlow.dev/some-link', 'Entry Test Title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00'));
-        $entry->setContent(new Content('<p>Howdy!</p>', Content::TYPE_HTML));
+        $entry = (new Entry('https://rushlow.dev/some-link', 'Entry Test Title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00')))
+            ->setContent(new Content('<p>Howdy!</p>', Content::TYPE_HTML))
+            ->setAuthor(new Person('Jesse Rushlow'))
+        ;
 
         $this->generator->buildFeedElement($this->feedFixture);
         $this->generator->addEntriesToFeedElement([$entry]);

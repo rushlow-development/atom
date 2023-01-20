@@ -64,6 +64,12 @@ final class AtomXmlGenerator
             if (null !== $subtitle = $feedModel->getSubtitle()) {
                 $feedElement->appendChild(new \DOMElement('subtitle', $subtitle));
             }
+
+            foreach ($feedModel->getAuthor() as $author) {
+                $authorElement = $this->document->createElement('author');
+                $authorElement->appendChild(new \DOMElement('name', $author->getName()));
+                $feedElement->appendChild($authorElement);
+            }
         } catch (\DOMException $exception) {
             throw new \RuntimeException('Unable to build feed element.', previous: $exception);
         }
@@ -96,6 +102,12 @@ final class AtomXmlGenerator
                     $element->appendChild($text);
 
                     $node->appendChild($element);
+                }
+
+                foreach ($entry->getAuthor() as $author) {
+                    $authorElement = $this->document->createElement('author');
+                    $authorElement->appendChild(new \DOMElement('name', $author->getName()));
+                    $node->appendChild($authorElement);
                 }
             } catch (\DOMException $exception) {
                 throw new \RuntimeException('Unable to build feed element.', previous: $exception);

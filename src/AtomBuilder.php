@@ -18,11 +18,14 @@
 
 namespace RushlowDevelopment\Atom;
 
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Generator\AtomXmlGenerator;
 use RushlowDevelopment\Atom\Model\Atom;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
 use RushlowDevelopment\Atom\Model\Link;
+use RushlowDevelopment\Atom\Model\Person;
+use RushlowDevelopment\Atom\Validator\FeedValidator;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -30,8 +33,9 @@ use RushlowDevelopment\Atom\Model\Link;
 final class AtomBuilder
 {
     public function __construct(
-        private Atom $atom,
-        private AtomXmlGenerator $generator,
+        private readonly Atom $atom,
+        private readonly AtomXmlGenerator $generator,
+        private bool $validateFeed = true,
     ) {
     }
 
@@ -41,6 +45,7 @@ final class AtomBuilder
         \DateTimeInterface $lastUpdated,
          null|Link $link = null,
         null|string $subtitle = null,
+        null|Person|PersonCollection $author = null,
     ): self {
         $feed = new Feed($id, $title, $lastUpdated);
 
@@ -50,6 +55,10 @@ final class AtomBuilder
 
         if (null !== $subtitle) {
             $feed->setSubtitle($subtitle);
+        }
+
+        if (null !== $author) {
+            $feed->setAuthor($author);
         }
 
         $atom = (new Atom())->setFeedElement($feed);
@@ -69,9 +78,29 @@ final class AtomBuilder
         $this->generator->buildFeedElement($this->atom->getFeedElement());
         $this->generator->addEntriesToFeedElement($this->atom->getEntryElements());
 
+        if ($this->validateFeed) {
+            $isValid = FeedValidator::hasRequiredAuthors($this->atom);
+
+            if (!$isValid) {
+                throw new \RuntimeException('Feed is not compliant with Atom 1.0 Specification - Missing Author(s) in either the atom:feed or atom:entry.');
+            }
+        }
+
         $domDocument = $this->generator->getDocument();
         $domDocument->formatOutput = $formatOutput;
 
         return $domDocument->saveXML();
+    }
+
+    public function willValidateFeed(): bool
+    {
+        return $this->validateFeed;
+    }
+
+    public function setValidateFeed(bool $validate): self
+    {
+        $this->validateFeed = $validate;
+
+        return $this;
     }
 }

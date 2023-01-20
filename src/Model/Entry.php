@@ -95,9 +95,15 @@ final class Entry implements EntryInterface
         return $this->author;
     }
 
-    public function setAuthor(PersonCollection $author): void
+    public function setAuthor(Person|PersonCollection $author): self
     {
-        $this->author = $author;
+        if ($author instanceof PersonCollection) {
+            $this->author = $author;
+        } else {
+            $this->author->addPerson($author);
+        }
+
+        return $this;
     }
 
     public function getContent(): ?Content
@@ -105,9 +111,11 @@ final class Entry implements EntryInterface
         return $this->content;
     }
 
-    public function setContent(?Content $content): void
+    public function setContent(?Content $content): self
     {
         $this->content = $content;
+
+        return $this;
     }
 
     public function getLink(): ?Link

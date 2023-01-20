@@ -18,8 +18,6 @@
 
 namespace RushlowDevelopment\Atom\Model;
 
-use RushlowDevelopment\Atom\Contract\EntryInterface;
-use RushlowDevelopment\Atom\Contract\FeedInterface;
 use RushlowDevelopment\Atom\Exception\ModelException;
 
 /**
@@ -27,19 +25,19 @@ use RushlowDevelopment\Atom\Exception\ModelException;
  */
 final class Atom
 {
-    private FeedInterface $feedElement;
+    private Feed $feedElement;
 
-    /** @var EntryInterface[] */
+    /** @var Entry[] */
     private array $entryElements = [];
 
-    public function setFeedElement(FeedInterface $feed): self
+    public function setFeedElement(Feed $feed): self
     {
         $this->feedElement = $feed;
 
         return $this;
     }
 
-    public function getFeedElement(): FeedInterface
+    public function getFeedElement(): Feed
     {
         if (isset($this->feedElement)) {
             return $this->feedElement;
@@ -48,7 +46,7 @@ final class Atom
         throw ModelException::emptyPropertyException('Feed');
     }
 
-    public function addEntryElement(EntryInterface $entryElement): self
+    public function addEntryElement(Entry $entryElement): self
     {
         $this->entryElements[] = $entryElement;
 

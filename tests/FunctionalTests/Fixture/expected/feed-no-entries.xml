@@ -5,4 +5,7 @@
   <updated>2023-01-17T23:00:00+00:00</updated>
   <link href="https://rushlow.dev/feed" rel="self"/>
   <subtitle>XMLGenerator Feed Test</subtitle>
+  <author>
+    <name>Jesse Rushlow</name>
+  </author>
 </feed>

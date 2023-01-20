@@ -18,41 +18,33 @@
 
 namespace RushlowDevelopment\Atom\Validator;
 
-use League\Uri\Contracts\UriException;
-use League\Uri\Uri;
-use RushlowDevelopment\Atom\Exception\ValidatorException;
+use RushlowDevelopment\Atom\Model\Atom;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  *
  * @internal
  */
-final class ElementValidator
+final class FeedValidator
 {
-    /**
-     * Return true if ID is a valid URI/IRI.
-     */
-    public static function validIdElement(string $id): bool
+    public static function hasRequiredAuthors(Atom $atom): bool
     {
-        if (empty($id)) {
-            throw new ValidatorException('Id elements cannot be empty.');
-        }
-
-        try {
-            Uri::createFromString($id);
-
-            return true;
-        } catch (UriException $exception) {
-            throw new ValidatorException($exception->getMessage(), 0, $exception);
-        }
-    }
-
-    public static function validTitleElement(string $title): bool
-    {
-        if (!empty($title)) {
+        // If a feed has an author element, the feed is valid.
+        if (\count($atom->getFeedElement()->getAuthor()) > 0) {
             return true;
         }
 
-        throw ValidatorException::invalidTitle();
+        if (0 === \count($atom->getEntryElements())) {
+            return false;
+        }
+
+        // Entry authors are only required if the Feed DOES NOT have an author
+        foreach ($atom->getEntryElements() as $entry) {
+            if (0 === \count($entry->getAuthor())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

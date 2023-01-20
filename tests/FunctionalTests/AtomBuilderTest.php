@@ -23,6 +23,7 @@ use RushlowDevelopment\Atom\AtomBuilder;
 use RushlowDevelopment\Atom\Model\Content;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Link;
+use RushlowDevelopment\Atom\Model\Person;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -43,7 +44,8 @@ final class AtomBuilderTest extends TestCase
             title: 'Rushlow.dev XMLGenerator Test',
             lastUpdated: new \DateTimeImmutable('2023-01-17T23:00:00+00:00'),
             link: new Link('https://rushlow.dev/feed'),
-            subtitle: 'XMLGenerator Feed Test'
+            subtitle: 'XMLGenerator Feed Test',
+            author: new Person('Jesse Rushlow')
         );
 
         self::assertSame($this->getExpectedXml('feed-no-entries.xml'), $builder->generate());
@@ -57,12 +59,29 @@ final class AtomBuilderTest extends TestCase
             lastUpdated: new \DateTimeImmutable('2023-01-17T23:00:00+00:00')
         );
 
-        $entry = new Entry('https://rushlow.dev/some-link', 'Entry Test Title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00'));
-        $entry->setContent(new Content('<p>Howdy!</p>', Content::TYPE_HTML));
+        $entry = (new Entry('https://rushlow.dev/some-link', 'Entry Test Title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00')))
+            ->setContent(new Content('<p>Howdy!</p>', Content::TYPE_HTML))
+            ->setAuthor(new Person('Jesse Rushlow'))
+        ;
 
         $builder->addEntry($entry);
 
         self::assertSame($this->getExpectedXml('feed-with-entry.xml'), $builder->generate());
+    }
+
+    public function testExceptionThrownIfMissingAuthors(): void
+    {
+        $builder = AtomBuilder::createFeed('id', 'title', new \DateTimeImmutable());
+        $builder->setValidateFeed(false);
+
+        // No exception should be thrown.
+        $builder->generate();
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Feed is not compliant with Atom 1.0 Specification - Missing Author(s) in either the atom:feed or atom:entry.');
+
+        $builder->setValidateFeed(true);
+        $builder->generate();
     }
 
     private function getExpectedXml(string $filename): string
