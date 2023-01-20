@@ -29,7 +29,7 @@ use RushlowDevelopment\Atom\Exception\ModelException;
 final class Feed implements FeedInterface
 {
     // Recommended Optional Elements
-    private ?PersonCollection $author = null;
+    private PersonCollection $author;
     private ?Link $link = null;
 
     // Optional
@@ -51,6 +51,7 @@ final class Feed implements FeedInterface
         private string $title,
         private \DateTimeInterface $updated
     ) {
+        $this->author = new PersonCollection();
     }
 
     /**
@@ -89,14 +90,20 @@ final class Feed implements FeedInterface
         return $this->updated;
     }
 
-    public function getAuthor(): ?PersonCollection
+    public function getAuthor(): PersonCollection
     {
         return $this->author;
     }
 
-    public function setAuthor(PersonCollection $author): void
+    public function setAuthor(Person|PersonCollection $author): self
     {
-        $this->author = $author;
+        if ($author instanceof PersonCollection) {
+            $this->author = $author;
+        } else {
+            $this->author->addPerson($author);
+        }
+
+        return $this;
     }
 
     public function getCategory(): ?CategoryCollection

@@ -18,11 +18,13 @@
 
 namespace RushlowDevelopment\Atom;
 
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Generator\AtomXmlGenerator;
 use RushlowDevelopment\Atom\Model\Atom;
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
 use RushlowDevelopment\Atom\Model\Link;
+use RushlowDevelopment\Atom\Model\Person;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -41,6 +43,7 @@ final class AtomBuilder
         \DateTimeInterface $lastUpdated,
          null|Link $link = null,
         null|string $subtitle = null,
+        null|Person|PersonCollection $author = null,
     ): self {
         $feed = new Feed($id, $title, $lastUpdated);
 
@@ -50,6 +53,10 @@ final class AtomBuilder
 
         if (null !== $subtitle) {
             $feed->setSubtitle($subtitle);
+        }
+
+        if (null !== $author) {
+            $feed->setAuthor($author);
         }
 
         $atom = (new Atom())->setFeedElement($feed);

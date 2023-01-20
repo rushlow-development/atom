@@ -8,5 +8,8 @@
     <title>Entry Test Title</title>
     <updated>2023-01-20T23:00:00+00:00</updated>
     <content type="html">&lt;p&gt;Howdy!&lt;/p&gt;</content>
+    <author>
+      <name>Jesse Rushlow</name>
+    </author>
   </entry>
 </feed>
