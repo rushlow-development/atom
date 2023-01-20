@@ -25,15 +25,18 @@ use RushlowDevelopment\Atom\Exception\ModelException;
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  */
-class Atom
+final class Atom
 {
     private FeedInterface $feedElement;
 
+    /** @var EntryInterface[] */
     private array $entryElements = [];
 
-    public function setFeedElement(FeedInterface $feed): void
+    public function setFeedElement(FeedInterface $feed): self
     {
         $this->feedElement = $feed;
+
+        return $this;
     }
 
     public function getFeedElement(): FeedInterface
@@ -45,9 +48,11 @@ class Atom
         throw ModelException::emptyPropertyException('Feed');
     }
 
-    public function addEntryElement(EntryInterface $entryElement): void
+    public function addEntryElement(EntryInterface $entryElement): self
     {
         $this->entryElements[] = $entryElement;
+
+        return $this;
     }
 
     public function getEntryElements(): array
