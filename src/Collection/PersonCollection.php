@@ -20,16 +20,21 @@ namespace RushlowDevelopment\Atom\Collection;
 
 use RushlowDevelopment\Atom\Model\Person;
 
+/**
+ * @author Jesse Rushlow <jr@rushlow.dev>
+ *
+ * @extends AbstractCollection<Person>
+ */
 final class PersonCollection extends AbstractCollection
 {
     public function addPerson(Person $person): void
     {
-        $this->offsetSet($person->getName(), $person);
+        $this->offsetSet($person->name, $person);
     }
 
     public function removePerson(Person $person): void
     {
-        $this->offsetUnset($person->getName());
+        $this->offsetUnset($person->name);
     }
 
     public function getPerson(string $name): Person
