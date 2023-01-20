@@ -18,80 +18,28 @@
 
 namespace RushlowDevelopment\Atom\UnitTests\Model;
 
+use PHPUnit\Framework\TestCase;
 use RushlowDevelopment\Atom\Model\Person;
-use RushlowDevelopment\Atom\UnitTests\AbstractModelTest;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
  *
  * @internal
  */
-final class PersonTest extends AbstractModelTest
+final class PersonTest extends TestCase
 {
-    protected function setUp(): void
+    public function testPersonHasRequiredProperties(): void
     {
-        $this->classUnderTest = Person::class;
+        $reflectedModel = new \ReflectionClass(Person::class);
+
+        self::assertTrue($reflectedModel->hasProperty('name'));
     }
 
-    public function requiredPropertyPerRFCDataProvider(): \Generator
+    public function testPersonHasOptionalProperties(): void
     {
-        yield 'Name property' => ['name'];
-    }
+        $reflectedModel = new \ReflectionClass(Person::class);
 
-    public function optionalPropertyPerRFCDataProvider(): \Generator
-    {
-        yield 'Email property' => ['email'];
-        yield 'Uri property' => ['uri'];
-    }
-
-    public function requiredMethodDataProvider(): array
-    {
-        return [
-            ['getName'],
-            ['getUri'],
-            ['setUri'],
-            ['getEmail'],
-            ['setEmail'],
-        ];
-    }
-
-    /**
-     * @dataProvider requiredMethodDataProvider
-     */
-    public function testAuthorHasRequiredMethods(string $methodName): void
-    {
-        self::assertTrue(method_exists(Person::class, $methodName));
-    }
-
-    public function testAllPropertiesAreInitializedWithConstructor(): void
-    {
-        $author = new Person('');
-
-        self::assertSame('', $author->getName());
-        self::assertNull($author->getUri());
-        self::assertNull($author->getEmail());
-    }
-
-    public function setterDataProvider(): array
-    {
-        return [
-            'Person Uri Setter Test' => [
-                'getUri', 'setUri', 'https://geeshoe.com',
-            ],
-            'Person Email Setter Test' => [
-                'getEmail', 'setEmail', 'jr@rushlow.dev',
-            ],
-        ];
-    }
-
-    /**
-     * @dataProvider setterDataProvider
-     */
-    public function testAuthorSettersSetGivenParamToProperty(string $getter, string $setter, string $expected): void
-    {
-        $author = new Person('');
-
-        $author->$setter($expected);
-        self::assertSame($expected, $author->$getter());
+        self::assertTrue($reflectedModel->hasProperty('uri'));
+        self::assertTrue($reflectedModel->hasProperty('email'));
     }
 }

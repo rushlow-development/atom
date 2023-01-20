@@ -19,6 +19,7 @@
 namespace RushlowDevelopment\Atom\FunctionalTests\Generator;
 
 use PHPUnit\Framework\TestCase;
+use RushlowDevelopment\Atom\Collection\PersonCollection;
 use RushlowDevelopment\Atom\Generator\AtomXmlGenerator;
 use RushlowDevelopment\Atom\Model\Content;
 use RushlowDevelopment\Atom\Model\Entry;
@@ -87,6 +88,51 @@ final class AtomXmlGeneratorTest extends TestCase
         $result = $result->saveXML();
 
         self::assertSame($this->getExpectedXml('feed-with-entry.xml'), $result);
+    }
+
+    public function testOptionalAuthorDetailsAreAdded(): void
+    {
+        $this->feedFixture->setAuthor(new Person('Jesse Rushlow', 'https://rushlow.dev', 'jr@rushlow.dev'));
+
+        $entry = (new Entry('id', 'title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00')))
+            ->setAuthor(new Person('Jesse Rushlow', 'https://rushlow.dev', 'jr@rushlow.dev'))
+        ;
+
+        $this->generator->buildFeedElement($this->feedFixture);
+        $this->generator->addEntriesToFeedElement([$entry]);
+
+        $result = $this->generator->getDocument();
+        $result->formatOutput = true;
+        $result = $result->saveXML();
+
+        self::assertSame($this->getExpectedXml('feed-all-author-fields.xml'), $result);
+    }
+
+    public function testMultipleAuthors(): void
+    {
+        /**
+         * <author>.
+        </author>
+         */
+        $authorCollection = (new PersonCollection())
+            ->addPerson(new Person('Jesse Rushlow', 'https://rushlow.dev', 'jr@rushlow.dev'))
+            ->addPerson(new Person('Someone Else', 'https://their-domain.com', 'not@my-email.com'))
+        ;
+
+        $this->feedFixture->setAuthor($authorCollection);
+
+        $entry = (new Entry('id', 'title', new \DateTimeImmutable('2023-01-20T23:00:00+00:00')))
+            ->setAuthor($authorCollection)
+        ;
+
+        $this->generator->buildFeedElement($this->feedFixture);
+        $this->generator->addEntriesToFeedElement([$entry]);
+
+        $result = $this->generator->getDocument();
+        $result->formatOutput = true;
+        $result = $result->saveXML();
+
+        self::assertSame($this->getExpectedXml('feed-multiple-authors.xml'), $result);
     }
 
     private function getExpectedXml(string $filename): string

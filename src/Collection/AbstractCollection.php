@@ -22,9 +22,14 @@ use RushlowDevelopment\Atom\Contract\CollectionInterface;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
+ *
+ * @internal
+ *
+ * @template T
  */
 abstract class AbstractCollection implements CollectionInterface
 {
+    /** @var T[] */
     protected array $elements = [];
 
     /**
@@ -38,7 +43,7 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->elements);
     }

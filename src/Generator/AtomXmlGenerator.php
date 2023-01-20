@@ -20,6 +20,7 @@ namespace RushlowDevelopment\Atom\Generator;
 
 use RushlowDevelopment\Atom\Model\Entry;
 use RushlowDevelopment\Atom\Model\Feed;
+use RushlowDevelopment\Atom\Model\Person;
 
 /**
  * @author Jesse Rushlow <jr@rushlow.dev>
@@ -66,9 +67,7 @@ final class AtomXmlGenerator
             }
 
             foreach ($feedModel->getAuthor() as $author) {
-                $authorElement = $this->document->createElement('author');
-                $authorElement->appendChild(new \DOMElement('name', $author->getName()));
-                $feedElement->appendChild($authorElement);
+                $feedElement->appendChild($this->createAuthorElement($author));
             }
         } catch (\DOMException $exception) {
             throw new \RuntimeException('Unable to build feed element.', previous: $exception);
@@ -105,9 +104,7 @@ final class AtomXmlGenerator
                 }
 
                 foreach ($entry->getAuthor() as $author) {
-                    $authorElement = $this->document->createElement('author');
-                    $authorElement->appendChild(new \DOMElement('name', $author->getName()));
-                    $node->appendChild($authorElement);
+                    $node->appendChild($this->createAuthorElement($author));
                 }
             } catch (\DOMException $exception) {
                 throw new \RuntimeException('Unable to build feed element.', previous: $exception);
@@ -115,5 +112,21 @@ final class AtomXmlGenerator
 
             $feed->appendChild($node);
         }
+    }
+
+    private function createAuthorElement(Person $person): \DOMElement
+    {
+        $authorElement = $this->document->createElement('author');
+        $authorElement->appendChild(new \DOMElement('name', $person->name));
+
+        if (null !== $person->uri) {
+            $authorElement->appendChild(new \DOMElement('uri', $person->uri));
+        }
+
+        if (null !== $person->email) {
+            $authorElement->appendChild(new \DOMElement('email', $person->email));
+        }
+
+        return $authorElement;
     }
 }
