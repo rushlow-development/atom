@@ -13,59 +13,40 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   name: Set PHP Version
-                run: sudo update-alternatives --set php /usr/bin/php8.0
-
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
             -   name: Validate
                 run: composer validate --strict
 
     php-cs-fixer:
-        name: Lint PHP Source
+        name: PHP-CS-Fixer
         runs-on: ubuntu-latest
 
         steps:
-            -   name: Set PHP Version
-                run: sudo update-alternatives --set php /usr/bin/php8.0
-
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
-            -   name: Install PHP-CS-Fixer
-                run: composer install -d $GITHUB_WORKSPACE/tools/php-cs-fixer --prefer-dist --no-progress
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+                    tools: php-cs-fixer
 
-            -   name: Enforce coding standards
-                run: $GITHUB_WORKSPACE/tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config $GITHUB_WORKSPACE/tools/php-cs-fixer/.php-cs-fixer.dist.php --dry-run --allow-risky=yes
-
-#    psalm:
-#        name: Psalm Static Analysis
-#        runs-on: ubuntu-latest
-#
-#        steps:
-#            -   name: Set PHP Version
-#                run: sudo update-alternatives --set php /usr/bin/php8.0
-#
-#            -   name: Checkout
-#                uses: actions/checkout@v2
-#
-#            -   name: Install Dependencies
-#                run: composer install --prefer-dist --no-progress
-#
-#            -   name: Analyze Source
-#                run: vendor/bin/psalm -c $GITHUB_WORKSPACE/psalm.xml
-#
+            -   name: Run PHP-CS-Fixer
+                run: php-cs-fixer fix --dry-run --diff
     rector:
         name: Rector PHP Source
         runs-on: ubuntu-latest
 
         steps:
-            -   name: Set PHP Version
-                run: sudo update-alternatives --set php /usr/bin/php8.0
-
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
 
             -   name: Install Dependencies
                 run: composer install -d $GITHUB_WORKSPACE/tools/rector --prefer-dist --no-progress
